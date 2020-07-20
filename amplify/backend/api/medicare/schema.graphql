@@ -1,0 +1,71 @@
+# Medicare application schema
+
+type DoctorWorkSlot
+@model
+@auth(
+  rules:[
+    { allow: owner, ownerField: "doctor", operations:[create, read, update, delete]},
+    { allow: groups, groups: ["Patients"], operations: [read]}
+  ]
+)
+{
+ id: ID!,
+ doctor: String!,
+ start_time: AWSDateTime,
+ end_time: AWSDateTime,
+ capacity: Int,
+}
+
+enum SessionStatus {
+  REQUESTED
+  ACCEPTED
+  REJECTED
+}
+
+type DoctorVideoSession
+@model
+@auth(
+  rules: [
+    { allow: owner, ownerField: "patient", operations: [create, read]},
+    { allow: owner, ownerField: "doctor", operations: [update]}
+  ]
+){
+  id: ID!,
+  doctor: String!,
+  patient: String!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  status: SessionStatus
+}
+
+type DoctorTextSession
+@model
+@auth(
+  rules: [
+    { allow: owner, ownerField: "patient", operations: [create, read]},
+    { allow: owner, ownerField: "doctor", operations: [update]}
+  ]
+){
+  id: ID!,
+  doctor: String!,
+  patient: String!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  status: SessionStatus
+}
+
+type DoctorAudioSession
+@model
+@auth(
+  rules: [
+    { allow: owner, ownerField: "patient", operations: [create, read]},
+    { allow: owner, ownerField: "doctor", operations: [update]}
+  ]
+){
+  id: ID!,
+  doctor: String!,
+  patient: String!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  status: SessionStatus
+}

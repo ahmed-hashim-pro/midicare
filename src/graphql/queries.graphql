@@ -1,0 +1,278 @@
+# this is an auto generated file. This will be overwritten
+query SyncDoctorWorkSlots(
+  $filter: ModelDoctorWorkSlotFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDoctorWorkSlots(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      doctor
+      start_time
+      end_time
+      capacity
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetDoctorWorkSlot($id: ID!) {
+  getDoctorWorkSlot(id: $id) {
+    id
+    doctor
+    start_time
+    end_time
+    capacity
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorWorkSlots(
+  $filter: ModelDoctorWorkSlotFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorWorkSlots(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      doctor
+      start_time
+      end_time
+      capacity
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncDoctorVideoSessions(
+  $filter: ModelDoctorVideoSessionFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDoctorVideoSessions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      doctor
+      patient
+      start_time
+      end_time
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetDoctorVideoSession($id: ID!) {
+  getDoctorVideoSession(id: $id) {
+    id
+    doctor
+    patient
+    start_time
+    end_time
+    status
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorVideoSessions(
+  $filter: ModelDoctorVideoSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorVideoSessions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctor
+      patient
+      start_time
+      end_time
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncDoctorTextSessions(
+  $filter: ModelDoctorTextSessionFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDoctorTextSessions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      doctor
+      patient
+      start_time
+      end_time
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetDoctorTextSession($id: ID!) {
+  getDoctorTextSession(id: $id) {
+    id
+    doctor
+    patient
+    start_time
+    end_time
+    status
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorTextSessions(
+  $filter: ModelDoctorTextSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorTextSessions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctor
+      patient
+      start_time
+      end_time
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncDoctorAudioSessions(
+  $filter: ModelDoctorAudioSessionFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDoctorAudioSessions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      doctor
+      patient
+      start_time
+      end_time
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetDoctorAudioSession($id: ID!) {
+  getDoctorAudioSession(id: $id) {
+    id
+    doctor
+    patient
+    start_time
+    end_time
+    status
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorAudioSessions(
+  $filter: ModelDoctorAudioSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorAudioSessions(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctor
+      patient
+      start_time
+      end_time
+      status
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}

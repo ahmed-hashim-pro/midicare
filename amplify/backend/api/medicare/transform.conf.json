@@ -1,28 +1,4 @@
 {
     "Version": 5,
-    "ElasticsearchWarning": true,
-    "ResolverConfig": {
-        "project": {
-            "ConflictHandler": "OPTIMISTIC_CONCURRENCY",
-            "ConflictDetection": "VERSION"
-        },
-        "models": {
-            "Doctor_Work_Slot": {
-                "ConflictHandler": "OPTIMISTIC_CONCURRENCY",
-                "ConflictDetection": "VERSION"
-            },
-            "Doctor_Video_Session": {
-                "ConflictHandler": "OPTIMISTIC_CONCURRENCY",
-                "ConflictDetection": "VERSION"
-            },
-            "Doctor_Text_Session": {
-                "ConflictHandler": "OPTIMISTIC_CONCURRENCY",
-                "ConflictDetection": "VERSION"
-            },
-            "Doctor_Audio_Session": {
-                "ConflictHandler": "OPTIMISTIC_CONCURRENCY",
-                "ConflictDetection": "VERSION"
-            }
-        }
-    }
+    "ElasticsearchWarning": true
 }

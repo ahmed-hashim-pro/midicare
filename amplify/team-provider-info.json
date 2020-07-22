@@ -13,7 +13,8 @@
         },
         "categories": {
             "auth": {
-                "medicared97587d5": {}
+                "medicared97587d5": {},
+                "userPoolGroups": {}
             }
         }
     }

@@ -15,7 +15,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AuthorizationModule} from "./authorization/authorization.module";
-import {AUTHService} from "./authorization/auth.service";
 
 
 @NgModule({

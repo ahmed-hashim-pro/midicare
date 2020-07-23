@@ -17,5 +17,7 @@ export interface IAUTH {
     signUp (username: string, password: string, opts: object) : Promise<User>;
     // User administration functionalities
     updateUser (user: User) : Promise<User>;
-
+    // TODO: Provide the missing capabilities
+    // Forgot password
+    // Change password
 }

@@ -5,12 +5,22 @@
 export class User {
     private _username : string;
     private _groups : [string];
+    private _attributes : object;
 
-    constructor(username: string, groups: [string]) {
+    constructor(username: string, groups: [string], attributes: object = {}) {
         this._username = username;
         this._groups = groups;
+        this._attributes = attributes;
     }
 
+
+    get attributes(): object {
+        return this._attributes;
+    }
+
+    set attributes(value: object) {
+        this._attributes = value;
+    }
 
     get username(): string {
         return this._username;

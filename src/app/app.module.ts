@@ -26,13 +26,12 @@ import {AUTHService} from "./authorization/auth.service";
     IonicModule.forRoot(),
     AppRoutingModule,
     AmplifyUIAngularModule,
-    AuthorizationModule
+    AuthorizationModule.forRoot()
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AUTHService
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

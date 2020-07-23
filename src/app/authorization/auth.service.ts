@@ -1,15 +1,21 @@
-import { Injectable } from '@angular/core';
+import {Injectable, SkipSelf, Optional} from '@angular/core';
 import {IAUTH} from "./auth/iauth";
 import {User} from "./auth/user";
 import {CognitoAmplify} from "./auth/cognito-amplify";
+import {AuthorizationModule} from "./authorization.module";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: AuthorizationModule
 })
 export class AUTHService {
   private auth: IAUTH;
 
-  constructor(platform: string = 'cognito', opts: object = {}) {
+  constructor(@Optional() @SkipSelf() private authService: AUTHService) {
+      // Making sure the service is singleton
+      if (authService) {
+        throw new Error('Authorization service is already injected');
+      }
+      const platform = 'cognito';
       switch (platform) {
         case 'cognito':
           // Initialize cognito auth in auth

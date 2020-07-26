@@ -3,7 +3,7 @@ import {APIService, CreateDoctorWorkSlotInput, ListDoctorWorkSlotsQuery} from "@
 import {DoctorWorkslot} from "@core/model/doctor-workslot";
 
 @Injectable()
-export class GqlDoctorWorkSlotService {
+export class GqlDoctorWorkslotService {
 
   constructor() {}
 

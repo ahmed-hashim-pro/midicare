@@ -1,5 +1,5 @@
 import { Auth } from 'aws-amplify';
-import { User } from '@core/auth/user';
+import { User } from '@core/model/user';
 import {IAUTH} from '@core/auth/iauth';
 // Auth is pre-configured in the Application Root
 // before hand for all AWS AMPLIFY Services

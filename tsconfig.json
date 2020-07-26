@@ -3,7 +3,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@authorization/*": ["./src/app/authorization/*"]
+      "@authorization/*": ["./src/app/authorization/*"],
+      "@amazon/*" : ["./src/app/amazon/*"],
+      "@src/*": ["./src/*"],
+      "@env/*": ["./src/environments/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

@@ -1,12 +1,9 @@
 import {Injectable, SkipSelf, Optional} from '@angular/core';
-import {IAUTH} from "./auth/iauth";
-import {User} from "./auth/user";
-import {CognitoAmplify} from "./auth/cognito-amplify";
-import {AuthorizationModule} from "./authorization.module";
+import {IAUTH} from './auth/iauth';
+import {User} from './auth/user';
+import CognitoAmplify from "@amazon/cognito-amplify";
 
-@Injectable({
-  providedIn: AuthorizationModule
-})
+@Injectable()
 export class AUTHService {
   private auth: IAUTH;
 
@@ -15,16 +12,8 @@ export class AUTHService {
       if (authService) {
         throw new Error('Authorization service is already injected');
       }
-      const platform = 'cognito';
-      switch (platform) {
-        case 'cognito':
-          // Initialize cognito auth in auth
-              this.auth = new CognitoAmplify();
-              break;
-        default:
-          // Default implmentatoin cognito
-              this.auth = new CognitoAmplify();
-      }
+      // TODO: Create a mechanism for dynamic imports
+      this.auth = new CognitoAmplify();
   }
 
   public async getUser () : Promise<User> {

@@ -14,8 +14,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {AuthorizationModule} from "./authorization/authorization.module";
-
+import {AuthorizationModule} from '@authorization/authorization.module';
+import {AmazonModule} from "@amazon/amazon.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +25,8 @@ import {AuthorizationModule} from "./authorization/authorization.module";
     IonicModule.forRoot(),
     AppRoutingModule,
     AmplifyUIAngularModule,
-    AuthorizationModule.forRoot()
+    AuthorizationModule.forRoot(),
+    AmazonModule
   ],
   providers: [
     StatusBar,

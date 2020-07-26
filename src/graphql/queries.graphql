@@ -1,0 +1,447 @@
+# this is an auto generated file. This will be overwritten
+query GetPatient($id: ID!) {
+  getPatient(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+query ListPatients(
+  $filter: ModelPatientFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPatients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDoctor($id: ID!) {
+  getDoctor(id: $id) {
+    id
+    insurance
+    description
+    specializations
+    name
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctors(
+  $filter: ModelDoctorFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctors(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      insurance
+      description
+      specializations
+      name
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDoctorWorkSlot($id: ID!) {
+  getDoctorWorkSlot(id: $id) {
+    id
+    doctorID
+    doctor {
+      id
+      insurance
+      description
+      specializations
+      name
+      createdAt
+      updatedAt
+    }
+    start_time
+    end_time
+    capacity
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorWorkSlots(
+  $filter: ModelDoctorWorkSlotFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDoctorWorkSlots(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      doctorID
+      start_time
+      end_time
+      capacity
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDoctorVideoSession($id: ID!, $doctorID: ID!, $patientID: ID!) {
+  getDoctorVideoSession(id: $id, doctorID: $doctorID, patientID: $patientID) {
+    id
+    doctorID
+    doctor {
+      id
+      insurance
+      description
+      specializations
+      name
+      createdAt
+      updatedAt
+    }
+    patientID
+    patient {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    start_time
+    end_time
+    status
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorVideoSessions(
+  $id: ID
+  $doctorIDPatientID: ModelDoctorVideoSessionPrimaryCompositeKeyConditionInput
+  $filter: ModelDoctorVideoSessionFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listDoctorVideoSessions(
+    id: $id
+    doctorIDPatientID: $doctorIDPatientID
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDoctorTextSession($id: ID!, $doctorID: ID!, $patientID: ID!) {
+  getDoctorTextSession(id: $id, doctorID: $doctorID, patientID: $patientID) {
+    id
+    doctorID
+    doctor {
+      id
+      insurance
+      description
+      specializations
+      name
+      createdAt
+      updatedAt
+    }
+    patientID
+    patient {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    start_time
+    end_time
+    status
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorTextSessions(
+  $id: ID
+  $doctorIDPatientID: ModelDoctorTextSessionPrimaryCompositeKeyConditionInput
+  $filter: ModelDoctorTextSessionFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listDoctorTextSessions(
+    id: $id
+    doctorIDPatientID: $doctorIDPatientID
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDoctorAudioSession($id: ID!, $doctorID: ID!, $patientID: ID!) {
+  getDoctorAudioSession(id: $id, doctorID: $doctorID, patientID: $patientID) {
+    id
+    doctorID
+    doctor {
+      id
+      insurance
+      description
+      specializations
+      name
+      createdAt
+      updatedAt
+    }
+    patientID
+    patient {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+    start_time
+    end_time
+    status
+    createdAt
+    updatedAt
+  }
+}
+query ListDoctorAudioSessions(
+  $id: ID
+  $doctorIDPatientID: ModelDoctorAudioSessionPrimaryCompositeKeyConditionInput
+  $filter: ModelDoctorAudioSessionFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listDoctorAudioSessions(
+    id: $id
+    doctorIDPatientID: $doctorIDPatientID
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorWorkSlotByDoctor(
+  $doctorID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorWorkSlotFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorWorkSlotByDoctor(
+    doctorID: $doctorID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      start_time
+      end_time
+      capacity
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorVideoSessionByDoctor(
+  $doctorID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorVideoSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorVideoSessionByDoctor(
+    doctorID: $doctorID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorVideoSessionByPatient(
+  $patientID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorVideoSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorVideoSessionByPatient(
+    patientID: $patientID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorTextSessionByDoctor(
+  $doctorID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorTextSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorTextSessionByDoctor(
+    doctorID: $doctorID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorTextSessionByPatient(
+  $patientID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorTextSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorTextSessionByPatient(
+    patientID: $patientID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorAudioSessionByDoctor(
+  $doctorID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorAudioSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorAudioSessionByDoctor(
+    doctorID: $doctorID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query DoctorAudioSessionByPatient(
+  $patientID: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelDoctorAudioSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  doctorAudioSessionByPatient(
+    patientID: $patientID
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      doctorID
+      patientID
+      start_time
+      end_time
+      status
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

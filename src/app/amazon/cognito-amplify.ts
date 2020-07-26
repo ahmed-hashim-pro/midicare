@@ -1,6 +1,6 @@
 import { Auth } from 'aws-amplify';
-import { User } from '@authorization/auth/user';
-import {IAUTH} from '@authorization/auth/iauth';
+import { User } from '@core/auth/user';
+import {IAUTH} from '@core/auth/iauth';
 // Auth is pre-configured in the Application Root
 // before hand for all AWS AMPLIFY Services
 export default class CognitoAmplify implements IAUTH {

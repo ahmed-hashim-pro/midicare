@@ -31,7 +31,8 @@ type Doctor
   id: ID!,
   insurance: [String],
   description: String,
-  specializations: [String]
+  specializations: [String],
+  name: String
 }
 
 # Working slots are managed by the Doctors

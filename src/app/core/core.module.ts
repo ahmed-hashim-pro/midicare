@@ -10,10 +10,10 @@ import {AUTHService} from "./auth.service";
     CommonModule
   ]
 })
-export class AuthorizationModule {
+export class CoreModule {
   static forRoot () : ModuleWithProviders {
     return {
-      ngModule: AuthorizationModule,
+      ngModule: CoreModule,
       providers: [
         AUTHService
       ]
@@ -22,7 +22,7 @@ export class AuthorizationModule {
 
   static forChild() : ModuleWithProviders {
     return {
-      ngModule: AuthorizationModule
+      ngModule: CoreModule
     }
   }
 }

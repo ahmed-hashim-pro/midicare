@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@authorization/*": ["./src/app/authorization/*"],
+      "@core/*": ["./src/app/core/*"],
       "@amazon/*" : ["./src/app/amazon/*"],
       "@src/*": ["./src/*"],
       "@env/*": ["./src/environments/*"]

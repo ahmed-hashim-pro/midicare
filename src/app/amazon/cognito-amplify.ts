@@ -9,12 +9,12 @@ export default class CognitoAmplify implements IAUTH {
 
     public async getUser () : Promise<User> {
         const awsUser = await Auth.currentAuthenticatedUser();
-        return this.toUser(awsUser);
+        return CognitoAmplify.toUser(awsUser);
     }
 
     public async signIn (username: string, password: string) : Promise<User> {
         const awsUser = await Auth.signIn(username, password);
-        return this.toUser(awsUser);
+        return CognitoAmplify.toUser(awsUser);
     }
 
     public async signOut () : Promise<User> {

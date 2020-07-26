@@ -34,7 +34,7 @@ export default class CognitoAmplify implements IAUTH {
     }
 
     // Auxillary functions
-    private toUser (awsUser : any) : User {
+    private static toUser (awsUser : any) : User {
         return new User(
             awsUser.username,
             awsUser.getSignInUserSession().getAccessToken().payload['cognito:groups'],

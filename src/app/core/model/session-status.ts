@@ -1,5 +1,5 @@
 export enum SessionStatus {
-    REQUESTED,
-    ACCEPTED,
-    REJECTED
+    REQUESTED = 'REQUESTED',
+    ACCEPTED = 'ACCEPTED',
+    REJECTED = 'REJECTED'
 }

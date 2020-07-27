@@ -1,6 +1,6 @@
 import {Injectable, SkipSelf, Optional} from '@angular/core';
 import {IAUTH} from './iauth';
-import {User} from '../model/user';
+import {User} from '../../model/user';
 import CognitoAmplify from "@amazon/cognito-amplify";
 
 @Injectable()

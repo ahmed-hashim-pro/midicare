@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AUTHService } from '@core/auth/auth.service';
+import { AUTHService } from '@core/service/auth/auth.service';
 import { GqlDoctorService } from "@amazon/gql-doctor.service";
 
 @Component({
@@ -34,8 +34,8 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     const user = await this.authService.signIn('firsttestuser@email.com','passpass');
     console.log(user);
-    const doctors = await this.doctorService.list();
+    const doctors = await this.doctorService.findDoctors();
     console.log(doctors);
-    console.log(await this.doctorService.get(doctors[0]));
+    console.log(await this.doctorService.findDoctor(doctors[0]['id']));
   }
 }

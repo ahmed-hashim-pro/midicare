@@ -23,9 +23,9 @@ import {AmazonModule} from "@amazon/amazon.module";
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    CoreModule.forRoot(),
     AppRoutingModule,
     AmplifyUIAngularModule,
-    CoreModule.forRoot(),
     AmazonModule
   ],
   providers: [

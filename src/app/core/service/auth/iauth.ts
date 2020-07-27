@@ -1,4 +1,4 @@
-import {User} from "../model/user";
+import {User} from "../../model/user";
 
 /**
  * Authentication and authorization interface to be used all over

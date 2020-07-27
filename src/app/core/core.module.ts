@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {AUTHService} from "./service/auth/auth.service";
 import { CoreRoutingModule } from './core-routing.module';
 import {LoginComponent} from "@core/login/login.component";
+import {IonicModule} from "@ionic/angular";
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -12,7 +14,9 @@ import {LoginComponent} from "@core/login/login.component";
   ],
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    IonicModule,
+    FormsModule
   ]
 })
 export class CoreModule {

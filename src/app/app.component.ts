@@ -10,7 +10,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public Application: string = 'MediCare';
 
   constructor(
     private platform: Platform,

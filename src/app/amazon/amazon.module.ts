@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import CognitoAmplify from "@src/app/amazon/cognito-amplify";
-import {GqlDoctorService} from "@amazon/gql-doctor.service";
+import {CognitoAmplify} from '@src/app/amazon/cognito-amplify';
+import {GqlDoctorService} from '@amazon/gql-doctor.service';
 
 
 

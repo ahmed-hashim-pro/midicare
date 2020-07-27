@@ -45,7 +45,7 @@ export class Doctor {
         this._specializations = value;
     }
 
-    constructor(name: string, insurance: string[], description: string, specializations: string[], id: string) {
+    constructor(id: string, name: string, insurance: string[], description: string, specializations: string[]) {
         this._name = name;
         this._insurance = insurance;
         this._description = description;

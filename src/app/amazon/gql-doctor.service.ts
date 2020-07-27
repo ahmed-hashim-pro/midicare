@@ -12,20 +12,20 @@ export class GqlDoctorService {
     return GqlDoctorService.toDoctors(await svc.ListDoctors());
   }
 
-  async findDoctor (input: Doctor) : Promise<Doctor> {
+  async findDoctor (id: string) : Promise<Doctor> {
     const svc = new APIService();
-    return GqlDoctorService.toDoctor(await svc.GetDoctor(input.id));
+    return GqlDoctorService.toDoctor(await svc.GetDoctor(id));
   }
 
   private static toDoctors(input: ListDoctorsQuery) : Doctor[] {
     return input.items.map(
         (item) => {
           return new Doctor(
+              item.id,
               item.name,
                item.insurance,
                item.description,
-              item.specializations,
-              item.id
+              item.specializations
           );
         }
     )
@@ -33,11 +33,11 @@ export class GqlDoctorService {
 
   private static toDoctor(input: GetDoctorQuery) : Doctor {
     return new Doctor(
+        input.id,
         input.name,
         input.insurance,
         input.description,
-        input.specializations,
-        input.id
+        input.specializations
     );
   }
 }

@@ -1,20 +1,24 @@
 import {Doctor} from "@core/model/doctor";
+import {Patient} from "@core/model/patient";
+import {SessionStatus} from "@core/model/session-status";
 
-export class DoctorWorkslot {
+export class DoctorVideoSession {
     private _id: string;
     private _doctor: Doctor;
+    private _patient: Patient;
     private _start_time: string;
     private _end_time: string;
-    private _capacity: number;
+    private _status: SessionStatus;
 
-    constructor(id: string, doctor: Doctor, start_time: string, end_time: string, capacity: number) {
+    constructor(id: string, doctor: Doctor, patient: Patient, start_time: string, end_time: string,
+                status: SessionStatus) {
         this._id = id;
         this._doctor = doctor;
+        this._patient = patient;
         this._start_time = start_time;
         this._end_time = end_time;
-        this._capacity = capacity;
+        this._status = status;
     }
-
 
     get id(): string {
         return this._id;
@@ -30,6 +34,14 @@ export class DoctorWorkslot {
 
     set doctor(value: Doctor) {
         this._doctor = value;
+    }
+
+    get patient(): Patient {
+        return this._patient;
+    }
+
+    set patient(value: Patient) {
+        this._patient = value;
     }
 
     get start_time(): string {
@@ -48,11 +60,11 @@ export class DoctorWorkslot {
         this._end_time = value;
     }
 
-    get capacity(): number {
-        return this._capacity;
+    get status(): SessionStatus {
+        return this._status;
     }
 
-    set capacity(value: number) {
-        this._capacity = value;
+    set status(value: SessionStatus) {
+        this._status = value;
     }
 }

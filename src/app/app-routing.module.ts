@@ -9,6 +9,11 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'patient',
+        loadChildren: () => import('@patient/patient.module').then(m => m.PatientModule)
+    }
+    ,
+    {
         path: 'app',
         component: AppComponent
     }

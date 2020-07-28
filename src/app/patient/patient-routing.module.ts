@@ -16,14 +16,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(
-        [
-          {
-            path: 'patient',
-            children: routes
-          }
-        ]
-    )
+    RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
 })

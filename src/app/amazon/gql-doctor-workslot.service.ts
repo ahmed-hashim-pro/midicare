@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import {APIService, CreateDoctorWorkSlotInput, ListDoctorWorkSlotsQuery} from "@amazon/auto/API.generated";
+import {
+    APIService,
+    CreateDoctorWorkSlotInput,
+    ModelDoctorWorkSlotFilterInput
+} from "@amazon/auto/API.generated";
 import {DoctorWorkslot} from "@core/model/doctor-workslot";
 import {Doctor} from "@core/model/doctor";
 
@@ -59,5 +63,28 @@ export class GqlDoctorWorkslotService {
         workSlot.end_time,
         workSlot.capacity
     )
+  }
+
+  async findDoctorWorkSlotsByDoctor(id: string): Promise<DoctorWorkslot[]> {
+      const [{items}, doctor] = await Promise.all(
+          [
+                this.service.ListDoctorWorkSlots(<ModelDoctorWorkSlotFilterInput>{
+                    doctorID: {
+                        eq: id
+                    }
+                }),
+                this.service.GetDoctor(id)
+          ]);
+      return items.map(
+          (item) => {
+              return new DoctorWorkslot(
+                  item.id,
+                  new Doctor(item.doctorID, doctor.name, doctor.insurance, doctor.description, doctor.specializations),
+                  item.start_time,
+                  item.end_time,
+                  item.capacity
+              );
+          }
+      );
   }
 }

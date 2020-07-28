@@ -1,0 +1,22 @@
+<ion-card *ngFor="let workSlot of workSlots" class="ion-float-left">
+  <ion-card-header>
+    <ion-card-title>
+      <label>
+        From: {{workSlot.start_time | date:'full'}}
+        <br>
+        To: {{workSlot.end_time | date: 'full'}}
+      </label>
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-button>
+      Text
+    </ion-button>
+    <ion-button>
+      Voice
+    </ion-button>
+    <ion-button>
+      Video
+    </ion-button>
+  </ion-card-content>
+</ion-card>

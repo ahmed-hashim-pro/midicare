@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
 import {DoctorVideoSession} from '@core/model/doctor-video-session';
 import {APIService, CreateDoctorVideoSessionInput} from '@amazon/auto/API.generated';
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 
-@Injectable()
 export class GqlDoctorVideoSessionService {
   private service: APIService;
   constructor() {

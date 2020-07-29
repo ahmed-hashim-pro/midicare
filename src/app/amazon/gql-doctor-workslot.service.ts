@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {
     APIService,
     CreateDoctorWorkSlotInput,
@@ -7,7 +6,6 @@ import {
 import {DoctorWorkslot} from "@core/model/doctor-workslot";
 import {Doctor} from "@core/model/doctor";
 
-@Injectable()
 export class GqlDoctorWorkslotService {
   private service: APIService;
 

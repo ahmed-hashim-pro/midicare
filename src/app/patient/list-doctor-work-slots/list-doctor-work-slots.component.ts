@@ -12,7 +12,8 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   private doctorID: string;
   workSlots: DoctorWorkslot[];
 
-  constructor(private doctorWorkSlotService: DoctorWorkSlotService, private route: ActivatedRoute) { }
+  constructor(private doctorWorkSlotService: DoctorWorkSlotService, private route: ActivatedRoute,
+              ) { }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(
@@ -21,6 +22,18 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
           this.workSlots = await this.doctorWorkSlotService.findDoctorWorkSlotsByDoctor(this.doctorID);
         }
     )
+  }
+
+  async bookText(workSlot: DoctorWorkslot) {
+    console.log(workSlot);
+  }
+
+  async bookVoice(workSlot: DoctorWorkslot) {
+    console.log(workSlot);
+  }
+
+  async bookVideo(workSlot: DoctorWorkslot) {
+    console.log(workSlot);
   }
 
 }

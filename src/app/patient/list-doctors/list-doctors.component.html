@@ -1,4 +1,4 @@
-<ion-card *ngFor="let doctor of doctors" class="ion-float-left">
+<ion-card *ngFor="let doctor of doctors" class="ion-float-left" routerLink="./{{doctor.id}}">
   <ion-card-header>
     <ion-card-title>
       {{doctor.name}}

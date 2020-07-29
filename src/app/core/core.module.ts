@@ -1,11 +1,12 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {AuthService} from "./service/auth/auth.service";
-import { CoreRoutingModule } from './core-routing.module';
-import {LoginComponent} from "@core/login/login.component";
-import {IonicModule} from "@ionic/angular";
-import {FormsModule} from '@angular/forms';
+import {AuthService} from "@core/service/auth/auth.service";
+import { CoreRoutingModule } from '@core/core-routing.module';
+import {LoginComponent} from '@core/login/login.component';
+import {IonicModule} from '@ionic/angular';
 import {LogoutButtonComponent} from '@core/logout-button/logout-button.component';
+import {AuthGuardService} from '@core/service/auth/auth-guard.service';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -26,7 +27,8 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        AuthService
+        AuthService,
+        AuthGuardService
       ]
     }
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '@core/service/auth/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +10,17 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   username : string;
   password : string;
+  returnURL: string;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {}
-
-  // TODO: Handle redirections
+  ngOnInit() {
+    this.returnURL = this.route.snapshot.queryParams['returnURL'] || 'app';
+  }
 
   async signIn() {
     await this.authService.signIn(this.username, this.password);
-    await this.router.navigateByUrl('app');
+    await this.router.navigateByUrl(this.returnURL);
   }
 
 }

@@ -1,4 +1,10 @@
-import {APIService, CreatePatientInput, CreatePatientMutation, GetPatientQuery} from '@amazon/auto/API.service';
+import {
+  APIService,
+  CreatePatientInput,
+  CreatePatientMutation,
+  GetPatientQuery,
+  UpdatePatientInput, UpdatePatientMutation
+} from '@amazon/auto/API.service';
 import {Patient} from '@core/model/patient';
 
 export class GqlPatientService {
@@ -29,7 +35,16 @@ export class GqlPatientService {
     return GqlPatientService.toPatient(patient);
   }
 
-  private static toPatient(input: GetPatientQuery | CreatePatientMutation) : Patient {
+  async updatePatient (input: Patient) : Promise<Patient> {
+    const patient = await this.service.UpdatePatient(
+        <UpdatePatientInput> {
+          ...input
+        }
+    );
+    return GqlPatientService.toPatient(patient);
+  }
+
+  private static toPatient(input: GetPatientQuery | CreatePatientMutation | UpdatePatientMutation ) : Patient {
     return new Patient(
         input.id,
         input.name

@@ -15,7 +15,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {CoreModule} from '@core/core.module';
-import {AmazonModule} from '@amazon/amazon.module';
 import {PatientModule} from '@src/app/patient/patient.module';
 
 @NgModule({
@@ -29,7 +28,6 @@ import {PatientModule} from '@src/app/patient/patient.module';
     //  Project modules
     CoreModule.forRoot(),
     AppRoutingModule,
-    AmazonModule,
     PatientModule.forRoot()
   ],
   providers: [

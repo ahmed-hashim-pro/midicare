@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {DoctorWorkSlotService} from '@patient/service/doctor-work-slot.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {DoctorTextSessionService} from '@patient/service/doctor-text-session.service';
+import {DoctorAudioSessionService} from '@patient/service/doctor-audio-session.service';
+import {DoctorVideoSession} from '@core/model/doctor-video-session';
+import {DoctorVideoSessionService} from '@patient/service/doctor-video-session.service';
+import {DoctorTextSession} from '@core/model/doctor-text-session';
 
 @Component({
   selector: 'app-list-doctor-work-slots',
@@ -13,7 +18,9 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   workSlots: DoctorWorkslot[];
 
   constructor(private doctorWorkSlotService: DoctorWorkSlotService, private route: ActivatedRoute,
-              ) { }
+              private doctorTextSessionService: DoctorTextSessionService,
+              private doctorAudioSessionService: DoctorAudioSessionService,
+              private doctorVideoSessionService: DoctorVideoSessionService) { }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(
@@ -25,7 +32,11 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   }
 
   async bookText(workSlot: DoctorWorkslot) {
-    console.log(workSlot);
+    const doctorTextSession = new DoctorTextSession(
+        workSlot.id,
+        workSlot.doctor,
+
+    )
   }
 
   async bookVoice(workSlot: DoctorWorkslot) {

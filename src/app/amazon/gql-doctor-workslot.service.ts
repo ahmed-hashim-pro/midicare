@@ -5,8 +5,9 @@ import {
 } from '@amazon/auto/API.service';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {Doctor} from '@core/model/doctor';
+import {DoctorWorkSlotServiceProvider} from '@patient/service/doctor-work-slot.service';
 
-export class GqlDoctorWorkslotService {
+export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
   private service: APIService;
 
   constructor() {

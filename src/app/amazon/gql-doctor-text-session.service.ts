@@ -6,8 +6,9 @@ import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 import {DoctorTextSession} from '@core/model/doctor-text-session';
+import {DoctorTextSessionServiceProvider} from '@patient/service/doctor-text-session.service';
 
-export class GqlDoctorTextSessionService {
+export class GqlDoctorTextSessionService implements DoctorTextSessionServiceProvider {
   private service: APIService;
   constructor() {
     this.service = new APIService();

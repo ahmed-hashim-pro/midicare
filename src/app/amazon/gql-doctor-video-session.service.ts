@@ -3,8 +3,9 @@ import {APIService, CreateDoctorVideoSessionInput, GetDoctorVideoSessionQuery} f
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
+import {DoctorVideoSessionServiceProvider} from '@patient/service/doctor-video-session.service';
 
-export class GqlDoctorVideoSessionService {
+export class GqlDoctorVideoSessionService implements DoctorVideoSessionServiceProvider {
   private service: APIService;
   constructor() {
     this.service = new APIService();

@@ -1,10 +1,10 @@
 import {
     APIService,
-    CreateDoctorWorkSlotInput,
+    CreateDoctorWorkSlotInput, GetDoctorWorkSlotQuery,
     ModelDoctorWorkSlotFilterInput
-} from "@amazon/auto/API.generated";
-import {DoctorWorkslot} from "@core/model/doctor-workslot";
-import {Doctor} from "@core/model/doctor";
+} from '@amazon/auto/API.service';
+import {DoctorWorkslot} from '@core/model/doctor-workslot';
+import {Doctor} from '@core/model/doctor';
 
 export class GqlDoctorWorkslotService {
   private service: APIService;
@@ -16,27 +16,15 @@ export class GqlDoctorWorkslotService {
   async findDoctorWorkSlots() : Promise<DoctorWorkslot[]> {
     const workSlots = await this.service.ListDoctorWorkSlots();
     return workSlots.items.map(
-        (item) => {
-          return new DoctorWorkslot(
-              item.id,
-              new Doctor(item.doctorID, null, null, null, null),
-              item.start_time,
-              item.end_time,
-              item.capacity
-          );
+        (workSlot) => {
+          return GqlDoctorWorkslotService.toDoctorWorkslot(workSlot);
         }
     );
   }
 
   async findDoctorWorkSlot(id: string) : Promise<DoctorWorkslot> {
     const workSlot = await this.service.GetDoctorWorkSlot(id);
-    return new DoctorWorkslot(
-        workSlot.id,
-        new Doctor(workSlot.doctorID, null, null, null, null),
-        workSlot.start_time,
-        workSlot.end_time,
-        workSlot.capacity
-    );
+    return GqlDoctorWorkslotService.toDoctorWorkslot(workSlot);
   }
 
   async createDoctorWorkSlot(input: DoctorWorkslot) : Promise<DoctorWorkslot> {
@@ -48,41 +36,35 @@ export class GqlDoctorWorkslotService {
             capacity: input.capacity
         }
     )
-    return new DoctorWorkslot(
-        workSlot.id,
-        new Doctor(
-            workSlot.doctorID,
-            workSlot.doctor.name,
-            workSlot.doctor.insurance,
-            workSlot.doctor.description,
-            workSlot.doctor.specializations
-        ),
-        workSlot.start_time,
-        workSlot.end_time,
-        workSlot.capacity
-    )
+    return GqlDoctorWorkslotService.toDoctorWorkslot(workSlot);
   }
 
   async findDoctorWorkSlotsByDoctor(id: string): Promise<DoctorWorkslot[]> {
-      const [{items}, doctor] = await Promise.all(
-          [
-                this.service.ListDoctorWorkSlots(<ModelDoctorWorkSlotFilterInput>{
-                    doctorID: {
-                        eq: id
-                    }
-                }),
-                this.service.GetDoctor(id)
-          ]);
-      return items.map(
-          (item) => {
-              return new DoctorWorkslot(
-                  item.id,
-                  new Doctor(item.doctorID, doctor.name, doctor.insurance, doctor.description, doctor.specializations),
-                  item.start_time,
-                  item.end_time,
-                  item.capacity
-              );
+      const doctorWorkSlots = await this.service.ListDoctorWorkSlots(<ModelDoctorWorkSlotFilterInput>{
+          doctorID: {
+              eq: id
+          }
+      });
+      return doctorWorkSlots.items.map(
+          (workSlot) => {
+              return GqlDoctorWorkslotService.toDoctorWorkslot(workSlot);
           }
       );
+  }
+
+  static toDoctorWorkslot (workSlot: GetDoctorWorkSlotQuery) : DoctorWorkslot {
+      return new DoctorWorkslot(
+          workSlot.id,
+          new Doctor(
+              workSlot.doctorID,
+              workSlot.doctor.name,
+              workSlot.doctor.insurance,
+              workSlot.doctor.description,
+              workSlot.doctor.specializations
+          ),
+          workSlot.start_time,
+          workSlot.end_time,
+          workSlot.capacity
+      )
   }
 }

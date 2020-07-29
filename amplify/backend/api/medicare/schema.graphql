@@ -45,7 +45,6 @@ type DoctorWorkSlot
     { allow: groups, groups: ["Patients"], operations: [read]}
   ]
 )
-
 @key(name: "doctorWorkSlotByDoctor", fields: ["doctorID"], queryField: "doctorWorkSlotByDoctor")
 {
  id: ID!,
@@ -74,7 +73,7 @@ type DoctorVideoSession
     { allow: owner, ownerField: "doctorID", operations: [update]}
   ]
 )
-@key(fields: ["id", "doctorID", "patientID"])
+@key(fields: ["id"])
 @key(name: "doctorVideoSessionByDoctor", fields: ["doctorID"], queryField: "doctorVideoSessionByDoctor")
 @key(name: "doctorVideoSessionByPatient", fields: ["patientID"], queryField: "doctorVideoSessionByPatient")
 {
@@ -99,7 +98,7 @@ type DoctorTextSession
     { allow: owner, ownerField: "doctorID", operations: [update]}
   ]
 )
-@key(fields: ["id", "doctorID", "patientID"])
+@key(fields: ["id"])
 @key(name: "doctorTextSessionByDoctor", fields: ["doctorID"], queryField: "doctorTextSessionByDoctor")
 @key(name: "doctorTextSessionByPatient", fields: ["patientID"], queryField: "doctorTextSessionByPatient")
 {
@@ -124,7 +123,7 @@ type DoctorAudioSession
     { allow: owner, ownerField: "doctorID", operations: [update]}
   ]
 )
-@key(fields: ["id", "doctorID", "patientID"])
+@key(fields: ["id"])
 @key(name: "doctorAudioSessionByDoctor", fields: ["doctorID"], queryField: "doctorAudioSessionByDoctor")
 @key(name: "doctorAudioSessionByPatient", fields: ["patientID"], queryField: "doctorAudioSessionByPatient")
 {

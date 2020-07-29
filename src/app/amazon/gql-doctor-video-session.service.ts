@@ -1,5 +1,5 @@
 import {DoctorVideoSession} from '@core/model/doctor-video-session';
-import {APIService, CreateDoctorVideoSessionInput} from '@amazon/auto/API.generated';
+import {APIService, CreateDoctorVideoSessionInput, GetDoctorVideoSessionQuery} from '@amazon/auto/API.service';
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
@@ -13,36 +13,13 @@ export class GqlDoctorVideoSessionService {
   async findDoctorVideoSessions() : Promise<DoctorVideoSession[]> {
     const sessions = await this.service.ListDoctorVideoSessions();
     return sessions.items.map((item) => {
-      return new DoctorVideoSession(
-          item.id,
-          new Doctor(item.doctorID, null,null,null,null),
-          new Patient(item.patientID, null),
-          item.start_time,
-          item.end_time,
-          <SessionStatus>item.status
-      );
+        return GqlDoctorVideoSessionService.toDoctorVideoSession(item);
     });
   }
 
-  async findDoctorVideoSession(id: string, doctorid: string, patientid: string) : Promise<DoctorVideoSession> {
-    const session = await this.service.GetDoctorVideoSession(id, doctorid, patientid);
-    return new DoctorVideoSession(
-        session.id,
-        new Doctor(
-            session.doctorID,
-            session.doctor.name,
-            session.doctor.insurance,
-            session.doctor.description,
-            session.doctor.specializations
-        ),
-        new Patient(
-            session.patientID,
-            session.patient.name
-        ),
-        session.start_time,
-        session.end_time,
-        <SessionStatus>session.status
-    );
+  async findDoctorVideoSession(id: string) : Promise<DoctorVideoSession> {
+    const session = await this.service.GetDoctorVideoSession(id);
+    return GqlDoctorVideoSessionService.toDoctorVideoSession(session);
   }
 
   async createDoctorVideoSession(input: DoctorVideoSession) : Promise<DoctorVideoSession> {
@@ -55,22 +32,26 @@ export class GqlDoctorVideoSessionService {
           status: input.status
         }
     );
-    return new DoctorVideoSession(
-      session.id,
-      new Doctor(
-          session.doctorID,
-          session.doctor.name,
-          session.doctor.insurance,
-          session.doctor.description,
-          session.doctor.specializations
-      ),
-      new Patient(
-          session.patientID,
-          session.patient.name
-      ),
-      session.start_time,
-      session.end_time,
-      <SessionStatus>session.status
-    )
+    return GqlDoctorVideoSessionService.toDoctorVideoSession(session);
+  }
+
+  static toDoctorVideoSession (session: GetDoctorVideoSessionQuery) : DoctorVideoSession {
+      return new DoctorVideoSession(
+          session.id,
+          new Doctor(
+              session.doctor.id,
+              session.doctor.name,
+              session.doctor.insurance,
+              session.doctor.description,
+              session.doctor.specializations
+          ),
+          new Patient(
+              session.patient.id,
+              session.patient.name
+          ),
+          session.start_time,
+          session.end_time,
+          <SessionStatus>session.status
+      );
   }
 }

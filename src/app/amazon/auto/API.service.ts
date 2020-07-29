@@ -2,7 +2,6 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 import API, { graphqlOperation } from "@aws-amplify/api";
-import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import { Observable } from "zen-observable-ts";
 
 export type CreatePatientInput = {
@@ -169,8 +168,8 @@ export type ModelSessionStatusInput = {
 
 export type UpdateDoctorVideoSessionInput = {
   id: string;
-  doctorID: string;
-  patientID: string;
+  doctorID?: string | null;
+  patientID?: string | null;
   start_time?: string | null;
   end_time?: string | null;
   status?: SessionStatus | null;
@@ -178,8 +177,6 @@ export type UpdateDoctorVideoSessionInput = {
 
 export type DeleteDoctorVideoSessionInput = {
   id: string;
-  doctorID: string;
-  patientID: string;
 };
 
 export type CreateDoctorTextSessionInput = {
@@ -202,8 +199,8 @@ export type ModelDoctorTextSessionConditionInput = {
 
 export type UpdateDoctorTextSessionInput = {
   id: string;
-  doctorID: string;
-  patientID: string;
+  doctorID?: string | null;
+  patientID?: string | null;
   start_time?: string | null;
   end_time?: string | null;
   status?: SessionStatus | null;
@@ -211,8 +208,6 @@ export type UpdateDoctorTextSessionInput = {
 
 export type DeleteDoctorTextSessionInput = {
   id: string;
-  doctorID: string;
-  patientID: string;
 };
 
 export type CreateDoctorAudioSessionInput = {
@@ -235,8 +230,8 @@ export type ModelDoctorAudioSessionConditionInput = {
 
 export type UpdateDoctorAudioSessionInput = {
   id: string;
-  doctorID: string;
-  patientID: string;
+  doctorID?: string | null;
+  patientID?: string | null;
   start_time?: string | null;
   end_time?: string | null;
   status?: SessionStatus | null;
@@ -244,8 +239,6 @@ export type UpdateDoctorAudioSessionInput = {
 
 export type DeleteDoctorAudioSessionInput = {
   id: string;
-  doctorID: string;
-  patientID: string;
 };
 
 export type ModelPatientFilterInput = {
@@ -294,21 +287,6 @@ export type ModelDoctorWorkSlotFilterInput = {
   not?: ModelDoctorWorkSlotFilterInput | null;
 };
 
-export type ModelDoctorVideoSessionPrimaryCompositeKeyConditionInput = {
-  eq?: ModelDoctorVideoSessionPrimaryCompositeKeyInput | null;
-  le?: ModelDoctorVideoSessionPrimaryCompositeKeyInput | null;
-  lt?: ModelDoctorVideoSessionPrimaryCompositeKeyInput | null;
-  ge?: ModelDoctorVideoSessionPrimaryCompositeKeyInput | null;
-  gt?: ModelDoctorVideoSessionPrimaryCompositeKeyInput | null;
-  between?: Array<ModelDoctorVideoSessionPrimaryCompositeKeyInput | null> | null;
-  beginsWith?: ModelDoctorVideoSessionPrimaryCompositeKeyInput | null;
-};
-
-export type ModelDoctorVideoSessionPrimaryCompositeKeyInput = {
-  doctorID?: string | null;
-  patientID?: string | null;
-};
-
 export type ModelDoctorVideoSessionFilterInput = {
   id?: ModelIDInput | null;
   doctorID?: ModelIDInput | null;
@@ -326,21 +304,6 @@ export enum ModelSortDirection {
   DESC = "DESC"
 }
 
-export type ModelDoctorTextSessionPrimaryCompositeKeyConditionInput = {
-  eq?: ModelDoctorTextSessionPrimaryCompositeKeyInput | null;
-  le?: ModelDoctorTextSessionPrimaryCompositeKeyInput | null;
-  lt?: ModelDoctorTextSessionPrimaryCompositeKeyInput | null;
-  ge?: ModelDoctorTextSessionPrimaryCompositeKeyInput | null;
-  gt?: ModelDoctorTextSessionPrimaryCompositeKeyInput | null;
-  between?: Array<ModelDoctorTextSessionPrimaryCompositeKeyInput | null> | null;
-  beginsWith?: ModelDoctorTextSessionPrimaryCompositeKeyInput | null;
-};
-
-export type ModelDoctorTextSessionPrimaryCompositeKeyInput = {
-  doctorID?: string | null;
-  patientID?: string | null;
-};
-
 export type ModelDoctorTextSessionFilterInput = {
   id?: ModelIDInput | null;
   doctorID?: ModelIDInput | null;
@@ -351,21 +314,6 @@ export type ModelDoctorTextSessionFilterInput = {
   and?: Array<ModelDoctorTextSessionFilterInput | null> | null;
   or?: Array<ModelDoctorTextSessionFilterInput | null> | null;
   not?: ModelDoctorTextSessionFilterInput | null;
-};
-
-export type ModelDoctorAudioSessionPrimaryCompositeKeyConditionInput = {
-  eq?: ModelDoctorAudioSessionPrimaryCompositeKeyInput | null;
-  le?: ModelDoctorAudioSessionPrimaryCompositeKeyInput | null;
-  lt?: ModelDoctorAudioSessionPrimaryCompositeKeyInput | null;
-  ge?: ModelDoctorAudioSessionPrimaryCompositeKeyInput | null;
-  gt?: ModelDoctorAudioSessionPrimaryCompositeKeyInput | null;
-  between?: Array<ModelDoctorAudioSessionPrimaryCompositeKeyInput | null> | null;
-  beginsWith?: ModelDoctorAudioSessionPrimaryCompositeKeyInput | null;
-};
-
-export type ModelDoctorAudioSessionPrimaryCompositeKeyInput = {
-  doctorID?: string | null;
-  patientID?: string | null;
 };
 
 export type ModelDoctorAudioSessionFilterInput = {
@@ -834,6 +782,16 @@ export type ListDoctorWorkSlotsQuery = {
     __typename: "DoctorWorkSlot";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     capacity: number | null;
@@ -878,7 +836,24 @@ export type ListDoctorVideoSessionsQuery = {
     __typename: "DoctorVideoSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -923,7 +898,24 @@ export type ListDoctorTextSessionsQuery = {
     __typename: "DoctorTextSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -968,7 +960,24 @@ export type ListDoctorAudioSessionsQuery = {
     __typename: "DoctorAudioSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -984,6 +993,16 @@ export type DoctorWorkSlotByDoctorQuery = {
     __typename: "DoctorWorkSlot";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     capacity: number | null;
@@ -999,7 +1018,24 @@ export type DoctorVideoSessionByDoctorQuery = {
     __typename: "DoctorVideoSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -1015,7 +1051,24 @@ export type DoctorVideoSessionByPatientQuery = {
     __typename: "DoctorVideoSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -1031,7 +1084,24 @@ export type DoctorTextSessionByDoctorQuery = {
     __typename: "DoctorTextSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -1047,7 +1117,24 @@ export type DoctorTextSessionByPatientQuery = {
     __typename: "DoctorTextSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -1063,7 +1150,24 @@ export type DoctorAudioSessionByDoctorQuery = {
     __typename: "DoctorAudioSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -1079,7 +1183,24 @@ export type DoctorAudioSessionByPatientQuery = {
     __typename: "DoctorAudioSession";
     id: string;
     doctorID: string;
+    doctor: {
+      __typename: "Doctor";
+      id: string;
+      insurance: Array<string | null> | null;
+      description: string | null;
+      specializations: Array<string | null> | null;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     patientID: string;
+    patient: {
+      __typename: "Patient";
+      id: string;
+      name: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
     start_time: string | null;
     end_time: string | null;
     status: SessionStatus | null;
@@ -2309,6 +2430,16 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             capacity
@@ -2333,13 +2464,9 @@ export class APIService {
     )) as any;
     return <ListDoctorWorkSlotsQuery>response.data.listDoctorWorkSlots;
   }
-  async GetDoctorVideoSession(
-    id: string,
-    doctorID: string,
-    patientID: string
-  ): Promise<GetDoctorVideoSessionQuery> {
-    const statement = `query GetDoctorVideoSession($id: ID!, $doctorID: ID!, $patientID: ID!) {
-        getDoctorVideoSession(id: $id, doctorID: $doctorID, patientID: $patientID) {
+  async GetDoctorVideoSession(id: string): Promise<GetDoctorVideoSessionQuery> {
+    const statement = `query GetDoctorVideoSession($id: ID!) {
+        getDoctorVideoSession(id: $id) {
           __typename
           id
           doctorID
@@ -2369,9 +2496,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id,
-      doctorID,
-      patientID
+      id
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2380,20 +2505,36 @@ export class APIService {
   }
   async ListDoctorVideoSessions(
     id?: string,
-    doctorIDPatientID?: ModelDoctorVideoSessionPrimaryCompositeKeyConditionInput,
     filter?: ModelDoctorVideoSessionFilterInput,
     limit?: number,
     nextToken?: string,
     sortDirection?: ModelSortDirection
   ): Promise<ListDoctorVideoSessionsQuery> {
-    const statement = `query ListDoctorVideoSessions($id: ID, $doctorIDPatientID: ModelDoctorVideoSessionPrimaryCompositeKeyConditionInput, $filter: ModelDoctorVideoSessionFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listDoctorVideoSessions(id: $id, doctorIDPatientID: $doctorIDPatientID, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+    const statement = `query ListDoctorVideoSessions($id: ID, $filter: ModelDoctorVideoSessionFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listDoctorVideoSessions(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2406,9 +2547,6 @@ export class APIService {
     const gqlAPIServiceArguments: any = {};
     if (id) {
       gqlAPIServiceArguments.id = id;
-    }
-    if (doctorIDPatientID) {
-      gqlAPIServiceArguments.doctorIDPatientID = doctorIDPatientID;
     }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
@@ -2427,13 +2565,9 @@ export class APIService {
     )) as any;
     return <ListDoctorVideoSessionsQuery>response.data.listDoctorVideoSessions;
   }
-  async GetDoctorTextSession(
-    id: string,
-    doctorID: string,
-    patientID: string
-  ): Promise<GetDoctorTextSessionQuery> {
-    const statement = `query GetDoctorTextSession($id: ID!, $doctorID: ID!, $patientID: ID!) {
-        getDoctorTextSession(id: $id, doctorID: $doctorID, patientID: $patientID) {
+  async GetDoctorTextSession(id: string): Promise<GetDoctorTextSessionQuery> {
+    const statement = `query GetDoctorTextSession($id: ID!) {
+        getDoctorTextSession(id: $id) {
           __typename
           id
           doctorID
@@ -2463,9 +2597,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id,
-      doctorID,
-      patientID
+      id
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2474,20 +2606,36 @@ export class APIService {
   }
   async ListDoctorTextSessions(
     id?: string,
-    doctorIDPatientID?: ModelDoctorTextSessionPrimaryCompositeKeyConditionInput,
     filter?: ModelDoctorTextSessionFilterInput,
     limit?: number,
     nextToken?: string,
     sortDirection?: ModelSortDirection
   ): Promise<ListDoctorTextSessionsQuery> {
-    const statement = `query ListDoctorTextSessions($id: ID, $doctorIDPatientID: ModelDoctorTextSessionPrimaryCompositeKeyConditionInput, $filter: ModelDoctorTextSessionFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listDoctorTextSessions(id: $id, doctorIDPatientID: $doctorIDPatientID, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+    const statement = `query ListDoctorTextSessions($id: ID, $filter: ModelDoctorTextSessionFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listDoctorTextSessions(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2500,9 +2648,6 @@ export class APIService {
     const gqlAPIServiceArguments: any = {};
     if (id) {
       gqlAPIServiceArguments.id = id;
-    }
-    if (doctorIDPatientID) {
-      gqlAPIServiceArguments.doctorIDPatientID = doctorIDPatientID;
     }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
@@ -2521,13 +2666,9 @@ export class APIService {
     )) as any;
     return <ListDoctorTextSessionsQuery>response.data.listDoctorTextSessions;
   }
-  async GetDoctorAudioSession(
-    id: string,
-    doctorID: string,
-    patientID: string
-  ): Promise<GetDoctorAudioSessionQuery> {
-    const statement = `query GetDoctorAudioSession($id: ID!, $doctorID: ID!, $patientID: ID!) {
-        getDoctorAudioSession(id: $id, doctorID: $doctorID, patientID: $patientID) {
+  async GetDoctorAudioSession(id: string): Promise<GetDoctorAudioSessionQuery> {
+    const statement = `query GetDoctorAudioSession($id: ID!) {
+        getDoctorAudioSession(id: $id) {
           __typename
           id
           doctorID
@@ -2557,9 +2698,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id,
-      doctorID,
-      patientID
+      id
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2568,20 +2707,36 @@ export class APIService {
   }
   async ListDoctorAudioSessions(
     id?: string,
-    doctorIDPatientID?: ModelDoctorAudioSessionPrimaryCompositeKeyConditionInput,
     filter?: ModelDoctorAudioSessionFilterInput,
     limit?: number,
     nextToken?: string,
     sortDirection?: ModelSortDirection
   ): Promise<ListDoctorAudioSessionsQuery> {
-    const statement = `query ListDoctorAudioSessions($id: ID, $doctorIDPatientID: ModelDoctorAudioSessionPrimaryCompositeKeyConditionInput, $filter: ModelDoctorAudioSessionFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
-        listDoctorAudioSessions(id: $id, doctorIDPatientID: $doctorIDPatientID, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
+    const statement = `query ListDoctorAudioSessions($id: ID, $filter: ModelDoctorAudioSessionFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listDoctorAudioSessions(id: $id, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2594,9 +2749,6 @@ export class APIService {
     const gqlAPIServiceArguments: any = {};
     if (id) {
       gqlAPIServiceArguments.id = id;
-    }
-    if (doctorIDPatientID) {
-      gqlAPIServiceArguments.doctorIDPatientID = doctorIDPatientID;
     }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
@@ -2629,6 +2781,16 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             capacity
@@ -2673,7 +2835,24 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2720,7 +2899,24 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2767,7 +2963,24 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2814,7 +3027,24 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2861,7 +3091,24 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status
@@ -2908,7 +3155,24 @@ export class APIService {
             __typename
             id
             doctorID
+            doctor {
+              __typename
+              id
+              insurance
+              description
+              specializations
+              name
+              createdAt
+              updatedAt
+            }
             patientID
+            patient {
+              __typename
+              id
+              name
+              createdAt
+              updatedAt
+            }
             start_time
             end_time
             status

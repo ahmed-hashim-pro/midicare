@@ -2,7 +2,7 @@ import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 
-export class DoctorVideoSession {
+export class DoctorAudioSession {
     private _id: string;
     private _doctor: Doctor;
     private _patient: Patient;

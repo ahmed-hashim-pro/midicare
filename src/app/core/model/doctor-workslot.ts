@@ -1,4 +1,4 @@
-import {Doctor} from "@core/model/doctor";
+import {Doctor} from '@core/model/doctor';
 
 export class DoctorWorkslot {
     private _id: string;

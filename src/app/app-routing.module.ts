@@ -4,18 +4,8 @@ import {AppComponent} from "./app.component";
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: 'app',
-        pathMatch: 'full'
-    },
-    {
         path: 'patient',
         loadChildren: () => import('@patient/patient.module').then(m => m.PatientModule)
-    }
-    ,
-    {
-        path: 'app',
-        component: AppComponent
     }
 ];
 

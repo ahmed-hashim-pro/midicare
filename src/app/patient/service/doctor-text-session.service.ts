@@ -1,6 +1,5 @@
-import {Injectable, Optional, SkipSelf} from '@angular/core';
+import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {DoctorTextSession} from '@core/model/doctor-text-session';
-import {GqlDoctorTextSessionService} from '@amazon/gql-doctor-text-session.service';
 
 export interface DoctorTextSessionServiceProvider {
   findDoctorTextSessions() : Promise<DoctorTextSession[]>;
@@ -11,11 +10,13 @@ export interface DoctorTextSessionServiceProvider {
 @Injectable()
 export class DoctorTextSessionService {
   private service: DoctorTextSessionServiceProvider;
-  constructor(@Optional() @SkipSelf() private doctorTextSessionService: DoctorTextSessionService) {
+  constructor(@Optional() @SkipSelf() private doctorTextSessionService: DoctorTextSessionService,
+              @Inject('DoctorTextSessionServiceProvider')
+              private doctorTextSessionServiceProvider: DoctorTextSessionServiceProvider) {
     if (doctorTextSessionService) {
       throw new Error('DoctorTextSessionService has been already injected');
     }
-    this.service = new GqlDoctorTextSessionService();
+    this.service = doctorTextSessionServiceProvider;
   }
 
   async findDoctorTextSessions() : Promise<DoctorTextSession[]> {

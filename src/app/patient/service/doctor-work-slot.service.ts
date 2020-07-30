@@ -1,5 +1,4 @@
-import {Injectable, Optional, SkipSelf} from '@angular/core';
-import {GqlDoctorWorkslotService} from '@amazon/gql-doctor-workslot.service';
+import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 
 export interface DoctorWorkSlotServiceProvider {
@@ -9,11 +8,13 @@ export interface DoctorWorkSlotServiceProvider {
 @Injectable()
 export class DoctorWorkSlotService {
   private service: DoctorWorkSlotServiceProvider;
-  constructor(@Optional() @SkipSelf() private doctorWorkSlotService: DoctorWorkSlotService) {
+  constructor(@Optional() @SkipSelf() private doctorWorkSlotService: DoctorWorkSlotService,
+              @Inject('DoctorWorkSlotServiceProvider')
+              private doctorWorkSlotServiceProvider : DoctorWorkSlotServiceProvider) {
     if (doctorWorkSlotService) {
       throw new Error('DoctorWorkSlotService has been already injected');
     }
-    this.service = new GqlDoctorWorkslotService();
+    this.service = doctorWorkSlotServiceProvider;
   }
 
   async findDoctorWorkSlotsByDoctor(id: string) : Promise<DoctorWorkslot[]> {

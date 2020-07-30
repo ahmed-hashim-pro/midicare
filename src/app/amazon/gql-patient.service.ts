@@ -6,7 +6,8 @@ import {
   UpdatePatientInput, UpdatePatientMutation
 } from '@amazon/auto/API.service';
 import {Patient} from '@core/model/patient';
-
+import {Injectable} from '@angular/core';
+@Injectable()
 export class GqlPatientService {
   private service: APIService;
 

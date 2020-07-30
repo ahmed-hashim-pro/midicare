@@ -1,6 +1,5 @@
-import {Injectable, Optional, SkipSelf} from '@angular/core';
+import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {Doctor} from '@core/model/doctor';
-import {GqlDoctorService} from '@amazon/gql-doctor.service';
 
 /**
  * Definition for the CRUD supplied interface
@@ -22,12 +21,12 @@ export interface DoctorServiceProvider {
 export class DoctorService {
   private service: DoctorServiceProvider;
 
-  constructor(@Optional() @SkipSelf() private doctorService: DoctorService) {
+  constructor(@Optional() @SkipSelf() private doctorService: DoctorService,
+              @Inject('DoctorServiceProvider') private doctorServiceProvider) {
     if (doctorService) {
       throw new Error('DoctorService is already injected');
     }
-    // TODO: create a mechanism for dynamic imports
-    this.service = new GqlDoctorService();
+    this.service = doctorServiceProvider;
   }
 
   async findDoctors() : Promise<Doctor[]> {

@@ -1,8 +1,10 @@
 import { Auth } from 'aws-amplify';
 import { User } from '@core/model/user';
 import {AuthServiceProvider} from '@core/service/auth/auth.service';
+import {Injectable} from '@angular/core';
 // Auth is pre-configured in the Application Root
 // before hand for all AWS AMPLIFY Services
+@Injectable()
 export class CognitoAmplify implements AuthServiceProvider {
     constructor() {
     }

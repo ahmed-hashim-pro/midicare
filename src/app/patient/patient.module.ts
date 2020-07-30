@@ -6,13 +6,15 @@ import {ListDoctorsComponent} from '@patient/list-doctors/list-doctors.component
 import {IonicModule} from '@ionic/angular';
 import {ListDoctorWorkSlotsComponent} from '@patient/list-doctor-work-slots/list-doctor-work-slots.component';
 import {DoctorWorkSlotService} from '@patient/service/doctor-work-slot.service';
+import {DashboardComponent} from '@patient/dashboard/dashboard.component';
 
 
 
 @NgModule({
   declarations: [
       ListDoctorsComponent,
-      ListDoctorWorkSlotsComponent
+      ListDoctorWorkSlotsComponent,
+      DashboardComponent
   ],
   imports: [
     CommonModule,

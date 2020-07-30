@@ -7,7 +7,8 @@ import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 import {DoctorTextSession} from '@core/model/doctor-text-session';
 import {DoctorTextSessionServiceProvider} from '@patient/service/doctor-text-session.service';
-
+import {Injectable} from '@angular/core';
+@Injectable()
 export class GqlDoctorTextSessionService implements DoctorTextSessionServiceProvider {
   private service: APIService;
   constructor() {

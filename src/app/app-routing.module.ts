@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {AppComponent} from "./app.component";
+import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 
 const routes: Routes = [
     {
         path: 'patient',
-        loadChildren: () => import('@patient/patient.module').then(m => m.PatientModule)
+        loadChildren: () => import('@patient/patient.module').then(m => m.PatientModule),
+        canActivate: [AuthGuardService],
+        data: {
+            loggedIn: true,
+            roles: ['Patients']
+        }
     }
 ];
 

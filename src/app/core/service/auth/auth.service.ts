@@ -1,6 +1,5 @@
-import {Injectable, SkipSelf, Optional} from '@angular/core';
+import {Injectable, SkipSelf, Optional, Inject} from '@angular/core';
 import {User} from '../../model/user';
-import {CognitoAmplify} from "@amazon/cognito-amplify";
 
 /**
  * Authentication and authorization interface to be used all over
@@ -28,13 +27,13 @@ export interface AuthServiceProvider {
 export class AuthService {
   private service: AuthServiceProvider;
 
-  constructor(@Optional() @SkipSelf() private authService: AuthService) {
+  constructor(@Optional() @SkipSelf() private authService: AuthService,
+              @Inject('AuthServiceProvider') private authServiceProvider: AuthServiceProvider) {
       // Making sure the service is singleton
       if (authService) {
         throw new Error('Authorization service is already injected');
       }
-      // TODO: Create a mechanism for dynamic imports
-      this.service = new CognitoAmplify();
+      this.service = authServiceProvider;
   }
 
   public async getUser () : Promise<User> {

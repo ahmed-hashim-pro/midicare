@@ -7,7 +7,8 @@ import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 import {DoctorAudioSession} from '@core/model/doctor-audio-session';
-
+import {Injectable} from '@angular/core';
+@Injectable()
 export class GqlDoctorAudioSessionService {
   private service: APIService;
   constructor() {

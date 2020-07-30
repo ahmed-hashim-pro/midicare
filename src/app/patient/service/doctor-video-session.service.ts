@@ -1,6 +1,5 @@
-import {Injectable, Optional, SkipSelf} from '@angular/core';
+import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {DoctorVideoSession} from '@core/model/doctor-video-session';
-import {GqlDoctorVideoSessionService} from '@amazon/gql-doctor-video-session.service';
 
 export interface DoctorVideoSessionServiceProvider {
   findDoctorVideoSessions() : Promise<DoctorVideoSession[]>;
@@ -11,11 +10,13 @@ export interface DoctorVideoSessionServiceProvider {
 @Injectable()
 export class DoctorVideoSessionService {
   private service: DoctorVideoSessionServiceProvider;
-  constructor(@Optional() @SkipSelf() private doctorVideoSessionService: DoctorVideoSessionService) {
+  constructor(@Optional() @SkipSelf() private doctorVideoSessionService: DoctorVideoSessionService,
+              @Inject('DoctorVideoSessionServiceProvider')
+              private doctorVideoSessionServiceProvider: DoctorVideoSessionServiceProvider) {
     if (doctorVideoSessionService) {
       throw new Error('DoctorVideoSessionService has been already injected');
     }
-    this.service = new GqlDoctorVideoSessionService();
+    this.service = doctorVideoSessionServiceProvider;
   }
 
   async findDoctorVideoSessions() : Promise<DoctorVideoSession[]> {

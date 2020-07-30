@@ -6,7 +6,8 @@ import {
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {Doctor} from '@core/model/doctor';
 import {DoctorWorkSlotServiceProvider} from '@patient/service/doctor-work-slot.service';
-
+import {Injectable} from '@angular/core';
+@Injectable()
 export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
   private service: APIService;
 

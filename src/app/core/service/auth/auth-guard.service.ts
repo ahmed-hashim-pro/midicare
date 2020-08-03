@@ -13,12 +13,13 @@ export class AuthGuardService implements CanActivate {
   }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Promise<boolean> {
-    const user = await this.auth.getUser();
-    if (route.data.loggedIn) {
-      if (!user) {
-        return this.redirectToLogin(state.url);
-      }
+    let user : User;
+    try {
+      user = await this.auth.getUser();
+    } catch (err) {
+      return this.redirectToLogin(state.url);
     }
+
     if (route.data.roles) {
       if (!this.roleCheck(route.data.roles, user)) {
         return this.redirectToApplicationRoot();
@@ -27,7 +28,7 @@ export class AuthGuardService implements CanActivate {
     return true;
   }
 
-  private roleCheck(roles: string[], user: User) : boolean {
+  private static roleCheck(roles: string[], user: User) : boolean {
     for (const role of roles) {
       if (user.belongsToGroup(role)) {
         return true;

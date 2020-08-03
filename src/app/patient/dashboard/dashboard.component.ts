@@ -9,10 +9,10 @@ import {LayoutService} from '@core/service/theme/layout.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private layoutService: LayoutService) {
-    // Display the layout
   }
 
   ngOnInit() {
+    // Adjust the layout
     this.layoutService.mainContentNoHeader();
   }
 

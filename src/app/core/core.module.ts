@@ -8,6 +8,11 @@ import {LogoutButtonComponent} from '@core/logout-button/logout-button.component
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {FormsModule} from '@angular/forms';
 import {LayoutService} from '@core/service/theme/layout.service';
+import {DoctorService} from '@core/service/data/doctor.service';
+import {DoctorTextSessionService} from '@core/service/data/doctor-text-session.service';
+import {DoctorVideoSessionService} from '@core/service/data/doctor-video-session.service';
+import {DoctorAudioSessionService} from '@core/service/data/doctor-audio-session.service';
+import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 
 
 
@@ -30,7 +35,12 @@ export class CoreModule {
       providers: [
         AuthService,
         AuthGuardService,
-        LayoutService
+        LayoutService,
+        DoctorService,
+        DoctorTextSessionService,
+        DoctorVideoSessionService,
+        DoctorAudioSessionService,
+        DoctorWorkSlotService
       ]
     }
   }

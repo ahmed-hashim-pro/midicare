@@ -11,6 +11,7 @@ import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 import {DoctorAudioSession} from '@core/model/doctor-audio-session';
 import {DoctorVideoSession} from '@core/model/doctor-video-session';
+import {User} from '@core/model/user';
 
 @Component({
   selector: 'app-list-doctor-work-slots',
@@ -19,6 +20,7 @@ import {DoctorVideoSession} from '@core/model/doctor-video-session';
 })
 export class ListDoctorWorkSlotsComponent implements OnInit {
   private doctorID: string;
+  private user: User;
   workSlots: DoctorWorkslot[];
 
   constructor(private doctorWorkSlotService: DoctorWorkSlotService, private route: ActivatedRoute,
@@ -34,15 +36,15 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
           this.doctorID = params.get('doctorID');
           this.workSlots = await this.doctorWorkSlotService.findDoctorWorkSlotsByDoctor(this.doctorID);
         }
-    )
+    );
+    this.user = await this.authService.getUser();
   }
 
   async bookText(workSlot: DoctorWorkslot) {
-    const user = await this.authService.getUser();
     const doctorTextSession = new DoctorTextSession(
         workSlot.id,
         workSlot.doctor,
-        new Patient(user.username, null),
+        new Patient(this.user.username, null),
         workSlot.start_time,
         workSlot.end_time,
         SessionStatus.REQUESTED
@@ -51,11 +53,10 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   }
 
   async bookAudio(workSlot: DoctorWorkslot) {
-    const user = await this.authService.getUser();
     const doctorAudioSession = new DoctorAudioSession(
         workSlot.id,
         workSlot.doctor,
-        new Patient(user.username, null),
+        new Patient(this.user.username, null),
         workSlot.start_time,
         workSlot.end_time,
         SessionStatus.REQUESTED
@@ -64,11 +65,10 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   }
 
   async bookVideo(workSlot: DoctorWorkslot) {
-    const user = await this.authService.getUser();
     const doctorVideoSession = new DoctorVideoSession(
         workSlot.id,
         workSlot.doctor,
-        new Patient(user.username, null),
+        new Patient(this.user.username, null),
         workSlot.start_time,
         workSlot.end_time,
         SessionStatus.REQUESTED

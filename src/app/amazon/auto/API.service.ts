@@ -1,7 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
+import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
+import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import { Observable } from "zen-observable-ts";
 
 export type CreatePatientInput = {
@@ -100,7 +102,6 @@ export type CreateDoctorWorkSlotInput = {
   start_time?: string | null;
   end_time?: string | null;
   capacity?: number | null;
-  doctorWorkSlotDoctorId: string;
 };
 
 export type ModelDoctorWorkSlotConditionInput = {
@@ -130,7 +131,6 @@ export type UpdateDoctorWorkSlotInput = {
   start_time?: string | null;
   end_time?: string | null;
   capacity?: number | null;
-  doctorWorkSlotDoctorId?: string | null;
 };
 
 export type DeleteDoctorWorkSlotInput = {
@@ -1591,6 +1591,9 @@ export type OnDeleteDoctorAudioSessionSubscription = {
   updatedAt: string;
 };
 
+@Injectable({
+  providedIn: "root"
+})
 export class APIService {
   async CreatePatient(
     input: CreatePatientInput,

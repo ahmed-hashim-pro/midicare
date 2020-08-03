@@ -2,7 +2,8 @@ import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 
 export interface DoctorWorkSlotServiceProvider {
-  findDoctorWorkSlotsByDoctor(id: string): Promise<DoctorWorkslot[]>
+  findDoctorWorkSlotsByDoctor(id: string): Promise<DoctorWorkslot[]>,
+  createDoctorWorkSlot(input: DoctorWorkslot) : Promise<DoctorWorkslot>
 }
 
 @Injectable()
@@ -19,5 +20,9 @@ export class DoctorWorkSlotService {
 
   async findDoctorWorkSlotsByDoctor(id: string) : Promise<DoctorWorkslot[]> {
     return await this.service.findDoctorWorkSlotsByDoctor(id);
+  }
+
+  async createDoctorWorkSlot(input: DoctorWorkslot) : Promise<DoctorWorkslot> {
+    return await this.service.createDoctorWorkSlot(input);
   }
 }

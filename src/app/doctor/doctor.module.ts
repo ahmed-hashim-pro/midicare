@@ -4,6 +4,7 @@ import {IonicModule} from '@ionic/angular';
 import {DoctorRoutingModule} from '@src/app/doctor/doctor-routing.module';
 import {DashboardComponent} from '@doctor/dashboard/dashboard.component';
 import {CreateWorkSlotComponent} from '@doctor/create-work-slot/create-work-slot.component';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import {CreateWorkSlotComponent} from '@doctor/create-work-slot/create-work-slot
   imports: [
     CommonModule,
     IonicModule,
-    DoctorRoutingModule
+    DoctorRoutingModule,
+    FormsModule
   ]
 })
 export class DoctorModule {

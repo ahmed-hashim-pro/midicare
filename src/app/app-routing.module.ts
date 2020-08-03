@@ -11,6 +11,12 @@ const routes: Routes = [
             loggedIn: true,
             roles: ['Patients']
         }
+    },
+    // Temporary route rule
+    {
+        path: '',
+        redirectTo: '/patient/dashboard',
+        pathMatch: 'full'
     }
 ];
 

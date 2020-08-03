@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
@@ -22,15 +22,22 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private layoutService: LayoutService
   ) {
-    this.initializeApp();
   }
 
-  initializeApp() {
+
+   ngOnInit() {
+     this.initializeApp();
+     this.subscribeToLayoutService();
+   }
+
+  private initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  //  Subscribing to layout changes via the Layout SVC
+  }
+
+  private subscribeToLayoutService() {
     this.layoutService.header.subscribe(val => {
       this.header = val;
     });
@@ -43,9 +50,5 @@ export class AppComponent implements OnInit {
     this.layoutService.navigationBar.subscribe(val => {
       this.navigationBar = val;
     });
-  }
-
-  async ngOnInit() {
-    this.layoutService.mainContentNoHeader();
   }
 }

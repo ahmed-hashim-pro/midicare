@@ -7,6 +7,7 @@ import {IonicModule} from '@ionic/angular';
 import {LogoutButtonComponent} from '@core/logout-button/logout-button.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {FormsModule} from '@angular/forms';
+import {LayoutService} from '@core/service/theme/layout.service';
 
 
 
@@ -28,7 +29,8 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         AuthService,
-        AuthGuardService
+        AuthGuardService,
+        LayoutService
       ]
     }
   }

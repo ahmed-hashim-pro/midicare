@@ -6,7 +6,7 @@ import {DashboardComponent} from '@patient/dashboard/dashboard.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'dashboard',
         component: DashboardComponent
     },
     {

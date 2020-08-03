@@ -1,50 +1,79 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Optional, SkipSelf} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LayoutService {
-  public navigationBar = new BehaviorSubject<boolean>(false);
-  public sideBar = new BehaviorSubject<boolean>(false);
-  public footer = new BehaviorSubject<boolean>(false);
-  public header = new BehaviorSubject<boolean>(false);
+  public navigationBar: BehaviorSubject<boolean>;
+  public sideBar: BehaviorSubject<boolean>;
+  public footer : BehaviorSubject<boolean>;
+  public header : BehaviorSubject<boolean>;
 
-  constructor() { }
+  constructor(@Optional() @SkipSelf() layoutService: LayoutService) {
+    if (layoutService) {
+      throw new Error('Layout service has already been injected');
+    }
+    this.footer = new BehaviorSubject<boolean>(false);
+    this.navigationBar = new BehaviorSubject<boolean>(false);
+    this.sideBar = new BehaviorSubject<boolean>(false);
+    this.header = new BehaviorSubject<boolean>(false);
+  }
 
   noLayout() {
-    this.disableNavigationBar();
-    this.disableSideBar();
-    this.disableHeader();
-    this.disableFooter();
+    setTimeout(
+        () => {
+          this.disableNavigationBar();
+          this.disableSideBar();
+          this.disableHeader();
+          this.disableFooter();
+        }
+    )
+
   }
 
   mainContent() {
-    this.enableFooter();
-    this.enableHeader();
-    this.enableNavigationBar();
-    this.disableSideBar();
+    setTimeout(
+        () => {
+          this.enableFooter();
+          this.enableHeader();
+          this.enableNavigationBar();
+          this.disableSideBar();
+        }
+    );
   }
 
   mainContentNoHeader() {
-    this.enableFooter();
-    this.disableHeader();
-    this.disableSideBar();
-    this.enableNavigationBar();
+    setTimeout(
+        () => {
+          this.enableFooter();
+          this.disableHeader();
+          this.disableSideBar();
+          this.enableNavigationBar();
+        }
+    );
   }
 
   contentWithMenu() {
-    this.enableFooter();
-    this.enableHeader();
-    this.enableNavigationBar();
-    this.enableSideBar();
+    setTimeout(
+        () => {
+          this.enableFooter();
+          this.enableHeader();
+          this.enableNavigationBar();
+          this.enableSideBar();
+        }
+    );
   }
 
   mainContentNoNavigationBar() {
-    this.enableHeader();
-    this.enableFooter();
-    this.enableSideBar();
-    this.disableNavigationBar();
+    setTimeout(
+        () => {
+          this.enableHeader();
+          this.enableFooter();
+          this.enableSideBar();
+          this.disableNavigationBar();
+        }
+    );
   }
 
   private enableNavigationBar() {

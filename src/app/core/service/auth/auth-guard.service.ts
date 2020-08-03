@@ -21,7 +21,7 @@ export class AuthGuardService implements CanActivate {
     }
 
     if (route.data.roles) {
-      if (!this.roleCheck(route.data.roles, user)) {
+      if (!AuthGuardService.roleCheck(route.data.roles, user)) {
         return this.redirectToApplicationRoot();
       }
     }

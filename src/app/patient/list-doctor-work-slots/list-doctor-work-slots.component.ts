@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
-import {DoctorWorkSlotService} from '@patient/service/doctor-work-slot.service';
+import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {DoctorTextSessionService} from '@patient/service/doctor-text-session.service';
-import {DoctorAudioSessionService} from '@patient/service/doctor-audio-session.service';
-import {DoctorVideoSessionService} from '@patient/service/doctor-video-session.service';
+import {DoctorTextSessionService} from '@core/service/data/doctor-text-session.service';
+import {DoctorAudioSessionService} from '@core/service/data/doctor-audio-session.service';
+import {DoctorVideoSessionService} from '@core/service/data/doctor-video-session.service';
 import {DoctorTextSession} from '@core/model/doctor-text-session';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Patient} from '@core/model/patient';

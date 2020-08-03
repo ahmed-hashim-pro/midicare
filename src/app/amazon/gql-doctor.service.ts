@@ -1,6 +1,6 @@
 import {Doctor} from '@core/model/doctor';
 import {APIService, GetDoctorQuery, ListDoctorsQuery} from '@amazon/auto/API.service';
-import {DoctorServiceProvider} from '@src/app/patient/service/doctor.service';
+import {DoctorServiceProvider} from '@core/service/data/doctor.service';
 import {Injectable} from '@angular/core';
 @Injectable()
 export class GqlDoctorService implements DoctorServiceProvider {

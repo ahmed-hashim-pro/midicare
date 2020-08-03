@@ -5,7 +5,7 @@ import {
 } from '@amazon/auto/API.service';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {Doctor} from '@core/model/doctor';
-import {DoctorWorkSlotServiceProvider} from '@patient/service/doctor-work-slot.service';
+import {DoctorWorkSlotServiceProvider} from '@core/service/data/doctor-work-slot.service';
 import {Injectable} from '@angular/core';
 @Injectable()
 export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {

@@ -3,7 +3,7 @@ import {APIService, CreateDoctorVideoSessionInput, GetDoctorVideoSessionQuery} f
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
-import {DoctorVideoSessionServiceProvider} from '@patient/service/doctor-video-session.service';
+import {DoctorVideoSessionServiceProvider} from '@core/service/data/doctor-video-session.service';
 import {Injectable} from '@angular/core';
 @Injectable()
 export class GqlDoctorVideoSessionService implements DoctorVideoSessionServiceProvider {

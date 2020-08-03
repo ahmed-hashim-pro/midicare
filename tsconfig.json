@@ -7,7 +7,8 @@
       "@amazon/*" : ["./src/app/amazon/*"],
       "@src/*": ["./src/*"],
       "@env/*": ["./src/environments/*"],
-      "@patient/*": ["./src/app/patient/*"]
+      "@patient/*": ["./src/app/patient/*"],
+      "@doctor/*": ["./src/app/doctor/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

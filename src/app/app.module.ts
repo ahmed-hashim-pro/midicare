@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {CoreModule} from '@core/core.module';
 import {PatientModule} from '@src/app/patient/patient.module';
 import {AmazonModule} from '@amazon/amazon.module';
+import {DoctorModule} from '@src/app/doctor/doctor.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import {AmazonModule} from '@amazon/amazon.module';
     CoreModule.forRoot(),
     AppRoutingModule,
     PatientModule.forRoot(),
+    DoctorModule.forRoot(),
     AmazonModule
   ],
   providers: [

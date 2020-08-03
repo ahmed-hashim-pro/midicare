@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit {
 
   async signIn() {
     await this.authService.signIn(this.username, this.password);
-    await this.router.navigateByUrl(this.returnURL);
+    if (this.returnURL) {
+      await this.router.navigateByUrl(this.returnURL);
+    } else {
+      await this.router.navigateByUrl('');
+    }
   }
 
 }

@@ -24,10 +24,12 @@ type Patient
     { allow: owner, ownerField: "id", operations:[read]},
   ]
 )
-@key(fields: ["id","insurance_id"])
+@key(fields: ["id"])
+@key(name: "patientByInsuranceID", fields: ["insurance_id"], queryField: "patientByInsuranceID")
+@key(name: "parientByInsurance", fields: ["insurance"], queryField: "patientByInsurance")
 {
   id: ID!,
-  insurance_id: ID!, # ID = '0' will designate patient profile without insurance
+  insurance_id: ID,
   name: String,
   insurance: String,
 }

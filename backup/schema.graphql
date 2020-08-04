@@ -1,4 +1,16 @@
 # Medicare application schema
+type User
+@model
+@auth(
+  rules: [
+    { allow: groups, groups: ["Admins"], operations: [read, create, update, delete]},
+    { allow: owner, ownerField: "id", operations:[create, read, update]}
+  ]
+){
+  id: ID!,
+  name: String,
+  date_of_birth: AWSDateTime
+}
 
 # Patient (main user base of the application) profile with basic attributes
 # The profile is managed by the user
@@ -8,12 +20,16 @@ type Patient
 @model
 @auth(
   rules: [
-    { allow: owner, ownerField: "id", operations:[create, read, update, delete]}
+    { allow: groups, groups: ["Admins"], operations: [read, create, update, delete]},
+    { allow: owner, ownerField: "id", operations:[read]},
   ]
 )
+@key(fields: ["id","insurance_id"])
 {
   id: ID!,
-  name: String
+  insurance_id: ID!, # ID = '0' will designate patient profile without insurance
+  name: String,
+  insurance: String,
 }
 
 # Doctor (physician) profile with basic attributes
@@ -23,36 +39,80 @@ type Doctor
 @model
 @auth(
   rules: [
-    {allow: groups, groups: ["Admins"], operations: [read, create, update, delete]}
+    {allow: groups, groups: ["Admins"], operations: [read, create, update, delete]},
     {allow: groups, groups: ["Patients", "Doctors"], operations: [read]}
   ]
 )
 {
   id: ID!,
   insurance: [String],
-  description: String,
-  specializations: [String],
-  name: String
+  description: String @auth(
+    rules: [
+      {allow: groups, groups: ["Admins"], operations: [read, create, update]},
+      {allow: groups, groups: ["Patients", "Doctors"], operations: [read]},
+      {allow: owner, ownerField: "id", operations: [update]}
+    ]
+  ),
+  specializations: [String] @auth(
+    rules: [
+      {allow: groups, groups: ["Admins"], operations: [read, create, update]},
+      {allow: groups, groups: ["Patients", "Doctors"], operations: [read]},
+      {allow: owner, ownerField: "id", operations: [update]}
+    ]
+  ),
+  name: String @auth(
+    rules: [
+      {allow: groups, groups: ["Admins"], operations: [read, create, update]},
+      {allow: groups, groups: ["Patients", "Doctors"], operations: [read]},
+      {allow: owner, ownerField: "id", operations: [update]}
+    ]
+  )
 }
 
 # Working slots are managed by the Doctors
 # TODO: add pipeline functions to ensure no overlap of slots
 type DoctorWorkSlot
-@model
+@model(mutations: null)
 @auth(
   rules:[
-    { allow: owner, ownerField: "doctorID", operations:[create, read, update, delete]},
+    { allow: groups, groups: ["Admins"], operations: [read, create, update, delete]},
+    { allow: owner, ownerField: "doctor_id", operations:[create, read, update, delete]},
     { allow: groups, groups: ["Patients"], operations: [read]}
   ]
 )
-@key(name: "doctorWorkSlotByDoctor", fields: ["doctorID"], queryField: "doctorWorkSlotByDoctor")
+@key(name: "doctorWorkSlotByDoctor", fields: ["doctor_id"], queryField: "doctorWorkSlotByDoctor")
 {
  id: ID!,
- doctorID: ID!,
- doctor: Doctor! @connection(fields: ["doctorID"]),
+ doctor_id: ID!,
+ doctor: Doctor! @connection(fields: ["doctor_id"]),
  start_time: AWSDateTime,
  end_time: AWSDateTime,
+ allowed_sessions: [SessionType],
  capacity: Int,
+}
+
+input mutationCreateDoctorWorkSlotInput {
+  doctor_id: ID!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  allowed_sessions: [SessionType],
+  capacity: Int,
+}
+
+input mutationUpdateDoctorWorkSlotInput {
+  id: ID!,
+  doctor_id: ID!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  allowed_sessions: [SessionType],
+  capacity: Int,
+}
+
+type Mutation {
+  createDoctorWorkSlot(input: mutationCreateDoctorWorkSlotInput) : DoctorWorkSlot @function(name: "createDoctorWorkSlot-${env}"),
+  updateDoctorWorkSlot(input: mutationUpdateDoctorWorkSlotInput) : DoctorWorkSlot @function(name: "updateDoctorWorkSlot-${env}")
+  deleteDoctorWorkSlot(id: ID!) : Boolean @function(name: "deleteDoctorWorkSlot-${env}")
+#  TODO: batch create and update implementations
 }
 
 # Enum values for session reservations
@@ -60,79 +120,66 @@ enum SessionStatus {
   REQUESTED
   ACCEPTED
   REJECTED
+  CANCELED
+  SUCCESSFUL
+  DISPUTED
+}
+
+enum SessionType {
+  AUDIO
+  VIDEO
+  TEXT
 }
 
 # Video session reservation
 # TODO: Add sanity functions and subscriptions to enable further notification before call
 # TODO: allow visibility of reservations to the insurace agents [TBD]
-type DoctorVideoSession
-@model
+type Session
+@model(mutations: null)
 @auth(
   rules: [
-    { allow: owner, ownerField: "patientID", operations: [create, read]},
-    { allow: owner, ownerField: "doctorID", operations: [update]}
+    { allow: groups, groups: ["Admins"], operations: [read, create, update, delete]},
+    { allow: owner, ownerField: "patient_id", operations: [read]},
+    { allow: owner, ownerField: "doctor_id", operations: [read]}
   ]
 )
 @key(fields: ["id"])
-@key(name: "doctorVideoSessionByDoctor", fields: ["doctorID"], queryField: "doctorVideoSessionByDoctor")
-@key(name: "doctorVideoSessionByPatient", fields: ["patientID"], queryField: "doctorVideoSessionByPatient")
+@key(name: "sessionByDoctor", fields: ["doctor_id"], queryField: "sessionByDoctor")
+@key(name: "sessionByPatient", fields: ["patient_id"], queryField: "sessionByPatient")
+@key(name: "sessionByType", fields: ["type"], queryField: "sessionByType")
 {
   id: ID!,
-  doctorID: ID!,
-  doctor: Doctor! @connection(fields: ["doctorID"]),
-  patientID: ID!,
-  patient: Patient! @connection(fields: ["patientID"]),
+  doctor_id: ID!,
+  doctor: Doctor! @connection(fields: ["doctor_id"]),
+  patient_id: ID!,
+  patient: Patient! @connection(fields: ["patient_id"]),
   start_time: AWSDateTime,
   end_time: AWSDateTime,
-  status: SessionStatus
+  status: SessionStatus,
+  type: SessionType
 }
 
-# Text session reservation
-# TODO: Add sanity functions and subscriptions to enable further notification before chat session
-# TODO: allow visibility of reservations to the insurace agents [TBD]
-type DoctorTextSession
-@model
-@auth(
-  rules: [
-    { allow: owner, ownerField: "patientID", operations: [create, read]},
-    { allow: owner, ownerField: "doctorID", operations: [update]}
-  ]
-)
-@key(fields: ["id"])
-@key(name: "doctorTextSessionByDoctor", fields: ["doctorID"], queryField: "doctorTextSessionByDoctor")
-@key(name: "doctorTextSessionByPatient", fields: ["patientID"], queryField: "doctorTextSessionByPatient")
-{
-  id: ID!,
-  doctorID: ID!,
-  doctor: Doctor! @connection(fields: ["doctorID"]),
-  patientID: ID!,
-  patient: Patient! @connection(fields: ["patientID"]),
+input mutationCreateSessionInput {
+  doctor_id: ID!,
+  patient_id: ID!,
   start_time: AWSDateTime,
   end_time: AWSDateTime,
-  status: SessionStatus
+  status: SessionStatus,
+  type: SessionType
 }
 
-# Audio session reservation
-# TODO: Add sanity functions and subscriptions to enable further notification before call
-# TODO: allow visibility of reservations to the insurace agents [TBD]
-type DoctorAudioSession
-@model
-@auth(
-  rules: [
-    { allow: owner, ownerField: "patientID", operations: [create, read]},
-    { allow: owner, ownerField: "doctorID", operations: [update]}
-  ]
-)
-@key(fields: ["id"])
-@key(name: "doctorAudioSessionByDoctor", fields: ["doctorID"], queryField: "doctorAudioSessionByDoctor")
-@key(name: "doctorAudioSessionByPatient", fields: ["patientID"], queryField: "doctorAudioSessionByPatient")
-{
+input mutationUpdateSessionInput {
   id: ID!,
-  doctorID: ID!,
-  doctor: Doctor! @connection(fields: ["doctorID"]),
-  patientID: ID!,
-  patient: Patient! @connection(fields: ["patientID"]),
+  doctor_id: ID!,
+  patient_id: ID!,
   start_time: AWSDateTime,
   end_time: AWSDateTime,
-  status: SessionStatus
+  status: SessionStatus,
+  type: SessionType
+}
+
+type Mutation {
+  createSession(input: mutationCreateSessionInput) : Session @function(name: "createSession-${env}"),
+  updateSession(input: mutationUpdateSessionInput) : Session @function(name: "updateSession-${env}")
+  #  TODO: batch create and update implementations
 }

@@ -1,0 +1,84 @@
+% Preamble
+\providecommand{\main}{.}
+\documentclass[class=article, crop=false]{standalone}
+
+% Packages
+\usepackage{\main/packages}
+
+
+% Configurations
+\graphicspath{{\main/images/}{images/}}
+\cellspacetoplimit 4pt
+\cellspacebottomlimit 4pt
+
+\title{
+%    \includegraphics[width=0.4\textwidth]{}~\\[1cm]
+    MEDICARE Project
+}
+
+\author{
+    Muhammad Salah - [muhammadsalah@tqweem.com]
+}
+
+% Document
+\begin{document}
+    \clearpage
+    \maketitle
+    \thispagestyle{empty}
+    \newpage
+    \pagenumbering{Roman}
+    \setcounter{page}{1}
+    \begin{abstract}
+    MEDICARE is a prototype project that aims facilitate medical consultations between \emph{Patients} \emph{Doctors}
+    \emph{Medical Insurance Agents}, the project is developed under the TQWEEM\cite{TQWEEM} team, and the project is subject
+    to all TQWEEM\cite{TQWEEM} copyrights.
+
+    \end{abstract}
+    \newpage
+    \tableofcontents
+    \newpage
+    \listoffigures
+    \newpage
+    \listoftables
+    \newpage
+
+
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+        \textbf{
+            \uppercase{this page is left intentionally blank}
+        }
+    \end{center}
+    \vspace*{\fill}
+
+    \newpage
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+    \part{Business Development Scope}
+    The business utilities are listed here
+    \newpage
+    \import{topics/business_docs/}{intro}
+
+    \newpage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+        \textbf{
+            \uppercase{this page is left intentionally blank}
+        }
+    \end{center}
+    \vspace*{\fill}
+    \newpage
+    \part{Technical Implementation Profile}
+
+    \newpage
+
+    \newpage
+    \setcounter{page}{1}
+    \pagenumbering{Alph}
+    \bibliography{\main/main}
+    \bibliographystyle{plain}
+
+
+\end{document}

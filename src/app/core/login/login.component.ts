@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '@core/service/auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {LayoutService} from '@core/service/theme/layout.service';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,12 @@ export class LoginComponent implements OnInit {
   password : string;
   returnURL: string;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
+              private layoutService: LayoutService) { }
 
   ngOnInit() {
     this.returnURL = this.route.snapshot.queryParams['returnURL'] || 'app';
+    this.layoutService.noLayout();
   }
 
   async signIn() {

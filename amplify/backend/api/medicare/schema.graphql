@@ -24,7 +24,7 @@ type Doctor
 @auth(
   rules: [
     {allow: groups, groups: ["Admins"], operations: [read, create, update, delete]}
-    {allow: groups, groups: ["Patients"], operations: [read]}
+    {allow: groups, groups: ["Patients", "Doctors"], operations: [read]}
   ]
 )
 {

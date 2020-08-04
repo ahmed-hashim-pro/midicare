@@ -3,14 +3,14 @@ import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {DoctorTextSessionService} from '@core/service/data/doctor-text-session.service';
-import {DoctorAudioSessionService} from '@core/service/data/doctor-audio-session.service';
+import {DoctorAudioSessionService} from '@core/service/data/session.service';
 import {DoctorVideoSessionService} from '@core/service/data/doctor-video-session.service';
 import {DoctorTextSession} from '@core/model/doctor-text-session';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Patient} from '@core/model/patient';
 import {SessionStatus} from '@core/model/session-status';
 import {DoctorAudioSession} from '@core/model/doctor-audio-session';
-import {DoctorVideoSession} from '@core/model/doctor-video-session';
+import {DoctorVideoSession} from '@core/model/session';
 import {User} from '@core/model/user';
 
 @Component({

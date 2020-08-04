@@ -1,4 +1,4 @@
-import {DoctorVideoSession} from '@core/model/doctor-video-session';
+import {DoctorVideoSession} from '@core/model/session';
 import {APIService, CreateDoctorVideoSessionInput, GetDoctorVideoSessionQuery} from '@amazon/auto/API.service';
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';

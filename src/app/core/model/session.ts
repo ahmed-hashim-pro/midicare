@@ -1,23 +1,41 @@
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
-import {SessionStatus} from "@core/model/session-status";
 
-export class DoctorTextSession {
+export enum SessionStatus {
+    'REQUESTED',
+    'ACCEPTED',
+    'REJECTED',
+    'CANCELED',
+    'SUCCESSFUL',
+    'DISPUTED'
+}
+
+export enum SessionType {
+    'AUDIO',
+    'VIDEO',
+    'TEXT',
+}
+
+
+export class Session {
+
     private _id: string;
     private _doctor: Doctor;
     private _patient: Patient;
     private _start_time: string;
     private _end_time: string;
     private _status: SessionStatus;
+    private _type: SessionType;
 
     constructor(id: string, doctor: Doctor, patient: Patient, start_time: string, end_time: string,
-                status: SessionStatus) {
+                status: SessionStatus, type: SessionType) {
         this._id = id;
         this._doctor = doctor;
         this._patient = patient;
         this._start_time = start_time;
         this._end_time = end_time;
         this._status = status;
+        this._type = type;
     }
 
     get id(): string {
@@ -66,5 +84,13 @@ export class DoctorTextSession {
 
     set status(value: SessionStatus) {
         this._status = value;
+    }
+
+    get type(): SessionType {
+        return this._type;
+    }
+
+    set type(value: SessionType) {
+        this._type = value;
     }
 }

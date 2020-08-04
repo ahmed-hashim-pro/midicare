@@ -1,0 +1,15 @@
+projects:
+  medicare:
+    schemaPath: amplify/backend/api/medicare/build/schema.graphql
+    includes:
+      - src/app/amazon/auto/graphql/**/*.graphql
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: angular
+        generatedFileName: src/app/amazon/auto/API.service.ts
+        docsFilePath: src/app/amazon/auto/graphql
+        region: eu-central-1
+        apiId: null
+        maxDepth: 5

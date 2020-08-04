@@ -2,16 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {DoctorTextSessionService} from '@core/service/data/doctor-text-session.service';
-import {DoctorAudioSessionService} from '@core/service/data/session.service';
-import {DoctorVideoSessionService} from '@core/service/data/doctor-video-session.service';
-import {DoctorTextSession} from '@core/model/doctor-text-session';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Patient} from '@core/model/patient';
-import {SessionStatus} from '@core/model/session-status';
-import {DoctorAudioSession} from '@core/model/doctor-audio-session';
-import {DoctorVideoSession} from '@core/model/session';
 import {User} from '@core/model/user';
+import {Session, SessionStatus, SessionType} from '@core/model/session';
+import {SessionService} from '@core/service/data/session.service';
 
 @Component({
   selector: 'app-list-doctor-work-slots',
@@ -24,9 +19,7 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   workSlots: DoctorWorkslot[];
 
   constructor(private doctorWorkSlotService: DoctorWorkSlotService, private route: ActivatedRoute,
-              private doctorTextSessionService: DoctorTextSessionService,
-              private doctorAudioSessionService: DoctorAudioSessionService,
-              private doctorVideoSessionService: DoctorVideoSessionService,
+              private sessionService: SessionService,
               private authService: AuthService
   ) { }
 
@@ -41,39 +34,42 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
   }
 
   async bookText(workSlot: DoctorWorkslot) {
-    const doctorTextSession = new DoctorTextSession(
+    const doctorTextSession = new Session(
         workSlot.id,
         workSlot.doctor,
         new Patient(this.user.username, null),
         workSlot.start_time,
         workSlot.end_time,
-        SessionStatus.REQUESTED
+        SessionStatus.REQUESTED,
+        SessionType.TEXT
     );
-    await this.doctorTextSessionService.createDoctorTextSession(doctorTextSession);
+    await this.sessionService.createSession(doctorTextSession);
   }
 
   async bookAudio(workSlot: DoctorWorkslot) {
-    const doctorAudioSession = new DoctorAudioSession(
+    const doctorAudioSession = new Session(
         workSlot.id,
         workSlot.doctor,
         new Patient(this.user.username, null),
         workSlot.start_time,
         workSlot.end_time,
-        SessionStatus.REQUESTED
+        SessionStatus.REQUESTED,
+        SessionType.AUDIO
     );
-    await this.doctorAudioSessionService.createDoctorAudioSession(doctorAudioSession);
+    await this.sessionService.createSession(doctorAudioSession);
   }
 
   async bookVideo(workSlot: DoctorWorkslot) {
-    const doctorVideoSession = new DoctorVideoSession(
+    const doctorVideoSession = new Session(
         workSlot.id,
         workSlot.doctor,
         new Patient(this.user.username, null),
         workSlot.start_time,
         workSlot.end_time,
-        SessionStatus.REQUESTED
+        SessionStatus.REQUESTED,
+        SessionType.VIDEO
     );
-    await this.doctorVideoSessionService.createDoctorVideoSession(doctorVideoSession);
+    await this.sessionService.createSession(doctorVideoSession);
   }
 
 }

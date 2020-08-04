@@ -2,9 +2,9 @@ import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {Session} from '@core/model/session';
 
 export interface SessionServiceProvider {
-  findDoctorAudioSessions() : Promise<Session[]>;
-  findDoctorAudioSession(id: string) : Promise<Session>;
-  createDoctorAudioSession(input: Session) : Promise<Session>;
+  findSessions() : Promise<Session[]>;
+  findSession(id: string) : Promise<Session>;
+  createSession(input: Session) : Promise<Session>;
 }
 
 @Injectable()
@@ -18,15 +18,15 @@ export class SessionService {
     this.service = SessionServiceProvider;
   }
 
-  async findDoctorAudioSessions() : Promise<Session[]> {
-    return await this.service.findDoctorAudioSessions();
+  async findSessions() : Promise<Session[]> {
+    return await this.service.findSessions();
   }
 
-  async findDoctorAudioSession(id: string) : Promise<Session> {
-    return await this.service.findDoctorAudioSession(id);
+  async findSession(id: string) : Promise<Session> {
+    return await this.service.findSession(id);
   }
 
-  async createDoctorAudioSession(input: Session) : Promise<Session> {
-    return await this.service.createDoctorAudioSession(input);
+  async createSession(input: Session) : Promise<Session> {
+    return await this.service.createSession(input);
   }
 }

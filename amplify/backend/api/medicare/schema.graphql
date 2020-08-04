@@ -24,10 +24,12 @@ type Patient
     { allow: owner, ownerField: "id", operations:[read]},
   ]
 )
-@key(fields: ["id","insurance_id"])
+@key(fields: ["id"])
+@key(name: "patientByInsuranceID", fields: ["insurance_id"], queryField: "patientByInsuranceID")
+@key(name: "parientByInsurance", fields: ["insurance"], queryField: "patientByInsurance")
 {
   id: ID!,
-  insurance_id: ID!, # ID = '0' will designate patient profile without insurance
+  insurance_id: ID,
   name: String,
   insurance: String,
 }
@@ -91,30 +93,6 @@ type DoctorWorkSlot
  capacity: Int,
 }
 
-input mutationCreateDoctorWorkSlotInput {
-  doctor_id: ID!,
-  start_time: AWSDateTime,
-  end_time: AWSDateTime,
-  allowed_sessions: [SessionType],
-  capacity: Int,
-}
-
-input mutationUpdateDoctorWorkSlotInput {
-  id: ID!,
-  doctor_id: ID!,
-  start_time: AWSDateTime,
-  end_time: AWSDateTime,
-  allowed_sessions: [SessionType],
-  capacity: Int,
-}
-
-type Mutation {
-  createDoctorWorkSlot(input: mutationCreateDoctorWorkSlotInput) : DoctorWorkSlot @function(name: "createDoctorWorkSlot-${env}"),
-  updateDoctorWorkSlot(input: mutationUpdateDoctorWorkSlotInput) : DoctorWorkSlot @function(name: "updateDoctorWorkSlot-${env}")
-  deleteDoctorWorkSlot(id: ID!) : Boolean @function(name: "deleteDoctorWorkSlot-${env}")
-#  TODO: batch create and update implementations
-}
-
 # Enum values for session reservations
 enum SessionStatus {
   REQUESTED
@@ -159,6 +137,7 @@ type Session
   type: SessionType
 }
 
+
 input mutationCreateSessionInput {
   doctor_id: ID!,
   patient_id: ID!,
@@ -178,8 +157,28 @@ input mutationUpdateSessionInput {
   type: SessionType
 }
 
+input mutationCreateDoctorWorkSlotInput {
+  doctor_id: ID!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  allowed_sessions: [SessionType],
+  capacity: Int,
+}
+
+input mutationUpdateDoctorWorkSlotInput {
+  id: ID!,
+  doctor_id: ID!,
+  start_time: AWSDateTime,
+  end_time: AWSDateTime,
+  allowed_sessions: [SessionType],
+  capacity: Int,
+}
+
 type Mutation {
+  createDoctorWorkSlot(input: mutationCreateDoctorWorkSlotInput) : DoctorWorkSlot @function(name: "createDoctorWorkSlot-${env}"),
+  updateDoctorWorkSlot(input: mutationUpdateDoctorWorkSlotInput) : DoctorWorkSlot @function(name: "updateDoctorWorkSlot-${env}")
+  deleteDoctorWorkSlot(id: ID!) : Boolean @function(name: "deleteDoctorWorkSlot-${env}")
+  #  TODO: batch create and update implementations
   createSession(input: mutationCreateSessionInput) : Session @function(name: "createSession-${env}"),
   updateSession(input: mutationUpdateSessionInput) : Session @function(name: "updateSession-${env}")
-  #  TODO: batch create and update implementations
 }

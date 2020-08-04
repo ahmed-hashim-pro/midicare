@@ -1,4 +1,4 @@
-import { APIService } from '@amazon/auto/API.service';
+import {APIService, mutationCreateSessionInput, mutationUpdateSessionInput} from '@amazon/auto/API.service';
 import {Doctor} from '@core/model/doctor';
 import {Patient} from '@core/model/patient';
 import {SessionStatus, SessionType, Session} from '@core/model/session';
@@ -25,8 +25,8 @@ export class GqlSessionService {
   async createSession(input: Session) : Promise<Session> {
     const session = await this.service.CreateSession(
         <mutationCreateSessionInput> {
-          doctorID: input.doctor.id,
-          patientID: input.patient.id,
+          doctor_id: input.doctor.id,
+          patient_id: input.patient.id,
           start_time: input.start_time,
           end_time: input.end_time,
           status: input.status,
@@ -40,8 +40,8 @@ export class GqlSessionService {
       const session = await this.service.UpdateSession(
           <mutationUpdateSessionInput> {
               id: input.id,
-              doctorID: input.doctor.id,
-              patientID: input.patient.id,
+              doctor_id: input.doctor.id,
+              patient_id: input.patient.id,
               start_time: input.start_time,
               end_time: input.end_time,
               status: input.status,

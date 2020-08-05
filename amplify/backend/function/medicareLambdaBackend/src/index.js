@@ -15,7 +15,7 @@ Amplify Params - DO NOT EDIT */
 const DOCTOR_WORK_SLOT_TABLE_NAME = process.env.API_MEDICARE_DOCTORWORKSLOTTABLE_NAME;
 
 const AWS = require('aws-sdk');
-const uuid = require('uuid/v4');
+const { v4: uuid } = require('uuid');
 
 const DDB = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
@@ -48,11 +48,11 @@ const resolvers = {
                         TableName: DOCTOR_WORK_SLOT_TABLE_NAME,
                         Item: AWS.DynamoDB.Converter.marshall(input)
                     }
-                    , function (err, data) {
+                    , function (err) {
                         if (err) {
                             reject(err);
                         } else {
-                            resolve(data);
+                            resolve(input);
                         }
                     });
             })

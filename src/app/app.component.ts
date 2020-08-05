@@ -60,16 +60,32 @@ export class AppComponent implements OnInit {
 
   private subscribeToLayoutService() {
     this.layoutService.header.subscribe(val => {
-      this.header = val;
+      setTimeout(
+          () => {
+            this.header = val;
+          }
+      );
     });
     this.layoutService.footer.subscribe(val => {
-      this.footer = val;
+      setTimeout(
+          () => {
+            this.footer = val;
+          }
+      );
     });
     this.layoutService.sideBar.subscribe(val => {
-      this.sideBar = val;
+      setTimeout(
+          () => {
+            this.sideBar = val;
+          }
+      );
     });
     this.layoutService.navigationBar.subscribe(val => {
-      this.navigationBar = val;
+      setTimeout(
+          () => {
+            this.navigationBar = val;
+          }
+      );
     });
   }
 }

@@ -58,7 +58,7 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
       return new DoctorWorkslot(
           workSlot.id,
           new Doctor(
-              workSlot.doctorID,
+              workSlot.doctor_id,
               workSlot.doctor.name,
               workSlot.doctor.insurance,
               workSlot.doctor.description,

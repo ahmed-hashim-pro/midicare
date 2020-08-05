@@ -21,59 +21,38 @@ export class LayoutService {
   }
 
   noLayout() {
-    setTimeout(
-        () => {
-          this.disableNavigationBar();
-          this.disableSideBar();
-          this.disableHeader();
-          this.disableFooter();
-        }
-    )
-
+      this.disableNavigationBar();
+      this.disableSideBar();
+      this.disableHeader();
+      this.disableFooter();
   }
 
   mainContent() {
-    setTimeout(
-        () => {
-          this.enableFooter();
-          this.enableHeader();
-          this.enableNavigationBar();
-          this.disableSideBar();
-        }
-    );
+      this.enableFooter();
+      this.enableHeader();
+      this.enableNavigationBar();
+      this.disableSideBar();
   }
 
   mainContentNoHeader() {
-    setTimeout(
-        () => {
-          this.enableFooter();
-          this.disableHeader();
-          this.disableSideBar();
-          this.enableNavigationBar();
-        }
-    );
+      this.enableFooter();
+      this.disableHeader();
+      this.disableSideBar();
+      this.enableNavigationBar();
   }
 
   contentWithMenu() {
-    setTimeout(
-        () => {
-          this.enableFooter();
-          this.enableHeader();
-          this.enableNavigationBar();
-          this.enableSideBar();
-        }
-    );
+      this.enableFooter();
+      this.enableHeader();
+      this.enableNavigationBar();
+      this.enableSideBar();
   }
 
   mainContentNoNavigationBar() {
-    setTimeout(
-        () => {
-          this.enableHeader();
-          this.enableFooter();
-          this.enableSideBar();
-          this.disableNavigationBar();
-        }
-    );
+      this.enableHeader();
+      this.enableFooter();
+      this.enableSideBar();
+      this.disableNavigationBar();
   }
 
   private enableNavigationBar() {

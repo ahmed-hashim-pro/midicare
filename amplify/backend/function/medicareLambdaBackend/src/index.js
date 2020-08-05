@@ -61,7 +61,7 @@ const resolvers = {
             //    TODO: Create sanity checks for the input
             const { Item: doctor } = await getItem(DOCTOR_TABLE_NAME, { id: input.doctor_id } );
             if (!doctor.id) {
-                throw new Error('No doctor entity exists with doctor id');
+                throw new Error('No doctor entity exists with doctor_id');
             }
             await createItem(DOCTOR_WORK_SLOT_TABLE_NAME, input);
             input.doctor = doctor;

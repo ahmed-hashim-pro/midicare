@@ -1,0 +1,85 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUser($id: String) {
+  onCreateUser(id: $id) {
+    id
+    name
+    date_of_birth
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUser($id: String) {
+  onUpdateUser(id: $id) {
+    id
+    name
+    date_of_birth
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUser($id: String) {
+  onDeleteUser(id: $id) {
+    id
+    name
+    date_of_birth
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreatePatient($id: String) {
+  onCreatePatient(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdatePatient($id: String) {
+  onUpdatePatient(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeletePatient($id: String) {
+  onDeletePatient(id: $id) {
+    id
+    name
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateDoctor {
+  onCreateDoctor {
+    id
+    insurance
+    description
+    specializations
+    name
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDoctor {
+  onUpdateDoctor {
+    id
+    insurance
+    description
+    specializations
+    name
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDoctor {
+  onDeleteDoctor {
+    id
+    insurance
+    description
+    specializations
+    name
+    createdAt
+    updatedAt
+  }
+}

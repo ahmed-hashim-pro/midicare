@@ -1,0 +1,39 @@
+{
+  "mutableParametersState": {
+    "permissions": {
+      "storage": {
+        "User:@model(appsync)": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "Patient:@model(appsync)": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "Doctor:@model(appsync)": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "DoctorWorkSlot:@model(appsync)": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "Session:@model(appsync)": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  },
+  "lambdaLayers": []
+}

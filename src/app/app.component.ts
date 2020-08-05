@@ -17,6 +17,31 @@ export class AppComponent implements OnInit {
   public footer: boolean;
   public sideBar: boolean;
   public navigationBar: boolean;
+  public dark: boolean;
+  public loggedIn: boolean;
+
+  public appPages = [
+    {
+      title: 'Schedule',
+      url: '/patient/doctors',
+      icon: 'calendar'
+    },
+    {
+      title: 'Speakers',
+      url: '/app/tabs/speakers',
+      icon: 'people'
+    },
+    {
+      title: 'Map',
+      url: '/app/tabs/map',
+      icon: 'map'
+    },
+    {
+      title: 'About',
+      url: '/app/tabs/about',
+      icon: 'information-circle'
+    }
+  ];
 
   constructor(
     private platform: Platform,
@@ -33,21 +58,12 @@ export class AppComponent implements OnInit {
      this.initializeApp();
      this.subscribeToLayoutService();
      // Redirect user to the module or to login
-     try {
-       const user = await this.authService.getUser();
-       const role = user.groups[0];
-       switch (role) {
-         case 'Patients':
-           await this.router.navigateByUrl('patient/dashboard');
-           break;
-         case 'Doctors':
-           await this.router.navigateByUrl('doctor/dashboard');
-           break;
-         default:
-           await this.router.navigateByUrl('login');
-       }
-     } catch (err) {
-       await this.router.navigateByUrl('login');
+     this.dark = false;
+     const user = this.authService.getUser();
+     if (user) {
+       this.loggedIn = true;
+     } else {
+       this.loggedIn = false;
      }
    }
 

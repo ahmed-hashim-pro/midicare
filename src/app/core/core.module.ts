@@ -4,20 +4,24 @@ import {AuthService} from "@core/service/auth/auth.service";
 import { CoreRoutingModule } from '@core/core-routing.module';
 import {LoginComponent} from '@core/login/login.component';
 import {IonicModule} from '@ionic/angular';
-import {LogoutButtonComponent} from '@core/logout-button/logout-button.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {FormsModule} from '@angular/forms';
 import {LayoutService} from '@core/service/theme/layout.service';
 import {DoctorService} from '@core/service/data/doctor.service';
 import {SessionService} from '@core/service/data/session.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
+import {MainComponent} from '@core/main/main.component';
+import { SearchBarHeaderDirective } from './directives/search-bar-header.directive';
+import {SearchBarComponent} from '@core/directive-components/search-bar/search-bar.component';
 
 
 
 @NgModule({
   declarations: [
       LoginComponent,
-      LogoutButtonComponent
+      MainComponent,
+      SearchBarHeaderDirective,
+      SearchBarComponent
   ],
   imports: [
     CommonModule,

@@ -18,6 +18,7 @@ import {CoreModule} from '@core/core.module';
 import {PatientModule} from '@src/app/patient/patient.module';
 import {AmazonModule} from '@amazon/amazon.module';
 import {DoctorModule} from '@src/app/doctor/doctor.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import {DoctorModule} from '@src/app/doctor/doctor.module';
     BrowserModule,
     IonicModule.forRoot(),
     AmplifyUIAngularModule,
+    FormsModule,
     //  Project modules
     CoreModule.forRoot(),
     AppRoutingModule,

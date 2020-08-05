@@ -1,18 +1,22 @@
 import {Doctor} from '@core/model/doctor';
+import {SessionType} from '@core/model/session';
 
 export class DoctorWorkslot {
     private _id: string;
     private _doctor: Doctor;
-    private _start_time: string;
-    private _end_time: string;
+    private _startTime: string;
+    private _endTime: string;
     private _capacity: number;
+    private _allowedSessions : SessionType[];
 
-    constructor(id: string, doctor: Doctor, start_time: string, end_time: string, capacity: number) {
+    constructor(id: string, doctor: Doctor, start_time: string, end_time: string, capacity: number,
+                allowedSessions: SessionType[]) {
         this._id = id;
         this._doctor = doctor;
-        this._start_time = start_time;
-        this._end_time = end_time;
+        this._startTime = start_time;
+        this._endTime = end_time;
         this._capacity = capacity;
+        this._allowedSessions = allowedSessions;
     }
 
 
@@ -32,20 +36,20 @@ export class DoctorWorkslot {
         this._doctor = value;
     }
 
-    get start_time(): string {
-        return this._start_time;
+    get startTime(): string {
+        return this._startTime;
     }
 
-    set start_time(value: string) {
-        this._start_time = value;
+    set startTime(value: string) {
+        this._startTime = value;
     }
 
-    get end_time(): string {
-        return this._end_time;
+    get endTime(): string {
+        return this._endTime;
     }
 
-    set end_time(value: string) {
-        this._end_time = value;
+    set endTime(value: string) {
+        this._endTime = value;
     }
 
     get capacity(): number {
@@ -54,5 +58,13 @@ export class DoctorWorkslot {
 
     set capacity(value: number) {
         this._capacity = value;
+    }
+
+    get allowedSessions(): SessionType[] {
+        return this._allowedSessions;
+    }
+
+    set allowedSessions(value: SessionType[]) {
+        this._allowedSessions = value;
     }
 }

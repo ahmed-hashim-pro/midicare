@@ -15,9 +15,10 @@ export class CreateWorkSlotComponent implements OnInit {
   public end_time: string;
   private workSlot : DoctorWorkslot;
 
-  constructor(private layoutService: LayoutService, private doctorWorkslotService: DoctorWorkSlotService,
+  constructor(private layoutService: LayoutService, private doctorWorkSlotService: DoctorWorkSlotService,
               private authService: AuthService) {
-    this.workSlot = new DoctorWorkslot(null, null, null, null, null);
+    this.workSlot =
+        new DoctorWorkslot(null, null, null, null, null, null);
   }
 
   async ngOnInit() {
@@ -29,8 +30,8 @@ export class CreateWorkSlotComponent implements OnInit {
   }
 
   async createWorkSlot() : Promise<void> {
-    this.workSlot.start_time = new Date(this.start_time).toISOString();
-    this.workSlot.end_time = new Date(this.end_time).toISOString();
-    await this.doctorWorkslotService.createDoctorWorkSlot(this.workSlot);
+    this.workSlot.startTime = new Date(this.start_time).toISOString();
+    this.workSlot.endTime = new Date(this.end_time).toISOString();
+    await this.doctorWorkSlotService.createDoctorWorkSlot(this.workSlot);
   }
 }

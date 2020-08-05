@@ -38,8 +38,8 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
         workSlot.id,
         workSlot.doctor,
         new Patient(this.user.username, null),
-        workSlot.start_time,
-        workSlot.end_time,
+        workSlot.startTime,
+        workSlot.endTime,
         SessionStatus.REQUESTED,
         SessionType.TEXT
     );
@@ -51,8 +51,8 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
         workSlot.id,
         workSlot.doctor,
         new Patient(this.user.username, null),
-        workSlot.start_time,
-        workSlot.end_time,
+        workSlot.startTime,
+        workSlot.endTime,
         SessionStatus.REQUESTED,
         SessionType.AUDIO
     );
@@ -64,8 +64,8 @@ export class ListDoctorWorkSlotsComponent implements OnInit {
         workSlot.id,
         workSlot.doctor,
         new Patient(this.user.username, null),
-        workSlot.start_time,
-        workSlot.end_time,
+        workSlot.startTime,
+        workSlot.endTime,
         SessionStatus.REQUESTED,
         SessionType.VIDEO
     );

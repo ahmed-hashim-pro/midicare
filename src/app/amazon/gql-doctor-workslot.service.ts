@@ -1,6 +1,6 @@
 import {
     APIService,
-    CreateDoctorWorkSlotInput, GetDoctorWorkSlotQuery,
+    mutationCreateDoctorWorkSlotInput, GetDoctorWorkSlotQuery,
     ModelDoctorWorkSlotFilterInput
 } from '@amazon/auto/API.service';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
@@ -31,11 +31,12 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
 
   async createDoctorWorkSlot(input: DoctorWorkslot) : Promise<DoctorWorkslot> {
     const workSlot = await this.service.CreateDoctorWorkSlot(
-        <CreateDoctorWorkSlotInput> {
-            doctorID: input.doctor.id,
-            start_time: input.start_time,
-            end_time: input.end_time,
-            capacity: input.capacity
+        <mutationCreateDoctorWorkSlotInput> {
+            doctor_id: input.doctor.id,
+            start_time: input.startTime,
+            end_time: input.endTime,
+            capacity: input.capacity,
+            allowed_sessions: input.allowedSessions
         }
     )
     return GqlDoctorWorkslotService.toDoctorWorkslot(workSlot);
@@ -66,7 +67,8 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
           ),
           workSlot.start_time,
           workSlot.end_time,
-          workSlot.capacity
+          workSlot.capacity,
+          workSlot.allowed_sessions
       )
   }
 }

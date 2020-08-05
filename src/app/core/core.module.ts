@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {LayoutService} from '@core/service/theme/layout.service';
 import {DoctorService} from '@core/service/data/doctor.service';
 import {SessionService} from '@core/service/data/session.service';
+import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 
 
 
@@ -34,7 +35,8 @@ export class CoreModule {
         AuthGuardService,
         LayoutService,
         DoctorService,
-        SessionService
+        SessionService,
+        DoctorWorkSlotService
       ]
     }
   }

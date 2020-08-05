@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LayoutService} from '@core/service/theme/layout.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Doctor} from '@core/model/doctor';
+import {SessionType} from '@core/model/session';
 
 @Component({
   selector: 'app-create-work-slot',
@@ -27,6 +28,7 @@ export class CreateWorkSlotComponent implements OnInit {
     // Only reference is required
     this.workSlot.doctor = new Doctor(user.username, null, null, null, null);
     this.workSlot.capacity = 1;
+    this.workSlot.allowedSessions = [SessionType.AUDIO, SessionType.TEXT, SessionType.VIDEO];
   }
 
   async createWorkSlot() : Promise<void> {

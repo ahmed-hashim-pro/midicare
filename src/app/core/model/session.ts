@@ -11,9 +11,9 @@ export enum SessionStatus {
 }
 
 export enum SessionType {
-    'AUDIO',
-    'VIDEO',
-    'TEXT',
+    AUDIO = "AUDIO",
+    VIDEO = "VIDEO",
+    TEXT = "TEXT"
 }
 
 

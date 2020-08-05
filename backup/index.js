@@ -13,11 +13,48 @@
 Amplify Params - DO NOT EDIT */
 
 const DOCTOR_WORK_SLOT_TABLE_NAME = process.env.API_MEDICARE_DOCTORWORKSLOTTABLE_NAME;
+const DOCTOR_TABLE_NAME = process.env.API_MEDICARE_DOCTORTABLE_NAME;
 
 const AWS = require('aws-sdk');
 const { v4: uuid } = require('uuid');
 
 const DDB = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+async function createItem(table, input) {
+    input.id = uuid();
+    return new Promise((resolve, reject) => {
+        DDB.putItem(
+            {
+                TableName: table,
+                Item: AWS.DynamoDB.Converter.marshall(input)
+            }
+            , function (err, data) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(AWS.DynamoDB.Converter.unmarshall(data.Attributes));
+                }
+            });
+    });
+}
+
+async function getItem(table, key) {
+    return new Promise((resolve, reject) => {
+        DDB.getItem(
+            {
+                TableName: table,
+                Key: AWS.DynamoDB.Converter.marshall(key)
+            }
+            , function (err, data) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(AWS.DynamoDB.Converter.unmarshall(data.Item));
+                }
+            }
+        )
+    });
+}
 
 const authorizers = {
     Mutation: {
@@ -41,21 +78,10 @@ const resolvers = {
     Mutation: {
         createDoctorWorkSlot: async event => {
             const input = event.arguments.input;
-            input.id = uuid();
-            return new Promise((resolve, reject) => {
-                DDB.putItem(
-                    {
-                        TableName: DOCTOR_WORK_SLOT_TABLE_NAME,
-                        Item: AWS.DynamoDB.Converter.marshall(input)
-                    }
-                    , function (err) {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(input);
-                        }
-                    });
-            })
+            //    TODO: Create sanity checks for the input
+            const item = await createItem(DOCTOR_WORK_SLOT_TABLE_NAME, input);
+            item.doctor = await getItem(DOCTOR_TABLE_NAME, { id: item.doctor_id });
+            return item;
         }
     }
 }

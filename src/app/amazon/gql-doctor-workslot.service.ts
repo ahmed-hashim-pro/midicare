@@ -1,7 +1,7 @@
 import {
     APIService,
     mutationCreateDoctorWorkSlotInput, GetDoctorWorkSlotQuery,
-    ModelDoctorWorkSlotFilterInput
+    ModelDoctorWorkSlotFilterInput, SessionType
 } from '@amazon/auto/API.service';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
 import {Doctor} from '@core/model/doctor';
@@ -36,7 +36,7 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
             start_time: input.startTime,
             end_time: input.endTime,
             capacity: input.capacity,
-            allowed_sessions: input.allowedSessions
+            allowed_sessions: <SessionType[]>input.allowedSessions
         }
     )
     return GqlDoctorWorkslotService.toDoctorWorkslot(workSlot);

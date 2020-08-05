@@ -8,10 +8,10 @@ import { Observable } from "zen-observable-ts";
 
 export type mutationCreateDoctorWorkSlotInput = {
   doctor_id: string;
-  start_time?: string | null;
-  end_time?: string | null;
-  allowed_sessions?: Array<SessionType | null> | null;
-  capacity?: number | null;
+  start_time: string;
+  end_time: string;
+  allowed_sessions: Array<SessionType | null>;
+  capacity: number;
 };
 
 export enum SessionType {
@@ -23,19 +23,19 @@ export enum SessionType {
 export type mutationUpdateDoctorWorkSlotInput = {
   id: string;
   doctor_id: string;
-  start_time?: string | null;
-  end_time?: string | null;
-  allowed_sessions?: Array<SessionType | null> | null;
-  capacity?: number | null;
+  start_time: string;
+  end_time: string;
+  allowed_sessions: Array<SessionType | null>;
+  capacity: number;
 };
 
 export type mutationCreateSessionInput = {
   doctor_id: string;
   patient_id: string;
-  start_time?: string | null;
-  end_time?: string | null;
-  status?: SessionStatus | null;
-  type?: SessionType | null;
+  start_time: string;
+  end_time: string;
+  status: SessionStatus;
+  type: SessionType;
 };
 
 export enum SessionStatus {
@@ -51,15 +51,15 @@ export type mutationUpdateSessionInput = {
   id: string;
   doctor_id: string;
   patient_id: string;
-  start_time?: string | null;
-  end_time?: string | null;
-  status?: SessionStatus | null;
-  type?: SessionType | null;
+  start_time: string;
+  end_time: string;
+  status: SessionStatus;
+  type: SessionType;
 };
 
 export type CreateUserInput = {
   id?: string | null;
-  name?: string | null;
+  name: string;
   date_of_birth?: string | null;
 };
 
@@ -122,41 +122,19 @@ export type DeleteUserInput = {
 
 export type CreatePatientInput = {
   id?: string | null;
-  insurance_id?: string | null;
-  name?: string | null;
-  insurance?: string | null;
+  name: string;
 };
 
 export type ModelPatientConditionInput = {
-  insurance_id?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  insurance?: ModelStringInput | null;
   and?: Array<ModelPatientConditionInput | null> | null;
   or?: Array<ModelPatientConditionInput | null> | null;
   not?: ModelPatientConditionInput | null;
 };
 
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
-};
-
 export type UpdatePatientInput = {
   id: string;
-  insurance_id?: string | null;
   name?: string | null;
-  insurance?: string | null;
 };
 
 export type DeletePatientInput = {
@@ -168,7 +146,7 @@ export type CreateDoctorInput = {
   insurance?: Array<string | null> | null;
   description?: string | null;
   specializations?: Array<string | null> | null;
-  name?: string | null;
+  name: string;
 };
 
 export type ModelDoctorConditionInput = {
@@ -202,11 +180,25 @@ export type ModelUserFilterInput = {
   not?: ModelUserFilterInput | null;
 };
 
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
 export type ModelPatientFilterInput = {
   id?: ModelIDInput | null;
-  insurance_id?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  insurance?: ModelStringInput | null;
   and?: Array<ModelPatientFilterInput | null> | null;
   or?: Array<ModelPatientFilterInput | null> | null;
   not?: ModelPatientFilterInput | null;
@@ -292,14 +284,14 @@ export type CreateDoctorWorkSlotMutation = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
-  start_time: string | null;
-  end_time: string | null;
-  allowed_sessions: Array<SessionType | null> | null;
-  capacity: number | null;
+  start_time: string;
+  end_time: string;
+  allowed_sessions: Array<SessionType | null>;
+  capacity: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -314,14 +306,14 @@ export type UpdateDoctorWorkSlotMutation = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
-  start_time: string | null;
-  end_time: string | null;
-  allowed_sessions: Array<SessionType | null> | null;
-  capacity: number | null;
+  start_time: string;
+  end_time: string;
+  allowed_sessions: Array<SessionType | null>;
+  capacity: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -336,7 +328,7 @@ export type CreateSessionMutation = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
@@ -344,16 +336,14 @@ export type CreateSessionMutation = {
   patient: {
     __typename: "Patient";
     id: string;
-    insurance_id: string | null;
-    name: string | null;
-    insurance: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
-  start_time: string | null;
-  end_time: string | null;
-  status: SessionStatus | null;
-  type: SessionType | null;
+  start_time: string;
+  end_time: string;
+  status: SessionStatus;
+  type: SessionType;
   createdAt: string;
   updatedAt: string;
 };
@@ -368,7 +358,7 @@ export type UpdateSessionMutation = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
@@ -376,16 +366,14 @@ export type UpdateSessionMutation = {
   patient: {
     __typename: "Patient";
     id: string;
-    insurance_id: string | null;
-    name: string | null;
-    insurance: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
-  start_time: string | null;
-  end_time: string | null;
-  status: SessionStatus | null;
-  type: SessionType | null;
+  start_time: string;
+  end_time: string;
+  status: SessionStatus;
+  type: SessionType;
   createdAt: string;
   updatedAt: string;
 };
@@ -393,7 +381,7 @@ export type UpdateSessionMutation = {
 export type CreateUserMutation = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -402,7 +390,7 @@ export type CreateUserMutation = {
 export type UpdateUserMutation = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -411,7 +399,7 @@ export type UpdateUserMutation = {
 export type DeleteUserMutation = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -420,9 +408,7 @@ export type DeleteUserMutation = {
 export type CreatePatientMutation = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -430,9 +416,7 @@ export type CreatePatientMutation = {
 export type UpdatePatientMutation = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -440,9 +424,7 @@ export type UpdatePatientMutation = {
 export type DeletePatientMutation = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -453,7 +435,7 @@ export type CreateDoctorMutation = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -464,7 +446,7 @@ export type UpdateDoctorMutation = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -475,7 +457,7 @@ export type DeleteDoctorMutation = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -483,7 +465,7 @@ export type DeleteDoctorMutation = {
 export type GetUserQuery = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -494,7 +476,7 @@ export type ListUsersQuery = {
   items: Array<{
     __typename: "User";
     id: string;
-    name: string | null;
+    name: string;
     date_of_birth: string | null;
     createdAt: string;
     updatedAt: string;
@@ -505,9 +487,7 @@ export type ListUsersQuery = {
 export type GetPatientQuery = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -517,9 +497,7 @@ export type ListPatientsQuery = {
   items: Array<{
     __typename: "Patient";
     id: string;
-    insurance_id: string | null;
-    name: string | null;
-    insurance: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -532,7 +510,7 @@ export type GetDoctorQuery = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -545,7 +523,7 @@ export type ListDoctorsQuery = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -562,14 +540,14 @@ export type GetDoctorWorkSlotQuery = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
-  start_time: string | null;
-  end_time: string | null;
-  allowed_sessions: Array<SessionType | null> | null;
-  capacity: number | null;
+  start_time: string;
+  end_time: string;
+  allowed_sessions: Array<SessionType | null>;
+  capacity: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -586,14 +564,14 @@ export type ListDoctorWorkSlotsQuery = {
       insurance: Array<string | null> | null;
       description: string | null;
       specializations: Array<string | null> | null;
-      name: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
-    start_time: string | null;
-    end_time: string | null;
-    allowed_sessions: Array<SessionType | null> | null;
-    capacity: number | null;
+    start_time: string;
+    end_time: string;
+    allowed_sessions: Array<SessionType | null>;
+    capacity: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -610,7 +588,7 @@ export type GetSessionQuery = {
     insurance: Array<string | null> | null;
     description: string | null;
     specializations: Array<string | null> | null;
-    name: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
@@ -618,16 +596,14 @@ export type GetSessionQuery = {
   patient: {
     __typename: "Patient";
     id: string;
-    insurance_id: string | null;
-    name: string | null;
-    insurance: string | null;
+    name: string;
     createdAt: string;
     updatedAt: string;
   };
-  start_time: string | null;
-  end_time: string | null;
-  status: SessionStatus | null;
-  type: SessionType | null;
+  start_time: string;
+  end_time: string;
+  status: SessionStatus;
+  type: SessionType;
   createdAt: string;
   updatedAt: string;
 };
@@ -644,7 +620,7 @@ export type ListSessionsQuery = {
       insurance: Array<string | null> | null;
       description: string | null;
       specializations: Array<string | null> | null;
-      name: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
@@ -652,44 +628,14 @@ export type ListSessionsQuery = {
     patient: {
       __typename: "Patient";
       id: string;
-      insurance_id: string | null;
-      name: string | null;
-      insurance: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
-    start_time: string | null;
-    end_time: string | null;
-    status: SessionStatus | null;
-    type: SessionType | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type PatientByInsuranceIdQuery = {
-  __typename: "ModelPatientConnection";
-  items: Array<{
-    __typename: "Patient";
-    id: string;
-    insurance_id: string | null;
-    name: string | null;
-    insurance: string | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type PatientByInsuranceQuery = {
-  __typename: "ModelPatientConnection";
-  items: Array<{
-    __typename: "Patient";
-    id: string;
-    insurance_id: string | null;
-    name: string | null;
-    insurance: string | null;
+    start_time: string;
+    end_time: string;
+    status: SessionStatus;
+    type: SessionType;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -708,14 +654,14 @@ export type DoctorWorkSlotByDoctorQuery = {
       insurance: Array<string | null> | null;
       description: string | null;
       specializations: Array<string | null> | null;
-      name: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
-    start_time: string | null;
-    end_time: string | null;
-    allowed_sessions: Array<SessionType | null> | null;
-    capacity: number | null;
+    start_time: string;
+    end_time: string;
+    allowed_sessions: Array<SessionType | null>;
+    capacity: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -734,7 +680,7 @@ export type SessionByDoctorQuery = {
       insurance: Array<string | null> | null;
       description: string | null;
       specializations: Array<string | null> | null;
-      name: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
@@ -742,16 +688,14 @@ export type SessionByDoctorQuery = {
     patient: {
       __typename: "Patient";
       id: string;
-      insurance_id: string | null;
-      name: string | null;
-      insurance: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
-    start_time: string | null;
-    end_time: string | null;
-    status: SessionStatus | null;
-    type: SessionType | null;
+    start_time: string;
+    end_time: string;
+    status: SessionStatus;
+    type: SessionType;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -770,7 +714,7 @@ export type SessionByPatientQuery = {
       insurance: Array<string | null> | null;
       description: string | null;
       specializations: Array<string | null> | null;
-      name: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
@@ -778,16 +722,14 @@ export type SessionByPatientQuery = {
     patient: {
       __typename: "Patient";
       id: string;
-      insurance_id: string | null;
-      name: string | null;
-      insurance: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
-    start_time: string | null;
-    end_time: string | null;
-    status: SessionStatus | null;
-    type: SessionType | null;
+    start_time: string;
+    end_time: string;
+    status: SessionStatus;
+    type: SessionType;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -806,7 +748,7 @@ export type SessionByTypeQuery = {
       insurance: Array<string | null> | null;
       description: string | null;
       specializations: Array<string | null> | null;
-      name: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
@@ -814,16 +756,14 @@ export type SessionByTypeQuery = {
     patient: {
       __typename: "Patient";
       id: string;
-      insurance_id: string | null;
-      name: string | null;
-      insurance: string | null;
+      name: string;
       createdAt: string;
       updatedAt: string;
     };
-    start_time: string | null;
-    end_time: string | null;
-    status: SessionStatus | null;
-    type: SessionType | null;
+    start_time: string;
+    end_time: string;
+    status: SessionStatus;
+    type: SessionType;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -833,7 +773,7 @@ export type SessionByTypeQuery = {
 export type OnCreateUserSubscription = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -842,7 +782,7 @@ export type OnCreateUserSubscription = {
 export type OnUpdateUserSubscription = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -851,7 +791,7 @@ export type OnUpdateUserSubscription = {
 export type OnDeleteUserSubscription = {
   __typename: "User";
   id: string;
-  name: string | null;
+  name: string;
   date_of_birth: string | null;
   createdAt: string;
   updatedAt: string;
@@ -860,9 +800,7 @@ export type OnDeleteUserSubscription = {
 export type OnCreatePatientSubscription = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -870,9 +808,7 @@ export type OnCreatePatientSubscription = {
 export type OnUpdatePatientSubscription = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -880,9 +816,7 @@ export type OnUpdatePatientSubscription = {
 export type OnDeletePatientSubscription = {
   __typename: "Patient";
   id: string;
-  insurance_id: string | null;
-  name: string | null;
-  insurance: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -893,7 +827,7 @@ export type OnCreateDoctorSubscription = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -904,7 +838,7 @@ export type OnUpdateDoctorSubscription = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -915,7 +849,7 @@ export type OnDeleteDoctorSubscription = {
   insurance: Array<string | null> | null;
   description: string | null;
   specializations: Array<string | null> | null;
-  name: string | null;
+  name: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -1028,9 +962,7 @@ export class APIService {
           patient {
             __typename
             id
-            insurance_id
             name
-            insurance
             createdAt
             updatedAt
           }
@@ -1073,9 +1005,7 @@ export class APIService {
           patient {
             __typename
             id
-            insurance_id
             name
-            insurance
             createdAt
             updatedAt
           }
@@ -1179,9 +1109,7 @@ export class APIService {
         createPatient(input: $input, condition: $condition) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }
@@ -1205,9 +1133,7 @@ export class APIService {
         updatePatient(input: $input, condition: $condition) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }
@@ -1231,9 +1157,7 @@ export class APIService {
         deletePatient(input: $input, condition: $condition) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }
@@ -1388,9 +1312,7 @@ export class APIService {
         getPatient(id: $id) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }
@@ -1416,9 +1338,7 @@ export class APIService {
           items {
             __typename
             id
-            insurance_id
             name
-            insurance
             createdAt
             updatedAt
           }
@@ -1602,9 +1522,7 @@ export class APIService {
           patient {
             __typename
             id
-            insurance_id
             name
-            insurance
             createdAt
             updatedAt
           }
@@ -1652,9 +1570,7 @@ export class APIService {
             patient {
               __typename
               id
-              insurance_id
               name
-              insurance
               createdAt
               updatedAt
             }
@@ -1688,92 +1604,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListSessionsQuery>response.data.listSessions;
-  }
-  async PatientByInsuranceId(
-    insurance_id?: string,
-    sortDirection?: ModelSortDirection,
-    filter?: ModelPatientFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<PatientByInsuranceIdQuery> {
-    const statement = `query PatientByInsuranceId($insurance_id: ID, $sortDirection: ModelSortDirection, $filter: ModelPatientFilterInput, $limit: Int, $nextToken: String) {
-        patientByInsuranceID(insurance_id: $insurance_id, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            insurance_id
-            name
-            insurance
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (insurance_id) {
-      gqlAPIServiceArguments.insurance_id = insurance_id;
-    }
-    if (sortDirection) {
-      gqlAPIServiceArguments.sortDirection = sortDirection;
-    }
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <PatientByInsuranceIdQuery>response.data.patientByInsuranceID;
-  }
-  async PatientByInsurance(
-    insurance?: string,
-    sortDirection?: ModelSortDirection,
-    filter?: ModelPatientFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<PatientByInsuranceQuery> {
-    const statement = `query PatientByInsurance($insurance: String, $sortDirection: ModelSortDirection, $filter: ModelPatientFilterInput, $limit: Int, $nextToken: String) {
-        patientByInsurance(insurance: $insurance, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            insurance_id
-            name
-            insurance
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (insurance) {
-      gqlAPIServiceArguments.insurance = insurance;
-    }
-    if (sortDirection) {
-      gqlAPIServiceArguments.sortDirection = sortDirection;
-    }
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <PatientByInsuranceQuery>response.data.patientByInsurance;
   }
   async DoctorWorkSlotByDoctor(
     doctor_id?: string,
@@ -1858,9 +1688,7 @@ export class APIService {
             patient {
               __typename
               id
-              insurance_id
               name
-              insurance
               createdAt
               updatedAt
             }
@@ -1923,9 +1751,7 @@ export class APIService {
             patient {
               __typename
               id
-              insurance_id
               name
-              insurance
               createdAt
               updatedAt
             }
@@ -1988,9 +1814,7 @@ export class APIService {
             patient {
               __typename
               id
-              insurance_id
               name
-              insurance
               createdAt
               updatedAt
             }
@@ -2078,9 +1902,7 @@ export class APIService {
         onCreatePatient(id: $id) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }
@@ -2096,9 +1918,7 @@ export class APIService {
         onUpdatePatient(id: $id) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }
@@ -2114,9 +1934,7 @@ export class APIService {
         onDeletePatient(id: $id) {
           __typename
           id
-          insurance_id
           name
-          insurance
           createdAt
           updatedAt
         }

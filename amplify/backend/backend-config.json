@@ -38,5 +38,21 @@
 				}
 			}
 		}
+	},
+	"function": {
+		"medicareLambdaBackend": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "medicare",
+					"attributes": [
+						"GraphQLAPIIdOutput"
+					]
+				}
+			]
+		}
 	}
 }

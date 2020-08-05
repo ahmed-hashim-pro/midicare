@@ -18,42 +18,23 @@ const DOCTOR_TABLE_NAME = process.env.API_MEDICARE_DOCTORTABLE_NAME;
 const AWS = require('aws-sdk');
 const { v4: uuid } = require('uuid');
 
-const DDB = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+const DDB = new AWS.DynamoDB.DocumentClient();
 
 async function createItem(table, input) {
     input.id = uuid();
-    return new Promise((resolve, reject) => {
-        DDB.putItem(
-            {
-                TableName: table,
-                Item: AWS.DynamoDB.Converter.marshall(input)
-            }
-            , function (err, data) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(AWS.DynamoDB.Converter.unmarshall(data.Attributes));
-                }
-            });
-    });
+    input.createdAt = new Date().toISOString();
+    input.updatedAt = new Date().toISOString();
+    return DDB.put({
+        TableName: table,
+        Item: input
+    }).promise();
 }
 
 async function getItem(table, key) {
-    return new Promise((resolve, reject) => {
-        DDB.getItem(
-            {
-                TableName: table,
-                Key: AWS.DynamoDB.Converter.marshall(key)
-            }
-            , function (err, data) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(AWS.DynamoDB.Converter.unmarshall(data.Item));
-                }
-            }
-        )
-    });
+    return DDB.get({
+        TableName: table,
+        Key: key
+    }).promise();
 }
 
 const authorizers = {
@@ -61,7 +42,6 @@ const authorizers = {
         createDoctorWorkSlot: async event => {
             const {username,  groups} = event.identity;
             const input = event.arguments.input;
-
             if (groups.includes('Admins')) {
                 return;
             } else if (groups.includes('Doctors')) {
@@ -79,15 +59,15 @@ const resolvers = {
         createDoctorWorkSlot: async event => {
             const input = event.arguments.input;
             //    TODO: Create sanity checks for the input
-            const item = await createItem(DOCTOR_WORK_SLOT_TABLE_NAME, input);
-            item.doctor = await getItem(DOCTOR_TABLE_NAME, { id: item.doctor_id });
-            return item;
+            await createItem(DOCTOR_WORK_SLOT_TABLE_NAME, input);
+            const doctor = await getItem(DOCTOR_TABLE_NAME, { id: input.doctor_id } );
+            input.doctor = doctor;
+            return input;
         }
     }
 }
 
 exports.handler = async (event) => {
-
     const resolverTypeHandler = resolvers[event.typeName];
     if (resolverTypeHandler) {
         const resolver = resolverTypeHandler[event.fieldName];

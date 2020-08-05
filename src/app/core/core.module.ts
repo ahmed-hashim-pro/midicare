@@ -11,17 +11,18 @@ import {DoctorService} from '@core/service/data/doctor.service';
 import {SessionService} from '@core/service/data/session.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {MainComponent} from '@core/main/main.component';
-import { SearchBarHeaderDirective } from './directives/search-bar-header.directive';
-import {SearchBarComponent} from '@core/directive-components/search-bar/search-bar.component';
+import {SearchBarComponent} from '@core/components/search-bar/search-bar.component';
 
 
 
 @NgModule({
   declarations: [
-      LoginComponent,
-      MainComponent,
-      SearchBarHeaderDirective,
-      SearchBarComponent
+    LoginComponent,
+    MainComponent,
+    SearchBarComponent
+  ],
+  exports: [
+    SearchBarComponent
   ],
   imports: [
     CommonModule,

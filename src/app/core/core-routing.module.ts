@@ -21,6 +21,11 @@ const routes: Routes = [
     data: {
       loggedIn: true
     }
+  },
+  {
+    path: '',
+    redirectTo: 'app',
+    pathMatch: 'full'
   }
 ];
 

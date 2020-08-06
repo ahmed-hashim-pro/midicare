@@ -13,11 +13,16 @@
       <ion-searchbar placeholder="Example inner search"></ion-searchbar>
     </ion-toolbar>
   </ion-header>
+  <ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let i of [].constructor(10)" size="12" size-md="6">
+      <app-doctor-card img="assets/images/avatar.jpg" name="Hamada Doctor" title="Oncology" note="Medicare Others">
+        <p>Doctor description</p>
+      </app-doctor-card>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
 
-  <ion-card *ngFor="let i of [].constructor(10)">
-    <app-doctor-card img="assets/images/avatar.jpg" name="Hamada Doctor" title="Oncology" note="Medicare Others">
-      <p>Doctor description</p>
-    </app-doctor-card>
-  </ion-card>
+
 </ion-content>
 

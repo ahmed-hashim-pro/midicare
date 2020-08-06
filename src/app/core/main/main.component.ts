@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   public filter: string;
+  public tabs: {
+    name: string,
+    icon: string,
+    path: string
+  }[];
 
   constructor() { }
 
@@ -14,6 +19,22 @@ export class MainComponent implements OnInit {
     console.log('I search for: ', query);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.tabs = [
+      {
+        name: 'Schedule',
+        icon: 'calendar',
+        path: 'app'
+      },
+      {
+        name: 'Help',
+        icon: 'information',
+        path: 'login'
+      }
+    ];
+  }
 
+  visit(path: string) {
+    console.log('I have been visited', path);
+  }
 }

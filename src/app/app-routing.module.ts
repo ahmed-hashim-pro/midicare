@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
-import {AppComponent} from '@src/app/app.component';
-import {MainComponent} from '@core/main/main.component';
 
 const routes: Routes = [
     {
@@ -23,11 +21,9 @@ const routes: Routes = [
             roles: ['Doctors']
         }
     },
-    // Temporary route rule
     {
         path: '',
-        redirectTo: '/app',
-        pathMatch: 'full'
+        loadChildren: () => import('@core/core.module').then(m => m.CoreModule)
     }
 ];
 

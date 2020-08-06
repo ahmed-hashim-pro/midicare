@@ -12,11 +12,13 @@ import {SessionService} from '@core/service/data/session.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {MainComponent} from '@core/main/main.component';
 import {SearchBarComponent} from '@core/components/search-bar/search-bar.component';
+import {AccountComponent} from '@core/account/account.component';
 
 
 
 @NgModule({
   declarations: [
+    AccountComponent,
     LoginComponent,
     MainComponent,
     SearchBarComponent

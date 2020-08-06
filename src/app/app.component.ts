@@ -23,22 +23,17 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Schedule',
-      url: '/patient/doctors',
+      url: '/patient/schedule',
       icon: 'calendar'
     },
     {
-      title: 'Speakers',
-      url: '/app/tabs/speakers',
+      title: 'Doctors',
+      url: '/doctors',
       icon: 'people'
     },
     {
-      title: 'Map',
-      url: '/app/tabs/map',
-      icon: 'map'
-    },
-    {
       title: 'About',
-      url: '/app/tabs/about',
+      url: '/about',
       icon: 'information-circle'
     }
   ];
@@ -77,7 +72,7 @@ export class AppComponent implements OnInit {
 
   private subscribeToAuthService() {
     this.authService.user.subscribe(val => {
-        this.loggedIn = val.username !== null ? true : false;
+        this.loggedIn = val.username !== null;
     });
   }
 

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" color="primary">Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding-top ion-text-center">
+    <img src="assets/images/avatar.jpg" alt="avatar">
+    <h2>{{username}}</h2>
+    <form #accountForm >
+      <ion-list inset>
+        <ion-item>Update picture</ion-item>
+        <ion-item (click)="changeName = !changeName">Change name</ion-item>
+        <ion-label *ngIf="changeName" position="stacked" color="primary">new name</ion-label>
+        <ion-input *ngIf="changeName" [(ngModel)]="account.name" name="updateName" type="text"
+                   #updateName="ngModel" spellcheck="false" autocapitalize="off">
+        </ion-input>
+        <ion-item (click)="changePassword = !changePassword">Change password</ion-item>
+        <ion-label *ngIf="changePassword" position="stacked" color="primary">new password</ion-label>
+        <ion-input *ngIf="changePassword" [(ngModel)]="account.password" name="updatePassword" type="password"
+                   #updatePassword="ngModel" spellcheck="false" autocapitalize="off">
+        </ion-input>
+        <ion-label *ngIf="changePassword" position="stacked" color="primary">confirm new password</ion-label>
+        <ion-input *ngIf="changePassword" [(ngModel)]="account.confirmPassword"
+                   name="updateConfirmPassword" type="password" #updateConfirmPassword="ngModel"
+                   spellcheck="false" autocapitalize="off">
+        </ion-input>
+      </ion-list>
+      <ion-button *ngIf="changePassword || changeName ">Change</ion-button>
+    </form>
+  </div>
+</ion-content>

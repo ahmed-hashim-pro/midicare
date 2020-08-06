@@ -13,6 +13,7 @@ import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service
 import {MainComponent} from '@core/main/main.component';
 import {SearchBarComponent} from '@core/components/search-bar/search-bar.component';
 import {AccountComponent} from '@core/account/account.component';
+import {DoctorCardComponent} from '@core/components/doctor-card/doctor-card.component';
 
 
 
@@ -21,7 +22,8 @@ import {AccountComponent} from '@core/account/account.component';
     AccountComponent,
     LoginComponent,
     MainComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    DoctorCardComponent
   ],
   exports: [
     SearchBarComponent

@@ -15,9 +15,9 @@
   </ion-header>
 
   <ion-card *ngFor="let i of [].constructor(10)">
-    <ion-card-content>
-      List Entries {{i}}
-    </ion-card-content>
+    <app-doctor-card img="assets/images/avatar.jpg" name="Hamada Doctor" title="Oncology" note="Medicare Others">
+      <p>Doctor description</p>
+    </app-doctor-card>
   </ion-card>
 </ion-content>
 

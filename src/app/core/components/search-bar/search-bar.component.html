@@ -2,9 +2,7 @@
   <ion-buttons *ngIf="!showSearchBar" slot="start">
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
-  <ion-title *ngIf="!showSearchBar">
-    <ng-content></ng-content>
-  </ion-title>
+    <ng-content *ngIf="!showSearchBar"></ng-content>
   <ion-searchbar *ngIf="showSearchBar" showCancelButton="always" [(ngModel)]="queryText" (search)="emit(queryText)"
                  (ionCancel)="showSearchBar = false" placeholder="Search"></ion-searchbar>
   <ion-buttons slot="end">

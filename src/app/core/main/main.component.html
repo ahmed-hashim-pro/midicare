@@ -1,15 +1,7 @@
 <ion-header translucent="true">
-  <app-search-bar (onSearch)="search($event)">Medicare</app-search-bar>
-  <ion-toolbar *ngIf="!ios">
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
-      <ion-segment-button value="all">
-        All
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Favorites
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
+  <app-search-bar (onSearch)="search($event)">
+    <ion-title class="ion-text-center" color="primary">Medicare</ion-title>
+  </app-search-bar>
 </ion-header>
 
 <ion-content fullscreen="true">

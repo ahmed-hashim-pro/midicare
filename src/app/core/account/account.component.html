@@ -11,8 +11,8 @@
   <div class="ion-padding-top ion-text-center">
     <img src="assets/images/avatar.jpg" alt="avatar">
     <h2>{{username}}</h2>
-    <form #accountForm >
-      <ion-list inset>
+    <form #accountForm="ngForm" novalidate>
+      <ion-list lines="none">
         <ion-item>Update picture</ion-item>
         <ion-item (click)="changeName = !changeName">Change name</ion-item>
         <ion-label *ngIf="changeName" position="stacked" color="primary">new name</ion-label>

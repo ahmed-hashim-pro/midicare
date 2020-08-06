@@ -23,7 +23,7 @@ import {DoctorCardComponent} from '@core/components/doctor-card/doctor-card.comp
     LoginComponent,
     MainComponent,
     SearchBarComponent,
-    DoctorCardComponent
+    DoctorCardComponent,
   ],
   exports: [
     SearchBarComponent

@@ -23,12 +23,13 @@
   </ion-row>
   </ion-grid>
 </ion-content>
+<ion-toolbar>
 <ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button *ngFor="let tab of tabs" (click)="visit(tab.path)">
+  <ion-tab-bar class="tabbar" slot="bottom">
+    <ion-tab-button class="tab-button" *ngFor="let tab of tabs" (click)="visit(tab.path)">
       <ion-icon name={{tab.icon}}></ion-icon>
       <ion-label>{{tab.name}}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
-
+</ion-toolbar>

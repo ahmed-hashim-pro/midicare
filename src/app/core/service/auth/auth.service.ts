@@ -1,5 +1,6 @@
 import {Injectable, SkipSelf, Optional, Inject} from '@angular/core';
 import {User} from '../../model/user';
+import {BehaviorSubject} from 'rxjs';
 
 /**
  * Authentication and authorization interface to be used all over
@@ -16,8 +17,7 @@ export interface AuthServiceProvider {
   signIn (username: string, password: string) : Promise <User> ;
   signOut () : Promise<User>;
   signUp (username: string, password: string, opts: object) : Promise<User>;
-  // User administration functionalities
-  updateUser (user: User) : Promise<User>;
+  isSignedIn() : Promise<boolean>;
   // TODO: Provide the missing capabilities
   // Forgot password
   // Change password
@@ -25,6 +25,8 @@ export interface AuthServiceProvider {
 
 @Injectable()
 export class AuthService {
+  public user: BehaviorSubject<User>;
+
   private service: AuthServiceProvider;
 
   constructor(@Optional() @SkipSelf() private authService: AuthService,
@@ -34,30 +36,37 @@ export class AuthService {
         throw new Error('Authorization service is already injected');
       }
       this.service = authServiceProvider;
+      this.user = new BehaviorSubject<User>(new User(null, null, null));
   }
 
   public async getUser () : Promise<User> {
-    return await this.service.getUser();
+    const user = await this.service.getUser();
+    this.user.next(user);
+    return user;
   }
 
   // Methods that exposes the 'IAuth' can be either decorated or pass through
   // the service
 
   public async signIn (username: string, password: string) : Promise<User> {
-    return await this.service.signIn(username, password);
+    const user = await this.service.signIn(username, password);
+    this.user.next(user);
+    return user;
   }
 
   public async signOut () : Promise<User> {
-    return await this.service.signOut();
+    const user = await this.service.signOut();
+    this.user.next(user);
+    return user;
   }
 
   public async signUp (username: string, password: string, opts: object) : Promise<User> {
-    return await this.service.signUp(username, password, opts);
+    const user = await this.service.signUp(username, password, opts);
+    this.user.next(user);
+    return user;
   }
 
-  public async updateUser (user : User) : Promise<User> {
-    // NO OP operation currently
-    // TODO: Maintain update user group and information
-    return null;
+  public async isSingedIn () : Promise <boolean> {
+    return await this.service.isSignedIn();
   }
 }

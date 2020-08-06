@@ -24,15 +24,13 @@ export class CognitoAmplify implements AuthServiceProvider {
         return new User(null, null, {});
     }
 
+    public async isSignedIn () : Promise<boolean> {
+        return (await Auth.currentCredentials()).authenticated
+    }
+
     signUp(username: string, password: string, opts: object): Promise<User> {
         // NO OP operation
         return Promise.resolve(new User(null, null, {}));
-    }
-
-    // NO OP
-    // TODO: Add the update user capabilities
-    public async updateUser (user : User) : Promise<User> {
-        return new User(null, null, {});
     }
 
     // Auxillary functions

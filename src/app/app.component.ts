@@ -57,20 +57,27 @@ export class AppComponent implements OnInit {
    async ngOnInit() {
      this.initializeApp();
      this.subscribeToLayoutService();
+     this.subscribeToAuthService();
      // Redirect user to the module or to login
      this.dark = false;
-     const user = this.authService.getUser();
-     if (user) {
-       this.loggedIn = true;
-     } else {
-       this.loggedIn = false;
-     }
+     this.loggedIn = await this.authService.isSingedIn();
+   }
+
+   async logout() {
+    await this.authService.signOut();
+    return this.router.navigateByUrl('login');
    }
 
   private initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+  }
+
+  private subscribeToAuthService() {
+    this.authService.user.subscribe(val => {
+        this.loggedIn = val.username !== null ? true : false;
     });
   }
 

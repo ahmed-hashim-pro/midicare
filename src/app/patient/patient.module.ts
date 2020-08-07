@@ -5,12 +5,14 @@ import {IonicModule} from '@ionic/angular';
 import {DoctorsComponent} from '@patient/doctors/doctors.component';
 import {CoreModule} from '@core/core.module';
 import {FormsModule} from '@angular/forms';
+import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.component';
 
 
 
 @NgModule({
   declarations: [
-      DoctorsComponent
+      DoctorsComponent,
+      DoctorScheduleComponent
   ],
   imports: [
     CommonModule,

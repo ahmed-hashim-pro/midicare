@@ -15,14 +15,12 @@ export class LoginComponent implements OnInit {
     username : string,
     password : string
   };
-  private returnURL: string;
   public submitted: boolean;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private layoutService: LayoutService, private toastController: ToastController) { }
 
   ngOnInit() {
-    this.returnURL = this.route.snapshot.queryParams['returnURL'] || 'app';
     this.layoutService.noLayout();
     this.submitted = false;
     this.login = {
@@ -36,11 +34,8 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       try {
         await this.authService.signIn(this.login.username, this.login.password);
-        if (this.returnURL) {
-          await this.router.navigateByUrl(this.returnURL);
-        } else {
-          await this.router.navigateByUrl('');
-        }
+        const returnURL = this.route.snapshot.queryParams['returnURL'] || 'app';
+        await this.router.navigateByUrl(returnURL);
       } catch (e) {
         const toast = await this.toastController.create(
             {

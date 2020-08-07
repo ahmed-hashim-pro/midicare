@@ -56,13 +56,13 @@ export class AuthGuardService implements CanActivate {
     return false;
   }
 
-  private redirectToLogin(returnURL: string) {
-    this.router.navigateByUrl('login', { queryParams: { returnUrl: returnURL }});
+  private async redirectToLogin(returnURL: string) {
+    await this.router.navigate(['login'], { queryParams: { returnURL: returnURL }});
     return false;
   }
 
-  private redirectToApplicationRoot() {
-    this.router.navigateByUrl('app');
+  private async redirectToApplicationRoot() {
+    await this.router.navigate(['app']);
     return false;
   }
 }

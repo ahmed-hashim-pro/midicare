@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     password : string
   };
   private returnURL: string;
-  private submitted: boolean;
+  public submitted: boolean;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
               private layoutService: LayoutService, private toastController: ToastController) { }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           await this.router.navigateByUrl('');
         }
       } catch (e) {
-        await (await this.toastController.create(
+        const toast = await this.toastController.create(
             {
               message: 'Username or password is not accepted by the system',
               mode: 'md',
@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
                 }
               ]
             }
-        )).present();
+        );
+        await toast.present();
       }
     }
   }

@@ -2,15 +2,22 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {PatientRoutingModule} from '@patient/patient-routing.module';
 import {IonicModule} from '@ionic/angular';
+import {DoctorsComponent} from '@patient/doctors/doctors.component';
+import {CoreModule} from '@core/core.module';
+import {FormsModule} from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+      DoctorsComponent
+  ],
   imports: [
     CommonModule,
     PatientRoutingModule,
-    IonicModule
+    IonicModule,
+    CoreModule,
+    FormsModule
   ]
 })
 export class PatientModule {

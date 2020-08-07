@@ -26,7 +26,8 @@ import {DoctorCardComponent} from '@core/components/doctor-card/doctor-card.comp
     DoctorCardComponent,
   ],
   exports: [
-    SearchBarComponent
+    SearchBarComponent,
+    DoctorCardComponent
   ],
   imports: [
     CommonModule,

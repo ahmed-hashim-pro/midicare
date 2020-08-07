@@ -14,12 +14,9 @@ export class DoctorScheduleComponent implements OnInit {
   constructor(private route: ActivatedRoute, private doctorService: DoctorService) { }
 
   async ngOnInit() {
-    this.doctor = <Doctor> history.state.doctor || null;
-    if (!this.doctor) {
-      this.route.params.subscribe(async params => {
-        this.doctor = await this.doctorService.findDoctor(params['id'])
-      });
-    }
+    this.route.params.subscribe(async params => {
+      this.doctor = await this.doctorService.findDoctor(params['id'])
+    });
   }
 
 

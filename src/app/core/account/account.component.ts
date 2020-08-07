@@ -26,6 +26,11 @@ export class AccountComponent implements OnInit {
     this.changeName = false;
     const user = await this.authService.getUser();
     this.username = user.username;
+    this.account = {
+      name: '',
+      password: '',
+      confirmPassword: ''
+    };
   }
 
   async logout() {

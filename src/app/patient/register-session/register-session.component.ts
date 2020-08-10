@@ -3,7 +3,7 @@ import {Doctor} from '@core/model/doctor';
 import {SessionType} from '@core/model/session';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
 import {DoctorWorkslot} from '@core/model/doctor-workslot';
-import {ModalController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-register-session',
@@ -16,7 +16,8 @@ export class RegisterSessionComponent implements OnInit {
 
   public workSlots : DoctorWorkslot[];
 
-  constructor(private workSlotService: DoctorWorkSlotService, private modalController: ModalController) { }
+  constructor(private workSlotService: DoctorWorkSlotService, private modalController: ModalController,
+              private alertController: AlertController) { }
 
   async ngOnInit() {
     try {
@@ -28,6 +29,14 @@ export class RegisterSessionComponent implements OnInit {
 
   async register(slot: DoctorWorkslot) {
     console.log('registering this slot', slot);
+    const alert = await this.alertController.create({
+      header: 'Session Created',
+      subHeader: this.doctor.name,
+      message: 'The doctor will contact you on the session time',
+      buttons: ['OK']
+    });
+    await alert.present();
+    await this.modalController.dismiss();
   }
 
   async dismiss() {

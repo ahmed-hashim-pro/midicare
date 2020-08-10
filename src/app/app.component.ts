@@ -3,7 +3,6 @@ import {Component, OnInit} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {LayoutService} from '@core/service/theme/layout.service';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Router} from '@angular/router';
 
@@ -13,10 +12,6 @@ import {Router} from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public header: boolean;
-  public footer: boolean;
-  public sideBar: boolean;
-  public navigationBar: boolean;
   public dark: boolean;
   public loggedIn: boolean;
 
@@ -47,7 +42,6 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private layoutService: LayoutService,
     private authService: AuthService,
     private router: Router
   ) {
@@ -56,7 +50,6 @@ export class AppComponent implements OnInit {
 
    async ngOnInit() {
      this.initializeApp();
-     this.subscribeToLayoutService();
      this.subscribeToAuthService();
      // Redirect user to the module or to login
      this.dark = false;
@@ -78,37 +71,6 @@ export class AppComponent implements OnInit {
   private subscribeToAuthService() {
     this.authService.user.subscribe(val => {
         this.loggedIn = val.username !== null;
-    });
-  }
-
-  private subscribeToLayoutService() {
-    this.layoutService.header.subscribe(val => {
-      setTimeout(
-          () => {
-            this.header = val;
-          }
-      );
-    });
-    this.layoutService.footer.subscribe(val => {
-      setTimeout(
-          () => {
-            this.footer = val;
-          }
-      );
-    });
-    this.layoutService.sideBar.subscribe(val => {
-      setTimeout(
-          () => {
-            this.sideBar = val;
-          }
-      );
-    });
-    this.layoutService.navigationBar.subscribe(val => {
-      setTimeout(
-          () => {
-            this.navigationBar = val;
-          }
-      );
     });
   }
 }

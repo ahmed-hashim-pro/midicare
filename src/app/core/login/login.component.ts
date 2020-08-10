@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '@core/service/auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {LayoutService} from '@core/service/theme/layout.service';
 import {NgForm} from '@angular/forms';
 import {ToastController} from '@ionic/angular';
 
@@ -18,10 +17,9 @@ export class LoginComponent implements OnInit {
   public submitted: boolean;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,
-              private layoutService: LayoutService, private toastController: ToastController) { }
+              private toastController: ToastController) { }
 
   ngOnInit() {
-    this.layoutService.noLayout();
     this.submitted = false;
     this.login = {
       username: '',

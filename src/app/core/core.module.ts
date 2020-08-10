@@ -6,7 +6,6 @@ import {LoginComponent} from '@core/login/login.component';
 import {IonicModule} from '@ionic/angular';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {FormsModule} from '@angular/forms';
-import {LayoutService} from '@core/service/theme/layout.service';
 import {DoctorService} from '@core/service/data/doctor.service';
 import {SessionService} from '@core/service/data/session.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
@@ -43,7 +42,6 @@ export class CoreModule {
       providers: [
         AuthService,
         AuthGuardService,
-        LayoutService,
         DoctorService,
         SessionService,
         DoctorWorkSlotService

@@ -6,13 +6,15 @@ import {DoctorsComponent} from '@patient/doctors/doctors.component';
 import {CoreModule} from '@core/core.module';
 import {FormsModule} from '@angular/forms';
 import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.component';
+import {RegisterSessionComponent} from '@patient/register-session/register-session.component';
 
 
 
 @NgModule({
   declarations: [
       DoctorsComponent,
-      DoctorScheduleComponent
+      DoctorScheduleComponent,
+      RegisterSessionComponent
   ],
   imports: [
     CommonModule,

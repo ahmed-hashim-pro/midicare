@@ -44,7 +44,7 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
 
   async findDoctorWorkSlotsByDoctor(id: string): Promise<DoctorWorkslot[]> {
       const doctorWorkSlots = await this.service.ListDoctorWorkSlots(<ModelDoctorWorkSlotFilterInput>{
-          doctorID: {
+          doctor_id: {
               eq: id
           }
       });

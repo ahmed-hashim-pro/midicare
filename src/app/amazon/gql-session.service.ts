@@ -51,6 +51,15 @@ export class GqlSessionService {
       return GqlSessionService.toSession(session);
   }
 
+  async findSessionsByDoctor(input: Doctor) : Promise<Session[]> {
+      const sessions = await this.service.SessionByDoctor(
+          input.id
+      );
+      return sessions.items.map(
+          session => GqlSessionService.toSession(session)
+      );
+  }
+
   // TODO: Fix the typing for the session
   static toSession (session: any) : Session {
       return new Session(

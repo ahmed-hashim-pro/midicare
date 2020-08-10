@@ -1,9 +1,11 @@
 import {Inject, Injectable, Optional, SkipSelf} from '@angular/core';
 import {Session} from '@core/model/session';
+import {Doctor} from '@core/model/doctor';
 
 export interface SessionServiceProvider {
   findSessions() : Promise<Session[]>;
   findSession(id: string) : Promise<Session>;
+  findSessionsByDoctor(doctor: Doctor): Promise<Session[]>;
   createSession(input: Session) : Promise<Session>;
 }
 

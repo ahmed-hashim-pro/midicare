@@ -1,0 +1,12 @@
+<ion-list>
+  <ion-item *ngFor="let slot of workSlots" (click)="register(slot)">
+    <ion-label class="ion-text-center">
+      <h3>Available capacity: {{slot.capacity}}</h3>
+      <p>
+        {{slot.startTime | date: 'medium' }} &mdash; {{slot.endTime | date: 'medium'}}
+      </p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-button (click)="dismiss()">Back</ion-button>

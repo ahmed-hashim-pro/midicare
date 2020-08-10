@@ -21,17 +21,17 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12" class="ion-margin; align=center">
-          <ion-chip color="primary">
+          <ion-chip color="primary" (click)="schedule('TEXT')">
             <ion-icon name="chatbubbles"></ion-icon>
             <ion-label>Text</ion-label>
           </ion-chip>
 
-          <ion-chip color="primary">
+          <ion-chip color="primary" (click)="schedule('AUDIO')">
             <ion-icon name="call"></ion-icon>
             <ion-label>Audio</ion-label>
           </ion-chip>
 
-          <ion-chip color="primary">
+          <ion-chip color="primary" (click)="schedule('VIDEO')">
             <ion-icon name="videocam"></ion-icon>
             <ion-label>Video</ion-label>
           </ion-chip>

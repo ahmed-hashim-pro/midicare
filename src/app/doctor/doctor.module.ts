@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {DoctorRoutingModule} from '@src/app/doctor/doctor-routing.module';
 import {FormsModule} from '@angular/forms';
+import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+      WorkSlotComponent
+  ],
   imports: [
     CommonModule,
     IonicModule,

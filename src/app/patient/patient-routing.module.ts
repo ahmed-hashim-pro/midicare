@@ -8,8 +8,7 @@ import {ScheduleComponent} from '@patient/schedule/schedule.component';
 const routes: Routes = [
   {
     path: 'doctors',
-    component: DoctorsComponent,
-    canActivate: [AuthGuardService],
+    component: DoctorsComponent
   },
   {
     path: 'doctor/:id',
@@ -25,6 +24,12 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild([{
       path: 'patient',
+      canActivate: [AuthGuardService],
+      canActivateChild: [AuthGuardService],
+      data: {
+        loggedIn: true,
+        roles: ['Patients']
+      },
       children: routes
     }])
   ],

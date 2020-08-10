@@ -14,7 +14,6 @@ import {SearchBarComponent} from '@core/components/search-bar/search-bar.compone
 import {AccountComponent} from '@core/account/account.component';
 import {DoctorCardComponent} from '@core/components/doctor-card/doctor-card.component';
 import {MenuPageService} from '@core/service/menu-page.service';
-import {MenuPageResolverService} from '@core/service/menu-page-resolver.service';
 
 
 
@@ -47,8 +46,7 @@ export class CoreModule {
         DoctorService,
         SessionService,
         DoctorWorkSlotService,
-        MenuPageService,
-        MenuPageResolverService
+        MenuPageService
       ]
     }
   }

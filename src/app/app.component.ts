@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
          if (user.groups.includes('Patients')) {
              await this.router.navigate(['patient','app']);
          } else if (user.groups.includes('Doctors')) {
-             await this.router.navigate(['doctors', 'app']);
+             await this.router.navigate(['doctor', 'app']);
          }
      }
    }
@@ -58,8 +58,38 @@ export class AppComponent implements OnInit {
   }
 
   private subscribeToAuthService() {
-    this.authService.user.subscribe(val => {
-        this.loggedIn = val.username !== null;
+    this.authService.user.subscribe(user => {
+        this.loggedIn = user.username !== null;
+        // TODO: Better mechanism to manage the menu pages in their respective modules
+        if (user.groups?.includes('Patients')) {
+            this.menuPageService.MenuPages.next(
+                [
+                    new MenuPage('Home', '/patient/app','home'),
+                    new MenuPage('Schedule', '/patient/schedule', 'calendar'),
+                    new MenuPage('Doctors', '/patient/doctors', 'people'),
+                    new MenuPage('About','/about', 'information-circle')
+                ]
+            );
+        }
+        if(user.groups?.includes('Doctors')) {
+            this.menuPageService.MenuPages.next(
+                [
+                    new MenuPage('Home', '/doctor/app','home'),
+                    new MenuPage('Work Schedule', '/doctor/schedule', 'calendar'),
+                    new MenuPage('Clinic', '/doctor/clinic', 'medical'),
+                    new MenuPage('About','/about', 'information-circle')
+                ]
+            );
+        }
+
+        if (!this.loggedIn) {
+            this.menuPageService.MenuPages.next(
+                [
+                    new MenuPage('Home', '/app','home'),
+                    new MenuPage('About','/about', 'information-circle')
+                ]
+            );
+        }
     });
   }
 

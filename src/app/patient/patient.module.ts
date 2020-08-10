@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.component';
 import {RegisterSessionComponent} from '@patient/register-session/register-session.component';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
-import {MenuPageResolverService} from '@patient/service/menu-page-resolver.service';
 import {MainComponent} from '@patient/main/main.component';
 
 @NgModule({
@@ -32,8 +31,7 @@ export class PatientModule {
     return {
       ngModule: PatientModule,
       providers: [
-        MenuPageResolverService
-      ]
+       ]
     }
   }
 

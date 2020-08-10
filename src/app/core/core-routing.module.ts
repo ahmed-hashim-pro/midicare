@@ -4,7 +4,6 @@ import {LoginComponent} from "@core/login/login.component";
 import {MainComponent} from '@core/main/main.component';
 import {AccountComponent} from '@core/account/account.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
-import {MenuPageResolverService} from '@core/service/menu-page-resolver.service';
 
 const routes: Routes = [
   {
@@ -35,10 +34,7 @@ const routes: Routes = [
     RouterModule.forChild([
       {
         path: '',
-        children: routes,
-        resolve: {
-          menuPages: MenuPageResolverService
-        }
+        children: routes
       }
     ])
   ],

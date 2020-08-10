@@ -4,7 +4,6 @@ import {IonicModule} from '@ionic/angular';
 import {DoctorRoutingModule} from '@src/app/doctor/doctor-routing.module';
 import {FormsModule} from '@angular/forms';
 import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
-import {MenuPageResolverService} from '@doctor/service/menu-page-resolver.service';
 import {MainComponent} from '@doctor/main/main.component';
 
 
@@ -26,7 +25,6 @@ export class DoctorModule {
     return {
       ngModule: DoctorModule,
       providers: [
-          MenuPageResolverService
       ]
     }
   }

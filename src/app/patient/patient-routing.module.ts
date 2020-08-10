@@ -4,6 +4,7 @@ import {DoctorsComponent} from '@patient/doctors/doctors.component';
 import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
+import {MenuPageResolverService} from '@patient/service/menu-page-resolver.service';
 
 const routes: Routes = [
   {
@@ -29,6 +30,9 @@ const routes: Routes = [
       data: {
         loggedIn: true,
         roles: ['Patients']
+      },
+      resolve: {
+        menuPages: MenuPageResolverService
       },
       children: routes
     }])

@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Router} from '@angular/router';
+import {MenuPage, MenuPageService} from '@core/service/menu-page.service';
 
 @Component({
   selector: 'app-root',
@@ -15,34 +16,14 @@ export class AppComponent implements OnInit {
   public dark: boolean;
   public loggedIn: boolean;
 
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/app',
-      icon: 'home'
-    },
-    {
-      title: 'Schedule',
-      url: '/patient/schedule',
-      icon: 'calendar'
-    },
-    {
-      title: 'Doctors',
-      url: '/patient/doctors',
-      icon: 'people'
-    },
-    {
-      title: 'About',
-      url: '/about',
-      icon: 'information-circle'
-    }
-  ];
+  public menuPages: MenuPage[];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authService: AuthService,
+    private menuPageService: MenuPageService,
     private router: Router
   ) {
   }
@@ -51,9 +32,15 @@ export class AppComponent implements OnInit {
    async ngOnInit() {
      this.initializeApp();
      this.subscribeToAuthService();
-     // Redirect user to the module or to login
+     this.subscribeToMenuPageService();
      this.dark = false;
      this.loggedIn = await this.authService.isSingedIn();
+     this.menuPages = [
+       new MenuPage('Home', '/app','home'),
+       new MenuPage('Schedule', '/patient/schedule', 'calendar'),
+       new MenuPage('Doctors', '/patient/doctors', 'people'),
+       new MenuPage('About','/about', 'information-circle')
+     ];
    }
 
    async logout() {
@@ -72,5 +59,13 @@ export class AppComponent implements OnInit {
     this.authService.user.subscribe(val => {
         this.loggedIn = val.username !== null;
     });
+  }
+
+  private subscribeToMenuPageService() {
+    this.menuPageService.MenuPages.subscribe(
+        pages => {
+          this.menuPages = pages;
+        }
+    );
   }
 }

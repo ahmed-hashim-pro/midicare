@@ -7,6 +7,7 @@ import {CoreModule} from '@core/core.module';
 import {FormsModule} from '@angular/forms';
 import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.component';
 import {RegisterSessionComponent} from '@patient/register-session/register-session.component';
+import {ScheduleComponent} from '@patient/schedule/schedule.component';
 
 
 
@@ -14,7 +15,8 @@ import {RegisterSessionComponent} from '@patient/register-session/register-sessi
   declarations: [
       DoctorsComponent,
       DoctorScheduleComponent,
-      RegisterSessionComponent
+      RegisterSessionComponent,
+      ScheduleComponent
   ],
   imports: [
     CommonModule,

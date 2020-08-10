@@ -27,8 +27,8 @@ export class GqlSessionService {
         <mutationCreateSessionInput> {
           doctor_id: input.doctor.id,
           patient_id: input.patient.id,
-          start_time: input.start_time,
-          end_time: input.end_time,
+          start_time: input.startTime,
+          end_time: input.endTime,
           status: input.status,
           type: input.type
         }
@@ -42,8 +42,8 @@ export class GqlSessionService {
               id: input.id,
               doctor_id: input.doctor.id,
               patient_id: input.patient.id,
-              start_time: input.start_time,
-              end_time: input.end_time,
+              start_time: input.startTime,
+              end_time: input.endTime,
               status: input.status,
               type: input.type
           }
@@ -58,6 +58,15 @@ export class GqlSessionService {
       return sessions.items.map(
           session => GqlSessionService.toSession(session)
       );
+  }
+
+  async findSessionsByPatient(input: Patient) {
+      const sessions = await this.service.SessionByPatient(
+          input.id
+      );
+      return sessions.items.map(
+          session => GqlSessionService.toSession(session)
+      )
   }
 
   // TODO: Fix the typing for the session

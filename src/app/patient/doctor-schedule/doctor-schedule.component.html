@@ -2,7 +2,9 @@
   <ion-header class="ion-no-border">
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button default-href="/patient/doctors"></ion-back-button>
+        <ion-button [routerLink]="['/patient/doctors']" >
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

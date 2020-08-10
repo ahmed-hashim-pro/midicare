@@ -33,7 +33,7 @@ export class DoctorScheduleComponent implements OnInit {
       component: RegisterSessionComponent,
       componentProps: {
         doctor: this.doctor,
-        sessionType: sessionType
+        sessionType: sessionType,
       }
     });
     await modal.present();

@@ -9,9 +9,11 @@ import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.
 import {RegisterSessionComponent} from '@patient/register-session/register-session.component';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
 import {MenuPageResolverService} from '@patient/service/menu-page-resolver.service';
+import {MainComponent} from '@patient/main/main.component';
 
 @NgModule({
   declarations: [
+      MainComponent,
       DoctorsComponent,
       DoctorScheduleComponent,
       RegisterSessionComponent,

@@ -35,6 +35,14 @@ export class AppComponent implements OnInit {
      this.subscribeToMenuPageService();
      this.dark = false;
      this.loggedIn = await this.authService.isSingedIn();
+     const user = await this.authService.getUser();
+     if (this.loggedIn) {
+         if (user.groups.includes('Patients')) {
+             await this.router.navigate(['patient','app']);
+         } else if (user.groups.includes('Doctors')) {
+             await this.router.navigate(['doctors', 'app']);
+         }
+     }
    }
 
    async logout() {

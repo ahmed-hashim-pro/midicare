@@ -10,7 +10,7 @@ export class MenuPageResolverService implements Resolve<void>{
   async resolve() : Promise<void> {
     this.menuPageService.MenuPages.next(
         [
-          new MenuPage('Home', '/app','home'),
+          new MenuPage('Home', '/patient/app','home'),
           new MenuPage('Schedule', '/patient/schedule', 'calendar'),
           new MenuPage('Doctors', '/patient/doctors', 'people'),
           new MenuPage('About','/about', 'information-circle')

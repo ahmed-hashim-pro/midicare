@@ -11,8 +11,6 @@ export class MenuPageResolverService implements Resolve<void>{
     this.menuPageService.MenuPages.next(
         [
           new MenuPage('Home', '/app','home'),
-          new MenuPage('Schedule', '/patient/schedule', 'calendar'),
-          new MenuPage('Doctors', '/patient/doctors', 'people'),
           new MenuPage('About','/about', 'information-circle')
         ]
     );

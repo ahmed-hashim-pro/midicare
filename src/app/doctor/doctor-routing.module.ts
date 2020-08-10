@@ -3,8 +3,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {MenuPageResolverService} from '@doctor/service/menu-page-resolver.service';
+import {MainComponent} from '@doctor/main/main.component';
 
 const routes: Routes = [
+  {
+    path: 'app',
+    component: MainComponent
+  },
   {
     path: 'workslot',
     component: WorkSlotComponent,

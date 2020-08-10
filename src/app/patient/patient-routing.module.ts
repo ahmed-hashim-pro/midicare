@@ -5,6 +5,7 @@ import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
 import {MenuPageResolverService} from '@patient/service/menu-page-resolver.service';
+import {MainComponent} from '@patient/main/main.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'schedule',
     component: ScheduleComponent
+  },
+  {
+    path: 'app',
+    component: MainComponent
   }
 ];
 

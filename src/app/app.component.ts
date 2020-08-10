@@ -35,12 +35,6 @@ export class AppComponent implements OnInit {
      this.subscribeToMenuPageService();
      this.dark = false;
      this.loggedIn = await this.authService.isSingedIn();
-     this.menuPages = [
-       new MenuPage('Home', '/app','home'),
-       new MenuPage('Schedule', '/patient/schedule', 'calendar'),
-       new MenuPage('Doctors', '/patient/doctors', 'people'),
-       new MenuPage('About','/about', 'information-circle')
-     ];
    }
 
    async logout() {

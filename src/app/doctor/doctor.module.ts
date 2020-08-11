@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
 import {MainComponent} from '@doctor/main/main.component';
 import {CreateWorkslotComponent} from '@doctor/create-workslot/create-workslot.component';
+import {CoreModule} from '@core/core.module';
 
 
 
@@ -19,7 +20,8 @@ import {CreateWorkslotComponent} from '@doctor/create-workslot/create-workslot.c
     CommonModule,
     IonicModule,
     DoctorRoutingModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ]
 })
 export class DoctorModule {

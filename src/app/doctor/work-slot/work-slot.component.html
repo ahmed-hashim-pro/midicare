@@ -1,12 +1,17 @@
 <ion-header translucent="true">
-  <ion-toolbar>
-    <ion-title size="large">Schedule</ion-title>
-  </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar placeholder="Search"></ion-searchbar>
-  </ion-toolbar>
+  <app-search-bar (onSearch)="search($event)">
+    <ion-title class="ion-text-center" color="primary">Schedule</ion-title>
+  </app-search-bar>
 </ion-header>
 <ion-content fullscreen="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title size="large">Work slots times</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar [ngModel]="filter" placeholder="Example inner search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
   <ion-list #scheduleList>
     <ion-item-group>
       <ion-item-sliding *ngFor="let workSlot of workSlots" #slidingItem>

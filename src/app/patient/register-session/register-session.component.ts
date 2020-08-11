@@ -28,7 +28,6 @@ export class RegisterSessionComponent implements OnInit {
   }
 
   async register(slot: DoctorWorkslot) {
-    console.log('registering this slot', slot);
     const alert = await this.alertController.create({
       header: 'Session Created',
       subHeader: this.doctor.name,

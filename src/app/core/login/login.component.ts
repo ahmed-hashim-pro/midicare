@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         } else {
           if (user.groups.includes('Patients')) {
             await this.router.navigate(['patient','app']);
-          } else if (user.groups.includes('doctors')) {
+          } else if (user.groups.includes('Doctors')) {
             await this.router.navigate(['doctor','app']);
           }
         }

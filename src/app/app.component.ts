@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
             this.menuPageService.MenuPages.next(
                 [
                     new MenuPage('Home', '/doctor/app','home'),
-                    new MenuPage('Work Schedule', '/doctor/schedule', 'calendar'),
+                    new MenuPage('Work Schedule', '/doctor/workslot', 'calendar'),
                     new MenuPage('Clinic', '/doctor/clinic', 'medical'),
                     new MenuPage('About','/about', 'information-circle')
                 ]

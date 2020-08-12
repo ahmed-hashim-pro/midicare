@@ -1,3 +1,34 @@
-<p>
-  call-doctor works!
-</p>
+<ion-header translucent="true">
+  <app-search-bar (onSearch)="search($event)">
+    <ion-title class="ion-text-center" color="primary">Clinic</ion-title>
+  </app-search-bar>
+</ion-header>
+<ion-content fullscreen="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title size="large">Call</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar [ngModel]="filter" placeholder="Example inner search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  <video #doctorVideo autoplay playsinline></video>
+  <video #patientVideo autoplay playsinline></video>
+
+</ion-content>
+
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar class="tabbar" slot="bottom">
+      <ion-tab-button class="tab-button" [routerLink]="['..']">
+        <ion-icon name="arrow-back"></ion-icon>
+        <ion-label>Back</ion-label>
+      </ion-tab-button>
+      <ion-tab-button class="tab-button" (click)="call()">
+        <ion-icon name="call"></ion-icon>
+        <ion-label>Call</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>

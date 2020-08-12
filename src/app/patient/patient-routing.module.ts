@@ -5,6 +5,7 @@ import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
 import {MainComponent} from '@patient/main/main.component';
+import {CallDoctorComponent} from '@patient/call-doctor/call-doctor.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'app',
     component: MainComponent
+  },
+  {
+    path: 'calldoctor/:id',
+    component: CallDoctorComponent
   }
 ];
 

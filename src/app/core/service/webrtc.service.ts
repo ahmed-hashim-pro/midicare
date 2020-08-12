@@ -3,20 +3,27 @@ import Peer from 'peerjs';
 
 @Injectable()
 export class WebRTCService {
-  stun: string = 'stun.l.google.com:19302';
   peer: Peer;
   mediaConnection: Peer.MediaConnection;
   myStream: MediaStream;
   myEl: HTMLMediaElement;
   partnerEl: HTMLMediaElement;
 
-  stunServer: RTCIceServer = {
-    urls: 'stun:' + this.stun,
-  };
   options: Peer.PeerJSOption;
 
   constructor() {
-    this.options = {};
+    this.options = {
+      config: {
+        iceServers: [
+          {
+            urls: 'stun:stun.l.google.com:19302',
+          },
+          {
+            urls: 'stun:127.0.0.1:3478'
+          }
+        ]
+      }
+    };
   }
 
   getMedia(myEl: HTMLMediaElement) {
@@ -49,9 +56,13 @@ export class WebRTCService {
 
   wait() {
     this.peer.on('call', (call) => {
+      call.answer(this.myStream);
       call.on('stream', (stream) => {
         this.partnerEl.srcObject = stream;
       });
+    });
+    this.peer.on('error', (err) => {
+      console.log(err);
     });
   }
 }

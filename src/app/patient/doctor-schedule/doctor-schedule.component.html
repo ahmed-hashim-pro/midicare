@@ -37,6 +37,11 @@
             <ion-icon name="videocam"></ion-icon>
             <ion-label>Video</ion-label>
           </ion-chip>
+
+          <ion-chip color="primary" [routerLink]="'/patient/calldoctor/' + doctor?.id">
+            <ion-icon name="videocam"></ion-icon>
+            <ion-label>Try Now Demo</ion-label>
+          </ion-chip>
         </ion-col>
       </ion-row>
     </ion-grid>

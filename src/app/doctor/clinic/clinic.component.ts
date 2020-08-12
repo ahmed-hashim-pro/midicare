@@ -17,7 +17,6 @@ export class ClinicComponent implements OnInit, AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    console.log(this.doctorVideoElement);
     try {
       const user = await this.authService.getUser();
       this.webRTCService.init(

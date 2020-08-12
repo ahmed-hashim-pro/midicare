@@ -17,9 +17,6 @@ export class WebRTCService {
         iceServers: [
           {
             urls: 'stun:stun.l.google.com:19302',
-          },
-          {
-            urls: 'stun:127.0.0.1:3478'
           }
         ]
       }

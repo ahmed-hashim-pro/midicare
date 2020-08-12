@@ -20,10 +20,10 @@ export class WebRTCService {
   }
 
   getMedia(myEl: HTMLMediaElement) {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then( (stream) => {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false }).then( (stream) => {
       this.myStream = stream;
       this.myEl = myEl;
-      this.myEl.src = URL.createObjectURL(this.myStream);
+      this.myEl.srcObject = this.myStream;
     }).catch( (error) => {
       console.log(error);
       console.error('[getMedia] cannot get user media');
@@ -50,7 +50,7 @@ export class WebRTCService {
   wait() {
     this.peer.on('call', (call) => {
       call.on('stream', (stream) => {
-        this.partnerEl.src = URL.createObjectURL(stream);
+        this.partnerEl.srcObject = stream;
       });
     });
   }

@@ -7,6 +7,7 @@ import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
 import {MainComponent} from '@doctor/main/main.component';
 import {CreateWorkslotComponent} from '@doctor/create-workslot/create-workslot.component';
 import {CoreModule} from '@core/core.module';
+import {ClinicComponent} from '@doctor/clinic/clinic.component';
 
 
 
@@ -14,7 +15,8 @@ import {CoreModule} from '@core/core.module';
   declarations: [
       MainComponent,
       WorkSlotComponent,
-      CreateWorkslotComponent
+      CreateWorkslotComponent,
+      ClinicComponent
   ],
   imports: [
     CommonModule,

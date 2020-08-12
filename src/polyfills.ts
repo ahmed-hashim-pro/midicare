@@ -67,3 +67,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 /** AWS HACK **/
 (window as any).global = window;
+/** PEERJS HACK: uses parcel for bundling **/
+(window as any).global.parcelRequire = {};

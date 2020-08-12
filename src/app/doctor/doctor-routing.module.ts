@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {MainComponent} from '@doctor/main/main.component';
+import {ClinicComponent} from '@doctor/clinic/clinic.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'workslot',
     component: WorkSlotComponent,
+  },
+  {
+    path: 'clinic',
+    component: ClinicComponent
   }
 ];
 

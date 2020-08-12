@@ -9,6 +9,7 @@ import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.
 import {RegisterSessionComponent} from '@patient/register-session/register-session.component';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
 import {MainComponent} from '@patient/main/main.component';
+import {CallDoctorComponent} from '@patient/call-doctor/call-doctor.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {MainComponent} from '@patient/main/main.component';
       DoctorsComponent,
       DoctorScheduleComponent,
       RegisterSessionComponent,
-      ScheduleComponent
+      ScheduleComponent,
+      CallDoctorComponent
   ],
   imports: [
     CommonModule,

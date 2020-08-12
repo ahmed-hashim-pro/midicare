@@ -1,0 +1,79 @@
+<ion-content fullscreen="true">
+  <form #workSlotForm="ngForm" novalidate>
+    <ion-list lines="none">
+      <ion-item>
+        <ion-label position="stacked" color="primary">Capacity</ion-label>
+        <ion-input [(ngModel)]="workSlot.capacity" name="capacity" type="number" #capacity="ngModel" required>
+        </ion-input>
+      </ion-item>
+      <ion-text color="danger">
+        <p [hidden]="capacity.valid || submitted == false" class="ion-padding-start">
+          Capacity is required
+        </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">Start time</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY h:mm A"
+                  [(ngModel)]="workSlot.startTime" name="startTime" #startTime="ngModel" required>
+        </ion-datetime>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="startTime.valid || submitted == false" class="ion-padding-start">
+          Start time is required
+        </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="stacked" color="primary">End time</ion-label>
+        <ion-datetime displayFormat="DD MMM YYYY h:mm A"
+                  [(ngModel)]="workSlot.endTime" name="endTime" #endTime="ngModel" required>
+        </ion-datetime>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p [hidden]="endTime.valid || submitted == false" class="ion-padding-start">
+          End time is required
+        </p>
+      </ion-text>
+
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4" class="align: right; check-pads">
+              <ion-icon name="call"></ion-icon>
+              <ion-checkbox [(ngModel)]="isAudio" color="primary" name="audio" #audio="ngModel"></ion-checkbox>
+            </ion-col>
+            <ion-col size="4" class="align: center; check-pads">
+              <ion-icon name="videocam"></ion-icon>
+              <ion-checkbox [(ngModel)]="isVideo" color="primary" name="video" #video="ngModel"></ion-checkbox>
+            </ion-col>
+            <ion-col size="4" class="align: left; check-pads">
+              <ion-icon name="chatbox"></ion-icon>
+              <ion-checkbox [(ngModel)]="isText" color="primary" name="text" #text="ngModel">Text</ion-checkbox>
+            </ion-col>
+
+            <ion-text color="danger">
+              <p [hidden]="validateCheckBoxes() || submitted == false" class="ion-padding-start">
+                At least one of the three is required
+              </p>
+            </ion-text>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+</ion-content>
+<ion-tab-bar class="tabbar" slot="bottom">
+  <ion-tab-button class="tab-button" (click)="create(workSlotForm)">
+    <ion-icon name="clipboard"></ion-icon>
+    <ion-label color="primary">Create</ion-label>
+  </ion-tab-button>
+  <ion-tab-button class="tab-button" (click)="dismiss()">
+    <ion-icon name="arrow-back"></ion-icon>
+    <ion-label color="primary">Back</ion-label>
+  </ion-tab-button>
+</ion-tab-bar>

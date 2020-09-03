@@ -22,8 +22,8 @@ export class Session {
     private _id: string;
     private _doctor: Doctor;
     private _patient: Patient;
-    private _start_time: string;
-    private _end_time: string;
+    private _startTime: string;
+    private _endTime: string;
     private _status: SessionStatus;
     private _type: SessionType;
 
@@ -32,8 +32,8 @@ export class Session {
         this._id = id;
         this._doctor = doctor;
         this._patient = patient;
-        this._start_time = start_time;
-        this._end_time = end_time;
+        this._startTime = start_time;
+        this._endTime = end_time;
         this._status = status;
         this._type = type;
     }
@@ -62,20 +62,20 @@ export class Session {
         this._patient = value;
     }
 
-    get start_time(): string {
-        return this._start_time;
+    get startTime(): string {
+        return this._startTime;
     }
 
-    set start_time(value: string) {
-        this._start_time = value;
+    set startTime(value: string) {
+        this._startTime = value;
     }
 
-    get end_time(): string {
-        return this._end_time;
+    get endTime(): string {
+        return this._endTime;
     }
 
-    set end_time(value: string) {
-        this._end_time = value;
+    set endTime(value: string) {
+        this._endTime = value;
     }
 
     get status(): SessionStatus {

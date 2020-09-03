@@ -1,0 +1,18 @@
+<ion-content fullscreen="true">
+<ion-list>
+  <ion-item *ngFor="let slot of workSlots" (click)="register(slot)">
+    <ion-label class="ion-text-center">
+      <h3>Available capacity: {{slot.capacity}}</h3>
+      <p>
+        {{slot.startTime | date: 'medium' }} &mdash; {{slot.endTime | date: 'medium'}}
+      </p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>
+<ion-tab-bar class="tabbar" slot="bottom">
+      <ion-tab-button class="tab-button" (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+        <ion-label color="primary">Back</ion-label>
+      </ion-tab-button>
+</ion-tab-bar>

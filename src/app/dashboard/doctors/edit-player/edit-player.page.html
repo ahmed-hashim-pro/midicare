@@ -1,0 +1,198 @@
+ 
+  <ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="danger" (click)="update()">
+              <span ion-text color="primary" showWhen="ios"></span>
+              <ion-icon name="close" showWhen="android,windows"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+      <ion-title>Add new doctor</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-row>
+      <ion-column>
+        <ion-title>Personal Data</ion-title>
+
+        <ion-row [hidden]="isPhone">
+          <img  [src]="url" height="100"> <br/>
+          
+          <ion-column padding>
+            <h3>Personal Image</h3>
+          <input type='file' (change)="onSelectFile($event)">
+          </ion-column>
+        
+        </ion-row>
+            
+            <ion-content [hidden]="!isPhone">
+              <ion-button  (click)="openImagePicker()" >Image Picker</ion-button>
+              <ion-card *ngFor="let x of images">
+                <img src="{{x}}" style="height:400px">
+              </ion-card>
+            </ion-content>
+            
+        <ion-content [hidden]="!isPhone">
+          <ion-button (click)="fileChanged()"> Upload & Preview </ion-button>
+        
+        
+          <img [src]="imageURL ? imageURL : 'assets/dummy-profile-pic.png'" class="rounded mx-auto d-block img-thumbnail" alt="HA">
+                     <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" accept="image/*" class="filebtn" #fileButton  />
+        
+                     <ion-content padding>
+        
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col text-center>
+                            <h3>Image Picker</h3>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col text-center>
+                            <ion-button (click)="getImages()">Choose Images</ion-button>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col>
+                            <!-- More Pinterest floating gallery style -->
+                            <div class="images">
+                              <div class="one-image" *ngFor="let img of imageResponse">
+                                <img src="{{img}}" alt="" srcset="">
+                              </div>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-content>
+        </ion-content>
+        
+            
+        
+              <ion-item >
+                  <ion-label position="floating">Name</ion-label>
+                  <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+                  <ion-input [(ngModel)]="signup.username" ></ion-input>
+                  <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+                </ion-item>
+          
+                <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input [(ngModel)]="signup.email" ></ion-input>
+                    <ion-icon name="mail" slot="start"></ion-icon>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Title</ion-label>
+                    <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+                    <ion-input [(ngModel)]="signup.title" ></ion-input>
+                    <ion-icon name="person-circle" slot="start"></ion-icon>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Specialisty</ion-label>
+                    <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+                    <ion-input [(ngModel)]="signup.specialisty" ></ion-input>
+                    <ion-icon name="person-circle" slot="start"></ion-icon>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Mob No</ion-label>
+                    <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+                    <ion-input [(ngModel)]="signup.mobileNumber" ></ion-input>
+                    <ion-icon name="phone-portrait" slot="start"></ion-icon>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Facebook Page</ion-label>
+                    <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+                    <ion-input [(ngModel)]="signup.facebookPage" ></ion-input>
+                    <ion-icon name="logo-facebook" slot="start"></ion-icon>
+                  </ion-item>
+      </ion-column>
+      <ion-column >
+        <ion-title>Clinical Data</ion-title>
+        
+        <ion-row [hidden]="isPhone">
+          <img  [src]="url2" height="100"> <br/>
+          
+          <ion-column padding>
+            <h3>Attach Medical Licsence</h3>
+          <input type='file' (change)="onSelectFile($event)">
+          </ion-column>
+        
+        </ion-row>
+            
+            <ion-content [hidden]="!isPhone">
+              <ion-button  (click)="openImagePicker()" >Image Picker</ion-button>
+              <ion-card *ngFor="let x of images">
+                <img src="{{x}}" style="height:400px">
+              </ion-card>
+            </ion-content>
+            
+        <ion-content [hidden]="!isPhone">
+          <ion-button (click)="fileChanged()"> Upload & Preview </ion-button>
+        
+        
+          <img [src]="imageURL ? imageURL : 'assets/dummy-profile-pic.png'" class="rounded mx-auto d-block img-thumbnail" alt="HA">
+                     <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" accept="image/*" class="filebtn" #fileButton  />
+        
+                     <ion-content padding>
+        
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col text-center>
+                            <h3>Image Picker</h3>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col text-center>
+                            <ion-button (click)="getImages()">Choose Images</ion-button>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row>
+                          <ion-col>
+                            <!-- More Pinterest floating gallery style -->
+                            <div class="images">
+                              <div class="one-image" *ngFor="let img of imageResponse">
+                                <img src="{{img}}" alt="" srcset="">
+                              </div>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-content>
+        </ion-content>
+        <ion-item>
+          <ion-label position="floating">Medical Licsence No</ion-label>
+          <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+          <ion-input [(ngModel)]="signup.medicalLicsenceNo" ></ion-input>
+          <ion-icon name="person-circle" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Clinical Address</ion-label>
+          <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+          <ion-input [(ngModel)]="signup.clinicalAddress" ></ion-input>
+          <ion-icon name="person-circle" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Clinical Phone</ion-label>
+          <!-- <ion-input autocorrect="on" autofocus="on" clearInput="true" clearOnEdit="true" color="primary" inputmode="text" placeholder="Enter your name" required="true"></ion-input> -->
+          <ion-input [(ngModel)]="signup.clinicalPhone" ></ion-input>
+          <ion-icon name="phone-portrait" slot="start"></ion-icon>
+        </ion-item>
+      </ion-column>
+    </ion-row>
+    <ion-list>
+      <!-- <ion-list-header color="danger">
+        Edit {{player.name}} Information
+      </ion-list-header> -->
+    </ion-list>
+    
+         
+          <ion-row>
+            <ion-button expand="center" color="success"  >Add doctor</ion-button>
+
+          </ion-row>
+  
+        
+  </ion-content>
+  
+
+ 

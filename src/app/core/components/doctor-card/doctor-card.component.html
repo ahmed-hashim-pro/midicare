@@ -1,0 +1,20 @@
+<ion-card class="doctor-card">
+  <ion-card-header>
+    <ion-item detail="false" lines="none" class="doctor-item">
+      <ion-avatar slot="start">
+        <img [src]="img" [alt]="name + ' profile picture'">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{name}}</h2>
+        <p>{{title}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card-header>
+
+  <ion-card-content class="ion-margin">
+    <ng-content></ng-content>
+  </ion-card-content>
+  <ion-label class="ion-margin" color="secondary">
+    {{note}}
+  </ion-label>
+</ion-card>

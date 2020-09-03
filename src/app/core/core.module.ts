@@ -4,20 +4,32 @@ import {AuthService} from "@core/service/auth/auth.service";
 import { CoreRoutingModule } from '@core/core-routing.module';
 import {LoginComponent} from '@core/login/login.component';
 import {IonicModule} from '@ionic/angular';
-import {LogoutButtonComponent} from '@core/logout-button/logout-button.component';
 import {AuthGuardService} from '@core/service/auth/auth-guard.service';
 import {FormsModule} from '@angular/forms';
-import {LayoutService} from '@core/service/theme/layout.service';
 import {DoctorService} from '@core/service/data/doctor.service';
 import {SessionService} from '@core/service/data/session.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
+import {SearchBarComponent} from '@core/components/search-bar/search-bar.component';
+import {AccountComponent} from '@core/account/account.component';
+import {DoctorCardComponent} from '@core/components/doctor-card/doctor-card.component';
+import {MenuPageService} from '@core/service/menu-page.service';
+import {WebRTCService} from '@core/service/webrtc.service';
+import { AdminDoctorCardComponent } from '@core/components/admin-doctor-card/admin-doctor-card.component';
 
 
 
 @NgModule({
   declarations: [
-      LoginComponent,
-      LogoutButtonComponent
+    AccountComponent,
+    LoginComponent,
+    // MainComponent,
+    SearchBarComponent,
+    DoctorCardComponent,
+    AdminDoctorCardComponent
+  ],
+  exports: [
+    SearchBarComponent,
+    DoctorCardComponent,
   ],
   imports: [
     CommonModule,
@@ -33,10 +45,11 @@ export class CoreModule {
       providers: [
         AuthService,
         AuthGuardService,
-        LayoutService,
         DoctorService,
         SessionService,
-        DoctorWorkSlotService
+        DoctorWorkSlotService,
+        MenuPageService,
+        WebRTCService
       ]
     }
   }

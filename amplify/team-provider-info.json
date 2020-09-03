@@ -15,6 +15,12 @@
             "auth": {
                 "medicared97587d5": {},
                 "userPoolGroups": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d3usem8a93nwpy",
+                    "type": "manual"
+                }
             }
         }
     }

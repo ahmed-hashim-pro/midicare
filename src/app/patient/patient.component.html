@@ -1,0 +1,127 @@
+
+<ion-content>
+    <ion-app [class.dark-theme]="dark">
+        <ion-split-pane  contentId="main-content">
+            <ion-menu [content]="someContent" contentId="main-content">
+                <ion-content>
+                    <ion-list lines="none">
+                        <ion-list-header>
+                            Pages
+                        </ion-list-header>
+                       
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item (click)="setCategory('home')" routerLink="/patient" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" name="home"></ion-icon>
+                                <ion-label>
+                                    HOME
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item (click)="setCategory('schedule')" routerLink="/patient" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" name="calendar"></ion-icon>
+                                <ion-label>
+                                    SCHEDULE
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item (click)="setCategory('doctors')" routerLink="/patient" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" name="people"></ion-icon>
+                                <ion-label>
+                                    DOCTORS
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item (click)="setCategory('about')" routerLink="/patient" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" name="information-circle"></ion-icon>
+                                <ion-label>
+                                    ABOUT
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+                    </ion-list>
+        
+                    <ion-list *ngIf="loggedIn" lines="none">
+                        <ion-list-header>
+                            Account
+                        </ion-list-header>
+        
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item (click)="setCategory('acount')" routerLink="/patient" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" name="person"></ion-icon>
+                                <ion-label>
+                                    Account
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+        
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item (click)="setCategory('support')" routerLink="/patient" routerLinkActive="active" routerDirection="root" detail="false">
+                                <ion-icon slot="start" name="help"></ion-icon>
+                                <ion-label>
+                                    Support
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+        
+                        <ion-menu-toggle autoHide="false">
+                            <ion-item button (click)="logout()" detail="false">
+                                <ion-icon slot="start" name="log-out"></ion-icon>
+                                <ion-label>
+                                    Logout
+                                </ion-label>
+                            </ion-item>
+                        </ion-menu-toggle>
+        
+                        <ion-item>
+                            <ion-icon slot="start" name="moon-outline"></ion-icon>
+                            <ion-label>
+                                Dark Mode
+                            </ion-label>
+                            <ion-toggle [(ngModel)]="dark"></ion-toggle>
+                        </ion-item>
+        
+                    </ion-list>
+        
+                   
+                </ion-content>
+            </ion-menu>
+            <!-- <ion-menu [content]="someContent" contentId="main-content">
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>
+                    Menu
+                  </ion-title>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content>
+                <ion-list>
+                  <ion-item (click)="setCategory('nature')">
+                    <ion-icon slot="start" name="person-add"></ion-icon>
+                  
+                    <h2>Nature</h2>
+                  </ion-item>
+                  <ion-item (click)="setCategory('food')">
+                    <ion-avatar item-left>
+                      <img src="https://source.unsplash.com/category/food/100x100">
+                    </ion-avatar>
+                    <h2>Food</h2>
+                  </ion-item>
+                  <ion-item (click)="setCategory('people')">
+                    <ion-avatar item-left>
+                      <img src="https://source.unsplash.com/category/people/100x100">
+                    </ion-avatar>
+                    <h2>People</h2>
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ion-menu> -->
+            <ion-content id="main-content">
+                <ion-nav [root]="rootPage" #someContent main></ion-nav>
+            </ion-content>
+          
+          </ion-split-pane>
+    </ion-app>
+</ion-content>

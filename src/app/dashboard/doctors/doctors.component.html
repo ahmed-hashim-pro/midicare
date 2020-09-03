@@ -1,0 +1,48 @@
+<ion-content>
+
+  <ion-header translucent="true">
+    <app-search-bar (onSearch)="search($event)">
+      <ion-title class="ion-text-center" color="primary">Doctors List</ion-title>
+    </app-search-bar>
+  </ion-header>
+ 
+  <ion-content fullscreen="true">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title size="large"> </ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-row *ngFor="let x of playersList;let i=index">
+          <ion-searchbar [ngModel]="filter" placeholder="Example inner search"></ion-searchbar>
+          <ion-button (click)="editModal(x,i)" type="submit" expand="block">Add new doctor</ion-button>
+          <ion-button (click)="openModal(x,i)" type="submit" expand="block">Add Bulk</ion-button>
+
+        </ion-row>
+        
+      </ion-toolbar>
+    </ion-header>
+    <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let doctor of doctors" size="12" size-md="6">
+        <app-admin-doctor-card [routerLink]="'/patient/doctor/' + doctor.id" [state]="{doctor: doctor}"
+        img="assets/images/avatar.jpg" name="{{doctor.name}}"
+        title="{{doctor.specializations.join(',')}}" note="{{doctor.insurance.join(',')}}">
+          <p>Doctor description</p>
+        </app-admin-doctor-card>
+      </ion-col>
+    </ion-row>
+    </ion-grid>
+  </ion-content>
+  <ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar class="tabbar" slot="bottom">
+      <ion-tab-button class="tab-button" *ngFor="let tab of tabs" (click)="visit(tab.path)">
+        <ion-icon name={{tab.icon}}></ion-icon>
+        <ion-label>{{tab.name}}</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  </ion-toolbar>
+  
+  </ion-content>
+  

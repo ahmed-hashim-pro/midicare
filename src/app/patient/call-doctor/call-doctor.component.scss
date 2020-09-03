@@ -1,0 +1,65 @@
+.top-video{
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    max-width: 50px;
+    z-index: 2;
+}
+
+.main-video{
+    width: 50%;
+    max-height: 50%;
+}
+#agora_local{
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 20vw;
+    height: 20vh;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+}
+.remote-containers div{
+    top: 0;
+    left: 0;
+    width:100vw;
+    height: 100vh;
+
+}
+.remote_calls{
+    top: 0;
+    left: 0;
+    width:50vw;
+    height: 50vh;
+    display: flex;
+    object-fit: center;
+}
+video {
+    width: 230px;
+    height: 300px;
+    object-fit: cover;
+}
+
+
+
+
+
+.local {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 20vw;
+    height: 20vh;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .remote {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }

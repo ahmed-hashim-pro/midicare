@@ -1,24 +1,214 @@
+
 .login {
   /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px 0 rgba(228, 78, 111, 0.87);
   transition: 0.3s;
-  border: 15px #3a7be0;
+  border: 15px #3dd83d;
+  width: 100%;
   padding: 2px 16px;
-  max-width: 300px;
-  max-height: 300px;
+ // background: url(src/assets/loginBackground.jpg) 0 0/100% 100% no-repeat;
+
 }
 
 .button-center{
+  border-radius: 20px !important;
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 0%);
 }
-
-.centered {
+.login-style {
+  //background-image: url(src/assets/loginBackground.jpg) 0 0/100% 100% no-repeat;
+  background-size: cover;
+  }
+.fullPage {
   position: fixed;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  //background: url(src/assets/loginBackground.jpg) 0 0/100% 100% no-repeat;
+
+
+}
+.icon{
+  align-self: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.centered {
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 10px 10px 20px 10px rgba(99, 58, 67, 0.87);
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  min-width: 400px;
+  height: 100%;
+  margin-top: 25px;
+  background: transparent;
+
+
+}
+ion-grid{
+  height: 100%;
+}
+ion-input{
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  
+
+}
+ion-item {
+  box-shadow: 0 1px 2px 0 rgba(42, 238, 16, 0.801);
+  transition: 1.3s;
+  border-radius: 20px !important;
+  min-width: 150px;
+  max-width: 70%;
+  max-height: 50px;
+  margin:10px auto;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff;
+  border-bottom: 0px !important;
+  box-shadow: none !important;
+  
+}
+ion-row{
+  // position: fixed;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // height: 80%;
+  //background: white;
+}
+.background{
+  --background: url(src/assets/foster-lake.jpg) 0 0/100% 100% no-repeat;
+}
+.scroll-content {
+  //background: url(src/assets/loginBackground.jpg) 0 0/100% 100% no-repeat;
+
+}
+ion-content{
+  //--background: url(src/assets/loginBackground.jpg) 0 0/100% 100% no-repeat;
+  --background-repeat: no-repeat;
+  --background-size: cover;  
+}
+$white-color: #fff;
+$height100: 100%;
+
+
+.ion-row {
+    height: $height100;
+}
+
+.ion-col {
+    border: 1px solid #488aff;
+    background: $white-color;
+}
+
+
+
+
+.ion-item{
+  --background: #3880ff;
+  //--color: #fff;
+}
+ion-button{
+  box-shadow: 0 1px 2px 0 rgba(42, 238, 16, 0.801);
+  transition: 1.3s;
+  border-radius: 40px !important;
+  min-width: 150px;
+  max-width: 80%;
+  margin:10px auto;
+  font-weight: 300;
+}
+a{
+ // color: #fff;
+}
+.form{
+  --background: transparent;
+}
+page-login {
+
+  .logo{
+    width: 80%;
+  }
+
+  .login-content {
+    //background: #fff;
+
+    .logo-row {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+
+    .login-box {
+      //background: #fff;
+      background: transparent;
+      padding: 20px 20px 0px 20px;
+      margin-top: 30px;
+    }
+
+    ion-input{
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    }
+
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+
+   
+
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+     }
+
+     .item-inner {
+       //border-bottom-color: #ffffff !important;
+       box-shadow: none !important;
+     }
+
+     .submit-btn {
+       background: #01ABD5;
+     }
+
+     .register-btn {
+       color: #ffffff;
+       font-size: 0.8em;
+     }
+  }
+
+}
+@media (min-width: 240px) and (max-width: 768px) {
+  ion-grid {
+      background: url(src/assets/loginBackground.jpg) 0 0/100% 100% no-repeat;
+  }
+  ion-col {
+      border: none;
+  } 
+}
+.login-logo {
+  padding: 20px 0;
+  min-height: 200px;
+  text-align: center;
+}
+
+.login-logo img {
+  max-width: 150px;
+}
+
+.list {
+  margin-bottom: 0;
 }

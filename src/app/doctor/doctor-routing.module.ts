@@ -1,22 +1,49 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DashboardComponent} from '@doctor/dashboard/dashboard.component';
-import {CreateWorkSlotComponent} from '@doctor/create-work-slot/create-work-slot.component';
+import {WorkSlotComponent} from '@doctor/work-slot/work-slot.component';
+import {AuthGuardService} from '@core/service/auth/auth-guard.service';
+import {MainComponent} from '@doctor/main/main.component';
+import {ClinicComponent} from '@doctor/clinic/clinic.component';
+import { DoctorPage } from './doctor.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: 'app',
+    redirectTo: 'doctor', pathMatch: 'full'
   },
   {
-    path: 'create-workslot',
-    component: CreateWorkSlotComponent
+    path: '',
+    component: DoctorPage
+  },
+  {
+    path: 'doctor',
+    component: DoctorPage
+  },
+ 
+  {
+    path: 'workslot',
+    component: WorkSlotComponent,
+  },
+  {
+    path: 'clinic',
+    component: ClinicComponent
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild([
+      {
+        path: 'doctor',
+        canActivate: [AuthGuardService],
+        canActivateChild: [AuthGuardService],
+        data: {
+          loggedIn: true,
+          roles: ['Doctors']
+        },
+        children: routes
+      }
+    ])
   ],
   exports: [RouterModule]
 })

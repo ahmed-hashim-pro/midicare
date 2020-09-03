@@ -3,9 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {LayoutService} from '@core/service/theme/layout.service';
 import {AuthService} from '@core/service/auth/auth.service';
 import {Router} from '@angular/router';
+import {MenuPage, MenuPageService} from '@core/service/menu-page.service';
 
 @Component({
   selector: 'app-root',
@@ -13,17 +13,17 @@ import {Router} from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public header: boolean;
-  public footer: boolean;
-  public sideBar: boolean;
-  public navigationBar: boolean;
+  public dark: boolean;
+  public loggedIn: boolean;
+
+  public menuPages: MenuPage[];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private layoutService: LayoutService,
     private authService: AuthService,
+    private menuPageService: MenuPageService,
     private router: Router
   ) {
   }
@@ -31,24 +31,29 @@ export class AppComponent implements OnInit {
 
    async ngOnInit() {
      this.initializeApp();
-     this.subscribeToLayoutService();
-     // Redirect user to the module or to login
-     try {
-       const user = await this.authService.getUser();
-       const role = user.groups[0];
-       switch (role) {
-         case 'Patients':
-           await this.router.navigateByUrl('patient/dashboard');
-           break;
-         case 'Doctors':
-           await this.router.navigateByUrl('doctor/dashboard');
-           break;
-         default:
-           await this.router.navigateByUrl('login');
-       }
-     } catch (err) {
-       await this.router.navigateByUrl('login');
-     }
+     this.subscribeToAuthService();
+    // this.subscribeToMenuPageService();
+     this.dark = false;
+     this.loggedIn = await this.authService.isSingedIn();
+     const user = await this.authService.getUser();
+     if (this.loggedIn) {
+         if (user.groups.includes('Patients')) {
+             await this.router.navigate(['patient']);
+         } else if (user.groups.includes('Doctors')) {
+            await this.router.navigate(['doctor']);
+
+         }else if(user.groups.includes('Admins')){
+          await this.router.navigate(['dashboard']);
+
+         }
+     }else{
+      return this.router.navigateByUrl('login');
+    }
+   }
+
+   async logout() {
+    await this.authService.signOut();
+    return this.router.navigateByUrl('login');
    }
 
   private initializeApp() {
@@ -58,34 +63,66 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private subscribeToLayoutService() {
-    this.layoutService.header.subscribe(val => {
-      setTimeout(
-          () => {
-            this.header = val;
-          }
-      );
+  private subscribeToAuthService() {
+    this.authService.user.subscribe(user => {
+        this.loggedIn = user.username !== null;
+        // TODO: Better mechanism to manage the menu pages in their respective modules
+        if (user.groups.includes('Patients')) {
+        //return  this.router.navigate(['patient']);
+            //  this.menuPageService.MenuPages.next(
+            //      [
+            //          new MenuPage('Home', '/patient/app','home'),
+            //          new MenuPage('Schedule', '/patient/schedule', 'calendar'),
+            //          new MenuPage('Doctors', '/patient/doctors', 'people'),
+            //          new MenuPage('About','/about', 'information-circle')
+            //      ]
+            //  );
+        }
+        if(user.groups.includes('Doctors')) {
+          //return this.router.navigate(['doctor', 'app']);
+
+            // this.menuPageService.MenuPages.next(
+            //     [
+            //         new MenuPage('Home', '/doctor/app','home'),
+            //         new MenuPage('Work Schedule', '/doctor/workslot', 'calendar'),
+            //         new MenuPage('Clinic', '/doctor/clinic', 'medical'),
+            //         new MenuPage('About','/about', 'information-circle')
+            //     ]
+            // );
+        }
+        if(user.groups.includes('Admins')) {
+          //return this.router.navigate(['dashboard', 'app']);
+
+            // this.menuPageService.MenuPages.next(
+            //     [
+            //         new MenuPage('Home', '/doctor/app','home'),
+            //         new MenuPage('Work Schedule', '/doctor/workslot', 'calendar'),
+            //         new MenuPage('Clinic', '/doctor/clinic', 'medical'),
+            //         new MenuPage('About','/about', 'information-circle')
+            //     ]
+            // );
+        }
+
+
+        if (!this.loggedIn) {
+          return this.router.navigateByUrl('login');
+
+            this.menuPageService.MenuPages.next(
+                [
+                  
+                    new MenuPage('Home', '/app','home'),
+                    new MenuPage('About','/about', 'information-circle')
+                ]
+            );
+        }
     });
-    this.layoutService.footer.subscribe(val => {
-      setTimeout(
-          () => {
-            this.footer = val;
-          }
-      );
-    });
-    this.layoutService.sideBar.subscribe(val => {
-      setTimeout(
-          () => {
-            this.sideBar = val;
-          }
-      );
-    });
-    this.layoutService.navigationBar.subscribe(val => {
-      setTimeout(
-          () => {
-            this.navigationBar = val;
-          }
-      );
-    });
+  }
+
+  private subscribeToMenuPageService() {
+    this.menuPageService.MenuPages.subscribe(
+        pages => {
+          this.menuPages = pages;
+        }
+    );
   }
 }

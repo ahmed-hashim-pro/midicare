@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "auth": {
+      "medicared97587d5": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

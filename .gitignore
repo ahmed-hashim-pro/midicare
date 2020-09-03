@@ -30,6 +30,15 @@ npm-debug.log*
 /plugins
 /www
 
+#latex
+**/out/
+**/auxil/
+**.out
+**.log
+**.synctex.gz
+**.blg
+**.sta
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -45,12 +54,3 @@ amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
 amplifytools.xcconfig
-
-#latex
-**/out/
-**/auxil/
-**.out
-**.log
-**.synctex.gz
-**.blg
-**.sta

@@ -1,0 +1,83 @@
+/*
+ * Speaker Background
+ */
+
+ion-toolbar {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  --background: transparent;
+  --color: white;
+}
+
+ion-toolbar ion-button,
+ion-toolbar ion-back-button,
+ion-toolbar ion-menu-button {
+  --color: white;
+}
+
+.doctor-background {
+  position: relative;
+
+  display: flex;
+
+  padding-top: var(--ion-safe-area-top);
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  height: calc(250px + var(--ion-safe-area-top));
+
+  background: center / cover url(/assets/images/doctor-background.jpeg) no-repeat;
+}
+
+.doctor-background img {
+  width: 70px;
+  border-radius: 50%;
+  margin-top: calc(-1 * var(--ion-safe-area-top));
+}
+
+.doctor-background h2,h4,h5 {
+  position: relative;
+
+  bottom: 10px;
+}
+
+.doctor-background h2 {
+  color: white;
+}
+
+.doctor-background h4 {
+  color: aliceblue;
+}
+
+.doctor-background h5 {
+  color: #344e86;
+}
+
+
+.md .doctor-background {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+}
+
+.ios .doctor-background {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+}
+
+
+.doctor-detail p {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.doctor-detail hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  background: var(--ion-color-step-150, #d7d8da);
+}

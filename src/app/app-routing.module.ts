@@ -1,41 +1,28 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {AuthGuardService} from '@core/service/auth/auth-guard.service';
-import {AppComponent} from '@src/app/app.component';
 
 const routes: Routes = [
     {
         path: 'patient',
-        loadChildren: () => import('@patient/patient.module').then(m => m.PatientModule),
-        canActivate: [AuthGuardService],
-        data: {
-            loggedIn: true,
-            roles: ['Patients']
-        }
+        loadChildren: () => import('@patient/patient.module').then(m => m.PatientModule)
     },
     {
         path: 'doctor',
         loadChildren: () => import('@doctor/doctor.module').then(m => m.DoctorModule),
-        canActivate: [AuthGuardService],
-        data: {
-            loggedIn: true,
-            roles: ['Doctors']
-        }
     },
-    {
-        path: 'app',
-        canActivate: [AuthGuardService],
-        data: {
-            loggedIn: true
-        },
-        component: AppComponent
-    },
-    // Temporary route rule
-    {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
-    }
+     {
+         path: '',
+
+         loadChildren: () => import('@core/core.module').then(m => m.CoreModule)
+     },
+    
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+ 
+
+
 ];
 
 @NgModule({

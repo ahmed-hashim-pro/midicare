@@ -21,11 +21,19 @@ export class GqlDoctorService implements DoctorServiceProvider {
     return input.items.map(
         (item) => {
           return new Doctor(
-              item.id,
-              item.name,
-               item.insurance,
-               item.description,
-              item.specializations
+            item.id,
+            item.name,
+            item.insurance,
+            item.description,
+            item.specializations,
+            item.email,
+            item.title,
+            item.mobileNumber,
+            item.facebookPage,
+            item.medicalLicsenceImage,
+            item.medicalLicsenceNumber,
+            item.clinicalAddress,
+            item.clinicalPhone
           );
         }
     )
@@ -33,11 +41,19 @@ export class GqlDoctorService implements DoctorServiceProvider {
 
   private static toDoctor(input: GetDoctorQuery) : Doctor {
     return new Doctor(
-        input.id,
-        input.name,
-        input.insurance,
-        input.description,
-        input.specializations
+      input.id,
+      input.name,
+      input.insurance,
+      input.description,
+      input.specializations,
+      input.email,
+      input.title,
+      input.mobileNumber,
+      input.facebookPage,
+      input.medicalLicsenceImage,
+      input.medicalLicsenceNumber,
+      input.clinicalAddress,
+      input.clinicalPhone
     );
   }
 }

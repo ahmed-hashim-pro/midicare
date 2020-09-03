@@ -511,6 +511,14 @@ export type GetDoctorQuery = {
   description: string | null;
   specializations: Array<string | null> | null;
   name: string;
+  email: string;
+  title: string;
+  mobileNumber: string;
+  facebookPage: string;
+  medicalLicsenceImage: string;
+  medicalLicsenceNumber: string;
+  clinicalAddress: string;
+  clinicalPhone: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -524,6 +532,14 @@ export type ListDoctorsQuery = {
     description: string | null;
     specializations: Array<string | null> | null;
     name: string;
+    email: string;
+    title: string;
+    mobileNumber: string;
+    facebookPage: string;
+    medicalLicsenceImage: string;
+    medicalLicsenceNumber: string;
+    clinicalAddress: string;
+    clinicalPhone: string;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -541,6 +557,7 @@ export type GetDoctorWorkSlotQuery = {
     description: string | null;
     specializations: Array<string | null> | null;
     name: string;
+   
     createdAt: string;
     updatedAt: string;
   };
@@ -565,6 +582,14 @@ export type ListDoctorWorkSlotsQuery = {
       description: string | null;
       specializations: Array<string | null> | null;
       name: string;
+      email: string;
+    title: string;
+    mobileNumber: string;
+    facebookPage: string;
+    medicalLicsenceImage: string;
+    medicalLicsenceNumber: string;
+    clinicalAddress: string;
+    clinicalPhone: string;
       createdAt: string;
       updatedAt: string;
     };
@@ -873,6 +898,14 @@ export class APIService {
             description
             specializations
             name
+            email
+            title
+            mobileNumber
+            facebookPage
+            medicalLicsenceImage
+            medicalLicsenceNumber
+            clinicalAddress
+            clinicalPhone
             createdAt
             updatedAt
           }
@@ -1474,6 +1507,14 @@ export class APIService {
               description
               specializations
               name
+               email
+               title
+               mobileNumber
+               facebookPage
+               medicalLicsenceImage
+               medicalLicsenceNumber
+               clinicalAddress
+               clinicalPhone
               createdAt
               updatedAt
             }

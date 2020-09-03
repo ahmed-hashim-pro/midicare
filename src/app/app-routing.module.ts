@@ -10,10 +10,19 @@ const routes: Routes = [
         path: 'doctor',
         loadChildren: () => import('@doctor/doctor.module').then(m => m.DoctorModule),
     },
-    {
-        path: '',
-        loadChildren: () => import('@core/core.module').then(m => m.CoreModule)
-    }
+     {
+         path: '',
+
+         loadChildren: () => import('@core/core.module').then(m => m.CoreModule)
+     },
+    
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+ 
+
+
 ];
 
 @NgModule({

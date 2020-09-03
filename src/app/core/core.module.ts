@@ -9,12 +9,12 @@ import {FormsModule} from '@angular/forms';
 import {DoctorService} from '@core/service/data/doctor.service';
 import {SessionService} from '@core/service/data/session.service';
 import {DoctorWorkSlotService} from '@core/service/data/doctor-work-slot.service';
-import {MainComponent} from '@core/main/main.component';
 import {SearchBarComponent} from '@core/components/search-bar/search-bar.component';
 import {AccountComponent} from '@core/account/account.component';
 import {DoctorCardComponent} from '@core/components/doctor-card/doctor-card.component';
 import {MenuPageService} from '@core/service/menu-page.service';
 import {WebRTCService} from '@core/service/webrtc.service';
+import { AdminDoctorCardComponent } from '@core/components/admin-doctor-card/admin-doctor-card.component';
 
 
 
@@ -22,13 +22,14 @@ import {WebRTCService} from '@core/service/webrtc.service';
   declarations: [
     AccountComponent,
     LoginComponent,
-    MainComponent,
+    // MainComponent,
     SearchBarComponent,
     DoctorCardComponent,
+    AdminDoctorCardComponent
   ],
   exports: [
     SearchBarComponent,
-    DoctorCardComponent
+    DoctorCardComponent,
   ],
   imports: [
     CommonModule,

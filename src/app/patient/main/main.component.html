@@ -1,3 +1,5 @@
+<ion-content>
+
 <ion-header translucent="true">
   <app-search-bar (onSearch)="search($event)">
     <ion-title class="ion-text-center" color="primary">Medicare</ion-title>
@@ -16,7 +18,7 @@
   <ion-grid>
   <ion-row>
     <ion-col *ngFor="let i of [].constructor(10)" size="12" size-md="6">
-      <app-doctor-card img="assets/images/avatar.jpg" name="Hamada Doctor" title="Oncology" note="Medicare Others">
+      <app-doctor-card img="assets/images/avatar.jpg" name="Doctor Name" title="Oncology" note="Medicare Others">
         <p>Doctor description</p>
       </app-doctor-card>
     </ion-col>
@@ -33,3 +35,5 @@
   </ion-tab-bar>
 </ion-tabs>
 </ion-toolbar>
+
+</ion-content>

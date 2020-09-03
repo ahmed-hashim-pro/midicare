@@ -8,11 +8,15 @@ import {FormsModule} from '@angular/forms';
 import {DoctorScheduleComponent} from '@patient/doctor-schedule/doctor-schedule.component';
 import {RegisterSessionComponent} from '@patient/register-session/register-session.component';
 import {ScheduleComponent} from '@patient/schedule/schedule.component';
-import {MainComponent} from '@patient/main/main.component';
 import {CallDoctorComponent} from '@patient/call-doctor/call-doctor.component';
+import { PatientPage } from './patient.component';
+import { MainComponent } from './main/main.component';
+import { AngularAgoraRtcModule, AgoraConfig } from 'angular-agora-rtc'; // Add
 
+const agoraConfig: AgoraConfig = { AppID: '692ec316096a4babb48a6f2b8fe8009b' };
 @NgModule({
   declarations: [
+      PatientPage,
       MainComponent,
       DoctorsComponent,
       DoctorScheduleComponent,
@@ -25,7 +29,9 @@ import {CallDoctorComponent} from '@patient/call-doctor/call-doctor.component';
     PatientRoutingModule,
     IonicModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    AngularAgoraRtcModule.forRoot(agoraConfig)
+
   ]
 })
 export class PatientModule {

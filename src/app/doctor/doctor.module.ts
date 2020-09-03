@@ -8,22 +8,28 @@ import {MainComponent} from '@doctor/main/main.component';
 import {CreateWorkslotComponent} from '@doctor/create-workslot/create-workslot.component';
 import {CoreModule} from '@core/core.module';
 import {ClinicComponent} from '@doctor/clinic/clinic.component';
+import { DoctorPage } from './doctor.component';
+import { AngularAgoraRtcModule, AgoraConfig } from 'angular-agora-rtc'; // Add
 
+const agoraConfig: AgoraConfig = { AppID: '692ec316096a4babb48a6f2b8fe8009b' };
 
 
 @NgModule({
   declarations: [
-      MainComponent,
-      WorkSlotComponent,
-      CreateWorkslotComponent,
-      ClinicComponent
+    DoctorPage,
+    MainComponent,
+    WorkSlotComponent,
+    CreateWorkslotComponent,
+    ClinicComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
     DoctorRoutingModule,
     FormsModule,
-    CoreModule
+    CoreModule,
+    AngularAgoraRtcModule.forRoot(agoraConfig)
+
   ]
 })
 export class DoctorModule {

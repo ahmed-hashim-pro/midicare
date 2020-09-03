@@ -1,30 +1,89 @@
-<ion-header translucent="true">
-  <app-search-bar (onSearch)="search($event)">
-    <ion-title class="ion-text-center" color="primary">Clinic</ion-title>
-  </app-search-bar>
-</ion-header>
-<ion-content fullscreen="true">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title size="large">Call</ion-title>
-    </ion-toolbar>
-    <ion-toolbar>
-      <ion-searchbar [ngModel]="filter" placeholder="Example inner search"></ion-searchbar>
-    </ion-toolbar>
-  </ion-header>
 
-  <video #doctorVideo autoplay playsinline></video>
-  <video #patientVideo autoplay playsinline></video>
 
-</ion-content>
+  <!-- <ion-header translucent="true">
+    <app-search-bar (onSearch)="search($event)">
+      <ion-title class="ion-text-center" color="primary">Clinic</ion-title>
+    </app-search-bar>
+  </ion-header> -->
+  <ion-content fullscreen="true">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="ion-text-center" color="primary" size="large">Clinic CallS</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-searchbar [ngModel]="filter" placeholder="Example inner search"></ion-searchbar>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-tabs>
+          <ion-tab-bar class="tabbar" slot="top">
+            <!-- <ion-tab-button class="tab-button" [routerLink]="['..']">
+              <ion-icon name="arrow-back"></ion-icon>
+              <ion-label>Back</ion-label>
+            </ion-tab-button> -->
+    
+            <!-- start call by agora service -->
+            <ion-tab-button *ngIf="callStarted" class="tab-button" (click)="muteCamera()">
+              <ion-icon name="camera"></ion-icon>
+              <ion-label>Mute Video</ion-label>
+            </ion-tab-button>
+            <!-- <ion-tab-button *ngIf="callStarted" class="tab-button" (click)="endCall()">
+              <ion-icon name="call"></ion-icon>
+              <ion-label>End Call</ion-label>
+            </ion-tab-button> -->
 
-<ion-toolbar>
-  <ion-tabs>
-    <ion-tab-bar class="tabbar" slot="bottom">
-      <ion-tab-button class="tab-button" [routerLink]="['..']">
-        <ion-icon name="arrow-back"></ion-icon>
-        <ion-label>Back</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-toolbar>
+            <ion-tab-button class="tab-button" (click)="startCall()">
+              <ion-icon name="call"></ion-icon>
+              <ion-label>Start Call</ion-label>
+            </ion-tab-button>
+            
+                    <!-- start call by RTC service -->
+    
+            <!-- <ion-tab-button class="tab-button" (click)="call()">
+              <ion-icon name="call"></ion-icon>
+              <ion-label>Call</ion-label>
+            </ion-tab-button> -->
+            
+          </ion-tab-bar>
+        </ion-tabs>
+      </ion-toolbar>
+    </ion-header>
+  
+    <!-- <video #doctorVideo autoplay playsinline></video> -->
+    <!-- <video #patientVideo autoplay playsinline></video> -->
+    <!-- <video id="partner-video" (click)="swapVideo('my-video')" autoplay playsinline
+    [ngClass]="{'top-video': topVideoFrame === 'partner-video', 'main-video': topVideoFrame != 'partner-video'}">
+  </video>
+  <video id="my-video" (click)="swapVideo('partner-video')" autoplay playsinline
+    [ngClass]="{'top-video': topVideoFrame === 'my-video', 'main-video': topVideoFrame != 'my-video'}" >
+  </video> -->
+
+     <ion-row class="ion-justify-content-center">
+      
+          <div id="agora_local">
+          </div>
+         
+        <ion-col >
+          <div class="ion-justify-content-center"  class="remote-containers">
+            <div  class="remote_calls" *ngFor="let remote of remoteCalls;" [id]="remote">
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        
+        
+      </ion-row>
+
+  </ion-content>
+  
+  <!-- <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar class="tabbar" slot="bottom">
+        <ion-tab-button class="tab-button" [routerLink]="['..']">
+          <ion-icon name="arrow-back"></ion-icon>
+          <ion-label>Back</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar> -->

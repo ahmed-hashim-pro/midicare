@@ -78,7 +78,15 @@ export class GqlSessionService {
               session.doctor.name,
               session.doctor.insurance,
               session.doctor.description,
-              session.doctor.specializations
+              session.doctor.specializations,
+              session.doctor.email,
+            session.doctor.title,
+            session.doctor.mobileNumber,
+            session.doctor.facebookPage,
+            session.doctor.medicalLicsenceImage,
+            session.doctor.medicalLicsenceNumber,
+            session.doctor.clinicalAddress,
+            session.doctor.clinicalPhone
           ),
           new Patient(
               session.patient.id,

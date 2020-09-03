@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy, RouterModule } from '@angular/router';
 
 /* Add Amplify imports */
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
@@ -19,6 +19,11 @@ import {PatientModule} from '@src/app/patient/patient.module';
 import {AmazonModule} from '@amazon/amazon.module';
 import {DoctorModule} from '@src/app/doctor/doctor.module';
 import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { AngularAgoraRtcModule, AgoraConfig } from 'angular-agora-rtc'; // Add
+
+const agoraConfig: AgoraConfig = { AppID: '692ec316096a4babb48a6f2b8fe8009b' };
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +31,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     // Framework modules
     BrowserModule,
+    CommonModule,
+    RouterModule,
     IonicModule.forRoot(),
     AmplifyUIAngularModule,
     FormsModule,
@@ -34,9 +41,12 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     PatientModule.forRoot(),
     DoctorModule.forRoot(),
-    AmazonModule
+    AmazonModule,
+    AngularAgoraRtcModule.forRoot(agoraConfig),
+
   ],
   providers: [
+    ImagePicker,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

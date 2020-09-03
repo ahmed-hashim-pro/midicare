@@ -33,6 +33,8 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
     const workSlot = await this.service.CreateDoctorWorkSlot(
         <mutationCreateDoctorWorkSlotInput> {
             doctor_id: input.doctor.id,
+            email:input.doctor.email,
+            name:input.doctor.name,
             start_time: input.startTime,
             end_time: input.endTime,
             capacity: input.capacity,
@@ -59,11 +61,19 @@ export class GqlDoctorWorkslotService implements DoctorWorkSlotServiceProvider {
       return new DoctorWorkslot(
           workSlot.id,
           new Doctor(
-              workSlot.doctor_id,
-              workSlot.doctor.name,
-              workSlot.doctor.insurance,
-              workSlot.doctor.description,
-              workSlot.doctor.specializations
+            workSlot.doctor_id,
+            workSlot.doctor.name,
+            workSlot.doctor.insurance,
+            workSlot.doctor.description,
+            workSlot.doctor.specializations,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
           ),
           workSlot.start_time,
           workSlot.end_time,

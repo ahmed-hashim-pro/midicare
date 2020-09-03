@@ -27,7 +27,7 @@ export class CreateWorkslotComponent implements OnInit {
     this.workSlot = new DoctorWorkslot(null ,null, null, null, null,[]);
     try {
       const user = await this.authService.getUser();
-      this.workSlot.doctor = new Doctor(user.username, null, null, null, []);
+      this.workSlot.doctor = new Doctor(user.username, null, null, null, [], null, null, null, null, null, null, null, null);
     } catch (err) {
 
     }

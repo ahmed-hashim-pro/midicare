@@ -1,54 +1,111 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+<ion-content class="background">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+  
+      <ion-title class="ion-text-center" color="primary">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <dev  class="centered">
+    <ion-content class="form">
+    <div class="login-logo">
+      <img src="assets/logo.png" alt="Ionic logo">
+    </div>
+  
+    <form >
+     
+        
+        <ion-item>
+          <ion-label position="floating" color="primary">Email</ion-label>
+          <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel"
+                     spellcheck="false" autocapitalize="off" required>
+          </ion-input>
+        </ion-item>
+  
+        <ion-text color="danger">
+          <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
+            Username is required
+          </p>
+        </ion-text>
+  
+        <div *ngIf="showSignIn">
+          <ion-item>
+            <ion-label position="floating" color="primary">Password</ion-label>
+            <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+            </ion-input>
+          </ion-item>
+        </div>
+        
+        
+        
+        
+  
+        <!-- <ion-text color="danger">
+          <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
+            Password is required
+          </p>
+        </ion-text> -->
+        <div *ngIf="showActiveSignup">
+          <ion-item>
+            <ion-label position="floating" color="primary">Confirmation Code</ion-label>
+            <ion-input [(ngModel)]="login.confirmationCode" name="password" type="password" #password="ngModel" required>
+            </ion-input>
+          </ion-item>
+        </div>
+        
+        <ion-col>
+        <ion-button *ngIf="showSignIn" (click)="signIn()" type="submit" expand="block">Login</ion-button>
 
-    <ion-title class="ion-text-center" color="primary">Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <div class="login-logo">
-    <img src="assets/icon/appicon.svg" alt="Ionic logo">
-  </div>
-
-  <form #loginForm="ngForm" novalidate>
-    <ion-list lines="none">
-      <ion-item>
-        <ion-label position="stacked" color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel"
-                   spellcheck="false" autocapitalize="off" required>
-        </ion-input>
-      </ion-item>
-
-      <ion-text color="danger">
-        <p [hidden]="username.valid || submitted == false" class="ion-padding-start">
-          Username is required
-        </p>
-      </ion-text>
-
-      <ion-item>
-        <ion-label position="stacked" color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
-        </ion-input>
-      </ion-item>
-
-      <ion-text color="danger">
-        <p [hidden]="password.valid || submitted == false" class="ion-padding-start">
-          Password is required
-        </p>
-      </ion-text>
-    </ion-list>
-
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="signIn(loginForm)" type="submit" expand="block">Login</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button (click)="signUp()" color="light" expand="block">Signup</ion-button>
-      </ion-col>
-    </ion-row>
-  </form>
-
+          <ion-button *ngIf="showSignIn" (click)="signUp()" color="light" expand="block">Signup</ion-button>
+          <ion-button *ngIf="showForgot" (click)="changePassword()" color="light" expand="block">Reset Password</ion-button>
+            <ion-button *ngIf="showActiveSignup" (click)="confirmSignUp()" color="light" expand="block">Confirm</ion-button>
+           <ion-row>
+            <ion-button style="color:black ; font-weight: bold" *ngIf="!showForgot" (click)="showForgotFn()" color="transparent" expand="block">Forgit Password</ion-button>
+            <ion-button style="color:black ; font-weight: bold" *ngIf="!showActiveSignup" (click)="showActiveSignupFn()" color="transparent" expand="block">Confirm Signup</ion-button>
+            <ion-button style="color:black ; font-weight: bold"  *ngIf="!showSignIn" (click)="showSignInFn()" color="transparent" expand="block">Sign In</ion-button>
+          </ion-row>
+        </ion-col>
+      
+  
+      <ion-row>
+       
+      </ion-row>
+    </form>
+  
+  </ion-content></dev>
+  
 </ion-content>
+
+<!-- Basic login screen -->
+
+<!-- <ion-content padding class="fullPage" >
+
+   
+   
+  <div  class="centered">
+      <form>
+          <div class="icon">            <img  alt="logo" height="90"   src="assets/logo.png" >
+          </div>
+          
+      <ion-item >
+          <ion-label position="floating">User Name</ion-label>
+          <ion-input  id="#username" [(ngModel)]="username"></ion-input>
+      </ion-item>
+      
+      <ion-item padding>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input padding id="#password" [(ngModel)]="password"  type="password"></ion-input>
+      </ion-item>
+      <ion-button class="button-center" id="#login-btn" (click)="signIn()"> Login </ion-button>
+      <ion-button (click)="signUp()" color="light" expand="block">Signup</ion-button>
+
+     
+      </form>
+      
+  </div>
+  
+
+</ion-content> -->
+

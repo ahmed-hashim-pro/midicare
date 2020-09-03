@@ -416,3 +416,17 @@
 
   --ion-tab-bar-background: #1f1f1f;
 }
+.modal-fullscreen {
+  .modal-wrapper {
+      position: center;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 95%;
+      height: 95%;
+      
+  }
+}
+video{
+  object-fit: center;
+}

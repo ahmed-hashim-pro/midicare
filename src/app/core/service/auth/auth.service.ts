@@ -16,7 +16,9 @@ export interface AuthServiceProvider {
   // Basic sign in/out/up functionalities
   signIn (username: string, password: string) : Promise <User> ;
   signOut () : Promise<User>;
-  signUp (username: string, password: string, opts: object) : Promise<User>;
+  signUp (username: string, password: string, opts: object) : Promise<any>;
+  changePassword (username: string, oldPassword: string, newPassword: string, opts: object) : Promise<any>;
+  confirmSignUp(username: string, code: string) : Promise<any>;
   isSignedIn() : Promise<boolean>;
   // TODO: Provide the missing capabilities
   // Forgot password
@@ -59,14 +61,47 @@ export class AuthService {
     this.user.next(user);
     return user;
   }
+  
 
-  public async signUp (username: string, password: string, opts: object) : Promise<User> {
-    const user = await this.service.signUp(username, password, opts);
-    this.user.next(user);
-    return user;
+
+  
+  public async changePassword (username: string, oldPassword: string, newPassword: string, opts: object) : Promise<'SUCCESS'> {
+   
+    try{
+      const user = await this.service.changePassword(username, oldPassword,newPassword, opts);
+      //this.user.next(user);
+      return 'SUCCESS';
+    }catch (e) {
+        console.log(e);
+      }
   }
+  
+public async confirmSignUp(username: string, code: string) : Promise<any> {
+   
+    try{
+      const user = await this.service.confirmSignUp(username, code);
+      //this.user.next(user);
+      return true;
+    }catch (e) {
+        console.log(e);
+      }
+  }
+  
 
   public async isSingedIn () : Promise <boolean> {
     return await this.service.isSignedIn();
   }
+
+  async  signUp(username: string, password: string, opts: object): Promise <any> {
+    try {
+      const user = await this.service.signUp(
+            username,
+            password,
+            opts
+        );
+        console.log(user);
+    } catch (error) {
+        console.log('error signing up:', error);
+    }}
+
 }
